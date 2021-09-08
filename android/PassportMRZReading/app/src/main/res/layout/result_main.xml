@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:id="@+id/pb_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="35sp"
+                    android:text="Passport"
+                    />
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tv_title"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#fff3f3f3" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Surname" />
+                <TextView
+                    android:id="@+id/tv_surname"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Given Names" />
+                <TextView
+                    android:id="@+id/tv_given_names"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#fff3f3f3" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Nationality" />
+                <TextView
+                    android:id="@+id/tv_Nation"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#fff3f3f3" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Passport Number" />
+                <TextView
+                    android:id="@+id/tv_pass_no"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#fff3f3f3" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="280dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Issuing Country or Organization" />
+                <TextView
+                    android:id="@+id/tv_issue"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#fff3f3f3" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Date of Birth" />
+                <TextView
+                    android:id="@+id/tv_birth"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#fff3f3f3" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical|left"
+                    android:text="Sex/Gender" />
+                <TextView
+                    android:id="@+id/tv_sex"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:textSize="17sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#fff3f3f3" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="220dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="17sp"
+                    android:gravity="center_vertical|left"
+                    android:text="Passport Expiration Date" />
+                <TextView
+                    android:id="@+id/tv_date_expiry"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="17sp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:text="XXX" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+    </RelativeLayout>
+</LinearLayout>
