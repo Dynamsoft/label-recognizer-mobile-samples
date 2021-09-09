@@ -46,7 +46,7 @@ This repository contains multiple samples that demonstrates how to use the [Dyna
 ## License
 
 - If you want to use an offline license, please contact [Dynamsoft Support](https://www.dynamsoft.com/company/contact/)
-- You can also request a 30-day trial license in the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=github&package=c_cpp)
+- You can also request a 30-day trial license in the [customer portal](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=github&package=ios)
 
 ## Contact Us
 
