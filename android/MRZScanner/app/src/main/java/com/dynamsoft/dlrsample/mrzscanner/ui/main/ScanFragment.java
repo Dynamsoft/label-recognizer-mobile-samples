@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +86,6 @@ public class ScanFragment extends Fragment {
             }
             DLRRuntimeSettings settings = mMRZRecognizer.getRuntimeSettings();
             settings.textArea = quad;
-            Log.e(TAG, "onViewCreated: "+quad.points[0] );
             mMRZRecognizer.updateRuntimeSettings(settings);
             FileOutputStream outStream = getActivity().openFileOutput("settingMRZ.json", Context.MODE_PRIVATE);
             outStream.write(mMRZRecognizer.outputRuntimeSettingsToString("").getBytes());
@@ -100,7 +98,6 @@ public class ScanFragment extends Fragment {
         mMRZRecognizer.setMRZResultListener(new MRZResultListener() {
             @Override
             public void mrzResultCallback(int i, ImageData imageData, MRZResult mrzResult) {
-                Log.e(TAG, "mrzResultCallback: "+mrzResult );
                 if (mrzResult != null && !isShowing && mrzResult.isParsed) {
                     isShowing = true;
                     mViewModel.mrzResult = mrzResult;
@@ -178,7 +175,6 @@ public class ScanFragment extends Fragment {
                     try {
                         DLRRuntimeSettings settings = mMRZRecognizer.getRuntimeSettings();
                         settings.textArea = quad;
-                        Log.e(TAG, "onChanged: "+quad );
                         mMRZRecognizer.updateRuntimeSettings(settings);
                     } catch (LabelRecognizerException e) {
                         e.printStackTrace();

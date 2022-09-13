@@ -8,16 +8,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.OrientationEventListener;
 import android.view.WindowManager;
 
 import com.dynamsoft.core.LicenseManager;
-import com.dynamsoft.dlr.LabelRecognizerException;
-import com.dynamsoft.dlr.MRZRecognizer;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.ScanFragment;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.MainViewModel;
 

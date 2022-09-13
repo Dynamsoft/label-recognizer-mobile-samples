@@ -1,14 +1,10 @@
 package com.dynamsoft.dlrsample.mrzscanner.ui.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import androidx.fragment.app.Fragment;
@@ -67,17 +63,5 @@ public class ResultFragment extends Fragment {
         ResultAdapter resultAdapter = new ResultAdapter(mrzResultStrings);
         resultsRecyclerView.setAdapter(resultAdapter);
         resultAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.e(TAG, "onResume: B" );
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.e(TAG, "onPause: B" );
     }
 }
