@@ -70,15 +70,6 @@ public class ScanFragment extends Fragment {
         }
 
         try {
-            FileOutputStream outStream = null;
-            outStream = getActivity().openFileOutput("settingMRZ0.json", Context.MODE_PRIVATE);
-            outStream.write(mMRZRecognizer.outputRuntimeSettingsToString("").getBytes());
-            outStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
             Quadrilateral quad = new Quadrilateral();
             Integer rotationValue = mViewModel.deviceRotation.getValue();
             for (int i = 0; i < 4; i++) {
@@ -87,9 +78,6 @@ public class ScanFragment extends Fragment {
             DLRRuntimeSettings settings = mMRZRecognizer.getRuntimeSettings();
             settings.textArea = quad;
             mMRZRecognizer.updateRuntimeSettings(settings);
-            FileOutputStream outStream = getActivity().openFileOutput("settingMRZ.json", Context.MODE_PRIVATE);
-            outStream.write(mMRZRecognizer.outputRuntimeSettingsToString("").getBytes());
-            outStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

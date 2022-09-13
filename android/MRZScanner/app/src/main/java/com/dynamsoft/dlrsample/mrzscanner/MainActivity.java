@@ -59,8 +59,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onOrientationChanged(int rotation) {
                 int deviceRotation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
-                if(mViewModel.deviceRotation.getValue() != deviceRotation) {
-                    mViewModel.deviceRotation.setValue(deviceRotation);
+                if(mViewModel != null && mViewModel.deviceRotation != null ) {
+                    Integer value = mViewModel.deviceRotation.getValue();
+                    if(value != null && value != deviceRotation) {
+                        mViewModel.deviceRotation.setValue(deviceRotation);
+                    }
                 }
             }
         };

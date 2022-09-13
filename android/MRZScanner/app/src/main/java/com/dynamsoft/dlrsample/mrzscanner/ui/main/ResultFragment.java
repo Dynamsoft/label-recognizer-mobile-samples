@@ -33,8 +33,6 @@ public class ResultFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-//        ((MainActivity) requireActivity()).getSupportActionBar().setTitle("Result");
-//        ((MainActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mViewModel.currentFragment.setValue(MainViewModel.RESULT_FRAGMENT);
         return inflater.inflate(R.layout.result_fragment, container, false);
