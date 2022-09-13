@@ -48,8 +48,8 @@ class ParseUtil {
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
-            mrzResult.docId = matcher.group(2);
-            if (!verifyString(mrzResult.docId, lineTexts[0].charAt(14))) {
+            mrzResult.docId = matcher.group(2).replace("<","");
+            if (!verifyString( matcher.group(2), lineTexts[0].charAt(14))) {
                 mrzResult.isVerified = false;
             }
         } else {
@@ -132,8 +132,8 @@ class ParseUtil {
         pattern = Pattern.compile(TD2_LINE2_REGEX);
         matcher = pattern.matcher(lineTexts[1]);
         if (matcher.find()) {
-            mrzResult.docId = matcher.group(1);
-            if (!verifyString(mrzResult.docId, lineTexts[1].charAt(9))) {
+            mrzResult.docId = matcher.group(1).replace("<","");
+            if (!verifyString(matcher.group(1), lineTexts[1].charAt(9))) {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
@@ -200,8 +200,8 @@ class ParseUtil {
         pattern = Pattern.compile(TD3_LINE2_REGEX);
         matcher = pattern.matcher(lineTexts[1]);
         if (matcher.find()) {
-            mrzResult.docId = matcher.group(1);
-            if (!verifyString(mrzResult.docId, lineTexts[1].charAt(9))) {
+            mrzResult.docId = matcher.group(1).replace("<","");
+            if (!verifyString(matcher.group(1), lineTexts[1].charAt(9))) {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
@@ -269,8 +269,8 @@ class ParseUtil {
         pattern = Pattern.compile(MRVA_LINE2_REGEX);
         matcher = pattern.matcher(lineTexts[1]);
         if (matcher.find()) {
-            mrzResult.docId = matcher.group(1);
-            if (!verifyString(mrzResult.docId, lineTexts[1].charAt(9))) {
+            mrzResult.docId = matcher.group(1).replace("<","");
+            if (!verifyString(matcher.group(1), lineTexts[1].charAt(9))) {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
@@ -331,8 +331,8 @@ class ParseUtil {
         pattern = Pattern.compile(MRVB_LINE2_REGEX);
         matcher = pattern.matcher(lineTexts[1]);
         if (matcher.find()) {
-            mrzResult.docId = matcher.group(1);
-            if (!verifyString(mrzResult.docId, lineTexts[1].charAt(9))) {
+            mrzResult.docId = matcher.group(1).replace("<","");
+            if (!verifyString(matcher.group(1), lineTexts[1].charAt(9))) {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
