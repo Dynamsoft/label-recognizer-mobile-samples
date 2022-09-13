@@ -29,7 +29,6 @@ import com.dynamsoft.dlr.MRZResult;
 import com.dynamsoft.dlr.MRZResultListener;
 import com.dynamsoft.dlrsample.mrzscanner.MainActivity;
 import com.dynamsoft.dlrsample.mrzscanner.R;
-import java.io.FileOutputStream;
 
 public class ScanFragment extends Fragment {
     private static final String TAG = "ScanFragment";
@@ -64,7 +63,7 @@ public class ScanFragment extends Fragment {
         mCamera.setCameraView(mCameraView);
 
         try {
-            mMRZRecognizer = new MRZRecognizer(EnumMRZDocumentType.MDT_PASSPORT);
+            mMRZRecognizer = new MRZRecognizer();
         } catch (LabelRecognizerException e) {
             e.printStackTrace();
         }
