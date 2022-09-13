@@ -153,21 +153,30 @@ public class MRZRecognizer extends LabelRecognizer {
                 return ParseUtil.parseTD2(rawTexts);
             }
         } else if (mDocumentType == EnumMRZDocumentType.MDT_VISA) {
-            MRZResult mrzResult = ParseUtil.parseTD2(rawTexts);
+            MRZResult mrzResult = ParseUtil.parseMRVA(rawTexts);
             if (mrzResult != null && mrzResult.isParsed) {
                 return mrzResult;
             } else {
-                return ParseUtil.parseTD3(rawTexts);
+                return ParseUtil.parseMRVB(rawTexts);
             }
         } else if (mDocumentType == EnumMRZDocumentType.MDT_ALL) {
             if (rawTexts.length == 3) {
                 return ParseUtil.parseTD1(rawTexts);
             } else {
-                MRZResult mrzResult = ParseUtil.parseTD2(rawTexts);
-                if (mrzResult != null && mrzResult.isParsed) {
-                    return mrzResult;
-                } else {
-                    return ParseUtil.parseTD3(rawTexts);
+                if(rawTexts[0].length() == 36) {
+                    MRZResult mrzResult = ParseUtil.parseTD2(rawTexts);
+                    if (mrzResult != null && mrzResult.isParsed) {
+                        return mrzResult;
+                    } else {
+                        return ParseUtil.parseMRVB(rawTexts);
+                    }
+                } else if(rawTexts[0].length() == 44) {
+                    MRZResult mrzResult = ParseUtil.parseTD3(rawTexts);
+                    if (mrzResult != null && mrzResult.isParsed) {
+                        return mrzResult;
+                    } else {
+                        return ParseUtil.parseMRVA(rawTexts);
+                    }
                 }
             }
         }
