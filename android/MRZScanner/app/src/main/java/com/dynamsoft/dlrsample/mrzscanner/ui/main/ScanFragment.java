@@ -4,7 +4,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
 
@@ -22,12 +21,10 @@ import com.dynamsoft.dce.CameraEnhancer;
 import com.dynamsoft.dce.CameraEnhancerException;
 import com.dynamsoft.dce.DCECameraView;
 import com.dynamsoft.dlr.DLRRuntimeSettings;
-import com.dynamsoft.dlr.EnumMRZDocumentType;
 import com.dynamsoft.dlr.LabelRecognizerException;
 import com.dynamsoft.dlr.MRZRecognizer;
 import com.dynamsoft.dlr.MRZResult;
 import com.dynamsoft.dlr.MRZResultListener;
-import com.dynamsoft.dlrsample.mrzscanner.MainActivity;
 import com.dynamsoft.dlrsample.mrzscanner.R;
 
 public class ScanFragment extends Fragment {
@@ -125,8 +122,6 @@ public class ScanFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity) requireActivity()).getSupportActionBar().setTitle("MRZScanner");
-        ((MainActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         if (!isShowing) {
             mMRZRecognizer.startScanning();
             try {

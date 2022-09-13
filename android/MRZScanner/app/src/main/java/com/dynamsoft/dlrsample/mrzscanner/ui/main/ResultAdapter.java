@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dynamsoft.dlrsample.mrzscanner.R;
 
-import java.util.Map;
-
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder> {
     private final String[] mrzResultStrings;
 

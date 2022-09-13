@@ -2,7 +2,6 @@ package com.dynamsoft.dlrsample.mrzscanner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,13 +15,6 @@ import android.view.WindowManager;
 import com.dynamsoft.core.LicenseManager;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.ScanFragment;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.MainViewModel;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mViewModel;
