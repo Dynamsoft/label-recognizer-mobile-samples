@@ -80,7 +80,7 @@ public class MRZRecognizer extends LabelRecognizer {
             }
             isMrzSetting.close();
             String mrzSetting = sb.toString();
-            initRuntimeSettingsFromString(mrzSetting);
+            initRuntimeSettings(mrzSetting);
         } catch (Exception e) {
             e.printStackTrace();
         }
