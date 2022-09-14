@@ -6,14 +6,14 @@
 
     <TextView
         android:id="@+id/item_title"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingVertical="10dp"
         android:paddingStart="10dp"
         android:paddingEnd="0dp"
-        android:paddingVertical="10dp"
+        android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
-        android:gravity="center_vertical"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,8 +21,8 @@
         android:id="@+id/item_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingStart="5dp"
-        android:paddingEnd="10dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="5dp"
         android:paddingVertical="10dp"
         android:textSize="18sp"
         android:gravity="center_vertical"

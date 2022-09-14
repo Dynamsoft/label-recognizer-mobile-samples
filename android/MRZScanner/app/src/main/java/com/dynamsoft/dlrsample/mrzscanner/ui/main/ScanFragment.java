@@ -1,9 +1,9 @@
 package com.dynamsoft.dlrsample.mrzscanner.ui.main;
 
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
 
@@ -12,11 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dynamsoft.core.ImageData;
 import com.dynamsoft.core.Quadrilateral;
+import com.dynamsoft.core.RegionDefinition;
 import com.dynamsoft.dce.CameraEnhancer;
 import com.dynamsoft.dce.CameraEnhancerException;
 import com.dynamsoft.dce.DCECameraView;
@@ -36,7 +38,12 @@ public class ScanFragment extends Fragment {
     private boolean isShowing;
     private final ResultFragment mResultFragment = ResultFragment.newInstance();
 
-    private final Point[] rotationPoints = new Point[]{new Point(0, 100), new Point(0, 0), new Point(100, 0), new Point(100, 100)};
+    private final Point[] rotationPoints = new Point[]{
+            new Point(0, 100), /*The top-left point of screen corresponds to the coordinates in the Image data when the device rotation is ROTATION_0.*/
+            new Point(0, 0), /*The top-left point of screen corresponds to the coordinates in the Image data when the device rotation is ROTATION_90.*/
+            new Point(100, 0), /*The top-left point of screen corresponds to the coordinates in the Image data when the device rotation is ROTATION_180.*/
+            new Point(100, 100) /*The top-left point of screen corresponds to the coordinates in the Image data when the device rotation is ROTATION_270.*/
+    };
 
     public static ScanFragment newInstance() {
         return new ScanFragment();
@@ -87,8 +94,8 @@ public class ScanFragment extends Fragment {
                     mViewModel.mrzResult = mrzResult;
                     requireActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .add(R.id.container, mResultFragment, null)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                            .add(R.id.container, mResultFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                             .addToBackStack(null)
                             .hide(ScanFragment.this)
                             .commit();
@@ -108,7 +115,7 @@ public class ScanFragment extends Fragment {
             }
             mMRZRecognizer.stopScanning();
         } else {
-            mViewModel.currentFragment.setValue(MainViewModel.SCAN_FRAGMENT);
+            mViewModel.currentFragmentFlag.setValue(MainViewModel.SCAN_FRAGMENT);
             isShowing = false;
             try {
                 mCamera.open();
@@ -145,22 +152,38 @@ public class ScanFragment extends Fragment {
 
     private void initViewModel() {
         mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        mViewModel.currentFragment.setValue(MainViewModel.SCAN_FRAGMENT);
-        mViewModel.deviceRotation.observe(getViewLifecycleOwner(), new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer rotationValue) {
-                Quadrilateral quad = new Quadrilateral();
-                for (int i = 0; i < 4; i++) {
-                    quad.points[i] = rotationPoints[(i+rotationValue) % 4];
+        mViewModel.currentFragmentFlag.setValue(MainViewModel.SCAN_FRAGMENT);
+
+        //Reset the runtimeSettings of mrz recognizer when the device rotation changes.
+        mViewModel.deviceRotation.observe(getViewLifecycleOwner(), rotationValue -> {
+            Quadrilateral quad = new Quadrilateral();
+            for (int i = 0; i < 4; i++) {
+                quad.points[i] = rotationPoints[(i+rotationValue) % 4];
+            }
+            if(mMRZRecognizer != null) {
+                try {
+                    DLRRuntimeSettings settings = mMRZRecognizer.getRuntimeSettings();
+                    settings.textArea = quad;
+                    mMRZRecognizer.updateRuntimeSettings(settings);
+                } catch (LabelRecognizerException e) {
+                    e.printStackTrace();
                 }
-                if(mMRZRecognizer != null) {
-                    try {
-                        DLRRuntimeSettings settings = mMRZRecognizer.getRuntimeSettings();
-                        settings.textArea = quad;
-                        mMRZRecognizer.updateRuntimeSettings(settings);
-                    } catch (LabelRecognizerException e) {
-                        e.printStackTrace();
-                    }
+            }
+
+            if(rotationValue % 2 == 0) {
+                //portrait
+                RegionDefinition region = new RegionDefinition(10, 43, 90, 57, 1);
+                try {
+                    mCamera.setScanRegion(region);
+                } catch (CameraEnhancerException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                RegionDefinition region = new RegionDefinition(20, 40, 80, 60, 1);
+                try {
+                    mCamera.setScanRegion(region);
+                } catch (CameraEnhancerException e) {
+                    e.printStackTrace();
                 }
             }
         });

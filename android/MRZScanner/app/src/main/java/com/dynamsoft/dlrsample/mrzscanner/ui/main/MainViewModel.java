@@ -9,7 +9,7 @@ public class MainViewModel extends ViewModel {
     public final static int SCAN_FRAGMENT = 0;
     public final static int RESULT_FRAGMENT = 1;
 
-    public MutableLiveData<Integer> currentFragment = new MutableLiveData<>(SCAN_FRAGMENT);
+    public MutableLiveData<Integer> currentFragmentFlag = new MutableLiveData<>(SCAN_FRAGMENT);
     public MRZResult mrzResult = null;
-    public MutableLiveData<Integer> deviceRotation = new MutableLiveData<Integer>(0);
+    public MutableLiveData<Integer> deviceRotation = new MutableLiveData<>(0);
 }

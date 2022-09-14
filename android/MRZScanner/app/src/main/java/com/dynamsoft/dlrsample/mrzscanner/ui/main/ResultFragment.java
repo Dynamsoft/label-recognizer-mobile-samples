@@ -33,7 +33,7 @@ public class ResultFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        mViewModel.currentFragment.setValue(MainViewModel.RESULT_FRAGMENT);
+        mViewModel.currentFragmentFlag.setValue(MainViewModel.RESULT_FRAGMENT);
         return inflater.inflate(R.layout.result_fragment, container, false);
     }
 
@@ -44,18 +44,18 @@ public class ResultFragment extends Fragment {
         resultsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         MRZResult mrzResult = mViewModel.mrzResult;
-        mrzResultStrings[0] = "DocID:__" + mrzResult.docId;
-        mrzResultStrings[1] = "DocType:__" + mrzResult.docType;
-        mrzResultStrings[2] = "Nationality:__" + mrzResult.nationality;
-        mrzResultStrings[3] = "Issuer:__" + mrzResult.issuer;
-        mrzResultStrings[4] = "Birth:__" + mrzResult.dateOfBirth;
-        mrzResultStrings[5] = "Expiration:__" + mrzResult.dateOfExpiration;
-        mrzResultStrings[6] = "Gender:__" + mrzResult.gender;
-        mrzResultStrings[7] = "Surname:__" + mrzResult.surname;
-        mrzResultStrings[8] = "GivenName:__" + mrzResult.givenName;
-        mrzResultStrings[9] = "IsParsed:__" + mrzResult.isParsed;
-        mrzResultStrings[10] = "IsVerified:__" + mrzResult.isVerified;
-        mrzResultStrings[11] = "MRZText:__" + mrzResult.mrzText;
+        mrzResultStrings[0] = "Document Type : __" + mrzResult.docType;
+        mrzResultStrings[1] = "Issuing State : __" + mrzResult.issuer;
+        mrzResultStrings[2] = "Surname : __" + mrzResult.surname;
+        mrzResultStrings[3] = "Given Name : __" + mrzResult.givenName;
+        mrzResultStrings[4] = "Passport Number : __" + mrzResult.docId;
+        mrzResultStrings[5] = "Nationality : __" + mrzResult.nationality;
+        mrzResultStrings[6] = "Date of Birth(YY-MM-DD) : __" + mrzResult.dateOfBirth;
+        mrzResultStrings[7] = "Gender : __" + mrzResult.gender;
+        mrzResultStrings[8] = "Date of Expiry(YY-MM-DD) : __" + mrzResult.dateOfExpiration;
+        mrzResultStrings[9] = "Is Parsed : __" + mrzResult.isParsed;
+        mrzResultStrings[10] = "Is Verified : __" + mrzResult.isVerified;
+        mrzResultStrings[11] = "MRZ Text : __" + mrzResult.mrzText;
 
         ResultAdapter resultAdapter = new ResultAdapter(mrzResultStrings);
         resultsRecyclerView.setAdapter(resultAdapter);

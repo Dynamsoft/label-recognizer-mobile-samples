@@ -25,35 +25,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        mViewModel.currentFragment.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                if(integer == MainViewModel.SCAN_FRAGMENT) {
-                    getSupportActionBar().setTitle("MRZ Scanner");
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                } else if(integer == MainViewModel.RESULT_FRAGMENT) {
-                    getSupportActionBar().setTitle("MRZ Result");
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                }
+
+        //Change toolbar title on different fragments
+        mViewModel.currentFragmentFlag.observe(this, flag -> {
+            if (flag == MainViewModel.SCAN_FRAGMENT) {
+                getSupportActionBar().setTitle("MRZ Scanner");
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            } else if (flag == MainViewModel.RESULT_FRAGMENT) {
+                getSupportActionBar().setTitle("MRZ Result");
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
         });
 
+        //Set default device rotation.
         mViewModel.deviceRotation.setValue(((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation());
+
         LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, null);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .replace(R.id.container, ScanFragment.newInstance())
                     .commit();
         }
 
+        //Detecting device orientation and rotation in real time.
         mOrientationListener = new OrientationEventListener(this) {
             @Override
             public void onOrientationChanged(int rotation) {
                 int deviceRotation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
-                if(mViewModel != null && mViewModel.deviceRotation != null ) {
+                if (mViewModel != null && mViewModel.deviceRotation != null) {
                     Integer value = mViewModel.deviceRotation.getValue();
-                    if(value != null && value != deviceRotation) {
+                    if (value != null && value != deviceRotation) {
                         mViewModel.deviceRotation.setValue(deviceRotation);
                     }
                 }
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
