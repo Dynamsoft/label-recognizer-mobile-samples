@@ -1,13 +1,13 @@
 //
 //  AppDelegate.m
-//  HelloWorldObjc
+//  HelloWorldObjC
 //
-//  Created by dynamsoft on 2021/6/30.
+//  Created by Dynamsoft's mac on 2022/9/8.
 //
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<LicenseVerificationListener>
 
 @end
 
@@ -16,25 +16,41 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    if(@available(ios 15.0,*)){
+        UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+        [appearance configureWithOpaqueBackground];
+        appearance.backgroundColor = [UIColor colorWithRed:59.003/255.0 green:61.9991/255.0 blue:69.0028/255.0 alpha:1];
+        appearance.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+        [[UINavigationBar appearance] setStandardAppearance:appearance];
+        [[UINavigationBar appearance] setScrollEdgeAppearance:appearance];
+    }
+    
+    [DynamsoftLicenseManager initLicense:@"DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" verificationDelegate:self];
     return YES;
 }
 
+// MARK: - LicenseVerificationListener
+- (void)licenseVerificationCallback:(bool)isSuccess error:(NSError *)error {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString* msg = @"";
+        if(error != nil)
+        {
+            msg = error.userInfo[NSUnderlyingErrorKey];
+            if(msg == nil)
+            {
+                msg = [error localizedDescription];
+            }
 
-#pragma mark - UISceneSession lifecycle
-
-
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Server license verify failed" message:msg preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction * action) {
+                                                       
+                                                    }]];
+            UIViewController *topViewController = self.window.rootViewController;
+            [topViewController presentViewController:alert animated:YES completion:nil];
+        }
+    });
+   
 }
-
-
-- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-}
-
 
 @end
