@@ -2,37 +2,57 @@
 //  AppDelegate.swift
 //  HelloWorldSwift
 //
-//  Created by dynamsoft on 2021/7/1.
+//  Created by Dynamsoft's mac on 2022/9/9.
 //
 
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, LicenseVerificationListener {
 
-    var window: UIWindow?
+    var window:UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let homeVC = ViewController.init()
+        let baseNaVC = BaseNavigationController.init(rootViewController: homeVC)
+        self.window?.rootViewController = baseNaVC
+        
+        if #available(iOS 15.0,*) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor(red: 59.003 / 255.0, green: 61.9991 / 255.0, blue: 69.0028 / 255.0, alpha: 1)
+            appearance.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: UIColor.white]
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
+        
+        DynamsoftLicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", verificationDelegate: self)
+        
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    @available(iOS 13.0, *)
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    
+    // MARK: - LicenseVerificationListener
+    func licenseVerificationCallback(_ isSuccess: Bool, error: Error?) {
+        var msg:String? = nil
+        if(error != nil)
+        {
+            let err = error as NSError?
+            msg = err!.userInfo[NSUnderlyingErrorKey] as? String
+            DispatchQueue.main.async {
+                var topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+                topWindow?.rootViewController = UIViewController()
+                let alert = UIAlertController(title: "Server license verify failed", message: msg, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel) { _ in
+                    topWindow?.isHidden = true
+                    topWindow = nil
+                 })
+                topWindow?.makeKeyAndVisible()
+                topWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+        }
     }
-
-    @available(iOS 13.0, *)
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
 }
 

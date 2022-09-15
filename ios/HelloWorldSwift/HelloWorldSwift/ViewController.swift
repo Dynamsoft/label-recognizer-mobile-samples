@@ -2,115 +2,84 @@
 //  ViewController.swift
 //  HelloWorldSwift
 //
-//  Created by dynamsoft on 2021/7/1.
+//  Created by Dynamsoft's mac on 2022/9/9.
 //
 
 import UIKit
-import DynamsoftLabelRecognizer
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DLRLicenseVerificationDelegate {
-    
-    var dlr: DynamsoftLabelRecognizer!
-    var img: UIImage!
+class ViewController: BaseViewController, LabelResultListener {
 
-    @IBOutlet weak var imgView: UIImageView!
+    var labelRecognizer: DynamsoftLabelRecognizer!
+    var cameraEnhancer: DynamsoftCameraEnhancer!
+    var dceView: DCECameraView!
     
-    var imagePickerController: UIImagePickerController!
+    lazy var dlrResultView: DLRResultView = {
+        let dlrResultView = DLRResultView.init(frame: CGRect.init(x: 20, y: self.view.height * 0.55, width: self.view.width - 40, height: self.view.height * 0.45 - 34))
+        return dlrResultView
+    }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 59.003 / 255.0, green: 61.9991 / 255.0, blue: 69.0028 / 255.0, alpha: 1)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        self.title = "DynamsoftLabelRecognizer"
         
-        // 1.Initialize license.
-        // The string "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" here is a 7-day free license. Note that network connection is required for this license to work.
-        // If you want to use an offline license, please contact Dynamsoft Support: https://www.dynamsoft.com/company/contact/
-        // You can also request a 30-day trial license in the customer portal: https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=github&package=ios
-        DynamsoftLabelRecognizer.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", verificationDelegate: self)
+        configureDLR()
+        setupUI()
+    }
+    
+    func configureDLR() -> Void {
+        labelRecognizer = DynamsoftLabelRecognizer.init()
         
-        // 2.Create an instance of Label Recognizer.
-        dlr = DynamsoftLabelRecognizer.init()
+        let dlrRuntimeSettings: iDLRRuntimeSettings = try! self.labelRecognizer.getRuntimeSettings()
+        dlrRuntimeSettings.textArea = self.handleTextArea()
+        try! self.labelRecognizer.updateRuntimeSettings(dlrRuntimeSettings)
+        
+        dceView = DCECameraView.init(frame: self.view.bounds)
+        cameraEnhancer = DynamsoftCameraEnhancer.init(view: self.dceView)
+        self.view.addSubview(self.dceView)
+        cameraEnhancer.open()
+        
+        labelRecognizer.setImageSource(self.cameraEnhancer)
+        labelRecognizer.setLabelResultListener(self)
+        labelRecognizer.startScanning()
+        
+        let region = iRegionDefinition.init()
+        region.regionLeft = 5
+        region.regionRight = 95
+        region.regionTop = 30
+        region.regionBottom = 50
+        region.regionMeasuredByPercentage = 1
+        try? cameraEnhancer.setScanRegion(region)
+      
+    }
+    
+    func setupUI() -> Void {
+        self.view.addSubview(dlrResultView)
+    }
+    
+    func handleTextArea() -> iQuadrilateral {
+        let qua = iQuadrilateral.init()
+        qua.points = [NSNumber(cgPoint: CGPoint(x: 0, y: 100)),
+                      NSNumber(cgPoint: CGPoint(x: 0, y: 0)),
+                      NSNumber(cgPoint: CGPoint(x: 100, y: 0)),
+                      NSNumber(cgPoint: CGPoint(x: 100, y: 100))]
+        return qua
+    }
+    
+    // MARK: - LabelResultListener
+    func labelResultCallback(_ frameId: Int, imageData: iImageData, results: [iDLRResult]?) {
+        if let results = results {
+            dlrResultView.updateUI(withResult: results)
+        }
     }
 
-    @IBAction func onTakePhoto(_ sender: Any) {
-        imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .camera
-        imagePickerController.cameraDevice = .rear
-        imagePickerController.delegate = self
-        
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        imgView.image = img
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func onRecognizeText(_ sender: Any) {
-        DispatchQueue.global().async {
-            self.recognizeText()
-        }
-    }
-    
-    private func recognizeText() {
-        
-        var error : NSError? = NSError()
-        
-        // 3.Recognize text from an image.
-        let results = self.dlr.recognizeByImage(image: img, templateName: "", error: &error)
-        
-        if error?.code != 0 {
-            var errMsg:String? = ""
-            errMsg = error!.userInfo[NSUnderlyingErrorKey] as? String
-            self.showResults(title: "Error", msgText: errMsg ?? "")
-        }else{
-            var msgText:String = ""
-            
-            // 4. Get all recognized results.
-            for item in results
-            {
-                if item.lineResults!.count > 0 {
-                    for lineResult in item.lineResults! {
-                        msgText = "\(msgText)\nValue: \(lineResult.text ?? "nil")\n"
-                    }
-                }else{
-                    msgText = "No data detected."
-                }
-            }
-            self.showResults(title: "Results", msgText: msgText)
-        }
-    }
-    
-    private func showResults(title:String,msgText:String) {
-        DispatchQueue.main.async {
-            let ac = UIAlertController(title: title, message: msgText, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(ac, animated: true, completion: nil)
-        }
-    }
-    
-    func dlrLicenseVerificationCallback(_ isSuccess: Bool, error: Error?) {
-            var msg:String? = ""
-            var title = "Server license verify failed"
-            if(error != nil)
-            {
-                let err = error as NSError?
-                if err?.code == -1009 {
-                    msg = "Dynamsoft Label Recognizer is unable to connect to the public Internet to acquire a license. Please connect your device to the Internet or contact support@dynamsoft.com to acquire an offline license."
-                    title = "No Internet"
-                }else{
-                    msg = err!.userInfo[NSUnderlyingErrorKey] as? String
-                    if(msg == nil)
-                    {
-                        msg = err?.localizedDescription
-                    }
-                }
-                self.showResults(title: title, msgText: msg ?? "")
-            }
-    }
-    
 }
-

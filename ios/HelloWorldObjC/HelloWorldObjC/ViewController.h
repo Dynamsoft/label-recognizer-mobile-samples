@@ -1,15 +1,14 @@
 //
 //  ViewController.h
-//  HelloWorldObjc
+//  HelloWorldObjC
 //
-//  Created by dynamsoft on 2021/6/30.
+//  Created by Dynamsoft's mac on 2022/9/8.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ViewController : UIViewController
 
-@property (nonatomic) UIImagePickerController *imagePickerController;
 
 @end
 
