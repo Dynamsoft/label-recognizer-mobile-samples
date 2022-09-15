@@ -1,3 +1,0 @@
-include ':DynamsoftMRZRecognizer'
-include ':app'
-rootProject.name = "MRZLib"

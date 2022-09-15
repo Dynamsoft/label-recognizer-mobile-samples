@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.OrientationEventListener;
 import android.view.WindowManager;
 
+import com.dynamsoft.core.CoreException;
 import com.dynamsoft.core.LicenseManager;
+import com.dynamsoft.core.LicenseVerificationListener;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.ScanFragment;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.MainViewModel;
 
@@ -40,11 +42,17 @@ public class MainActivity extends AppCompatActivity {
         //Set default device rotation.
         mViewModel.deviceRotation.setValue(((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation());
 
-        LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, null);
+
         if (savedInstanceState == null) {
+            LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, new LicenseVerificationListener() {
+                @Override
+                public void licenseVerificationCallback(boolean b, CoreException e) {
+                    //Write your codes.
+                }
+            });
+
             getSupportFragmentManager().beginTransaction()
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .replace(R.id.container, ScanFragment.newInstance())
+                    .add(R.id.container, ScanFragment.newInstance())
                     .commit();
         }
 

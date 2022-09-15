@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
@@ -36,7 +37,6 @@ public class ScanFragment extends Fragment {
     private MRZRecognizer mMRZRecognizer;
     private MainViewModel mViewModel;
     private boolean isShowing;
-    private final ResultFragment mResultFragment = ResultFragment.newInstance();
 
     private final Point[] rotationPoints = new Point[]{
             new Point(0, 100), /*The top-left point of screen corresponds to the coordinates in the Image data when the device rotation is ROTATION_0.*/
@@ -94,8 +94,7 @@ public class ScanFragment extends Fragment {
                     mViewModel.mrzResult = mrzResult;
                     requireActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .add(R.id.container, mResultFragment)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .add(R.id.container, ResultFragment.newInstance())
                             .addToBackStack(null)
                             .hide(ScanFragment.this)
                             .commit();
