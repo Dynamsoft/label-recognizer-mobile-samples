@@ -10,14 +10,8 @@ import com.dynamsoft.dce.DCECameraView;
 import com.dynamsoft.dce.DCEDrawingLayer;
 import com.dynamsoft.dce.DCEFrame;
 
-import org.json.JSONObject;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.Executors;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class MRZRecognizer extends LabelRecognizer {
     private static final String TAG = "MRZRecognizer";
@@ -128,10 +122,11 @@ public class MRZRecognizer extends LabelRecognizer {
         if (dlrResults == null || dlrResults.length == 0 || dlrResults[0].lineResults.length < 2) {
             return null;
         }
+        int linesLen = dlrResults[0].lineResults.length;
         String[] rawTexts = null;
-        if (dlrResults[0].lineResults[0].text.length() == 30) {
+        if (dlrResults[0].lineResults[linesLen - 1].text.length() == 30) {
             //TD1, need 3 lines
-            if (dlrResults[0].lineResults.length < 3) {
+            if (linesLen < 3) {
                 return null;
             }
             rawTexts = new String[3];
@@ -140,8 +135,8 @@ public class MRZRecognizer extends LabelRecognizer {
         }
 
         //Only get last 2 or 3 lines text.
-        for (int i = dlrResults[0].lineResults.length - rawTexts.length; i < dlrResults[0].lineResults.length; i++) {
-            rawTexts[i - (dlrResults[0].lineResults.length - rawTexts.length)] = dlrResults[0].lineResults[i].text;
+        for (int i = linesLen - rawTexts.length; i < linesLen; i++) {
+            rawTexts[i - (linesLen - rawTexts.length)] = dlrResults[0].lineResults[i].text;
         }
 
         if (mDocumentType == EnumMRZDocumentType.MDT_PASSPORT) {
