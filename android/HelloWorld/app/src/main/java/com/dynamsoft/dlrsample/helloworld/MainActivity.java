@@ -2,13 +2,10 @@ package com.dynamsoft.dlrsample.helloworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.fonts.FontFamily;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dynamsoft.core.CoreException;
 import com.dynamsoft.core.ImageData;
@@ -19,11 +16,6 @@ import com.dynamsoft.core.RegionDefinition;
 import com.dynamsoft.dce.CameraEnhancer;
 import com.dynamsoft.dce.CameraEnhancerException;
 import com.dynamsoft.dce.DCECameraView;
-import com.dynamsoft.dce.DCEDrawingLayer;
-import com.dynamsoft.dce.DrawingItem;
-import com.dynamsoft.dce.DrawingStyle;
-import com.dynamsoft.dce.DrawingStyleManager;
-import com.dynamsoft.dce.TextDrawingItem;
 import com.dynamsoft.dlr.DLRLineResult;
 import com.dynamsoft.dlr.DLRResult;
 import com.dynamsoft.dlr.DLRRuntimeSettings;
@@ -31,14 +23,9 @@ import com.dynamsoft.dlr.LabelRecognizer;
 import com.dynamsoft.dlr.LabelRecognizerException;
 import com.dynamsoft.dlr.LabelResultListener;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
     private TextView tvRes;
+    private DCECameraView mCameraView;
     private CameraEnhancer mCamera;
     private LabelRecognizer mRecognizer;
 
@@ -47,17 +34,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize license for Dynamsoft Label Recognizer SDK.
+        // The license string here is a time-limited trial license. Note that network connection is required for this license to work.
+        // You can also request an extension for your trial license in the customer portal: https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=installer&package=android
         LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, new LicenseVerificationListener() {
             @Override
-            public void licenseVerificationCallback(boolean b, CoreException e) {
-                //Do something you want.
+            public void licenseVerificationCallback(boolean isSuccess, CoreException error) {
+                if (!isSuccess) {
+                    error.printStackTrace();
+                    MainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast ts = Toast.makeText(getBaseContext(), "error:" + error.getErrorCode() + " " + error.getMessage(), Toast.LENGTH_LONG);
+                            ts.show();
+                        }
+                    });
+                }
             }
         });
+
         tvRes = findViewById(R.id.tv_res);
-        DCECameraView mCameraView = findViewById(R.id.dce_camera_view);
+
+        // Add camera view for previewing video.
+        mCameraView = findViewById(R.id.dce_camera_view);
+
+        // Create an instance of Dynamsoft Camera Enhancer for video streaming.
         mCamera = new CameraEnhancer(this);
         mCamera.setCameraView(mCameraView);
 
+        // Define a scan region for recognition
         RegionDefinition region = new RegionDefinition(10, 40, 90, 60, 1);
         try {
             mCamera.setScanRegion(region);
@@ -66,13 +71,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
+            // Create an instance of Dynamsoft Label Recognizer.
             mRecognizer = new LabelRecognizer();
         } catch (LabelRecognizerException e) {
             e.printStackTrace();
         }
+
+        // Bind the Camera Enhancer instance to the Label Recognizer instance.
         mRecognizer.setImageSource(mCamera);
 
         try {
+            // If the phone is shot vertically, the `textarea` needs to be rotated 90 degrees
             DLRRuntimeSettings settings = mRecognizer.getRuntimeSettings();
             Quadrilateral quad = new Quadrilateral();
             quad.points[0] = new Point(0,100);
@@ -85,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
+        // Register the label result listener to get the recognized results from images.
         mRecognizer.setLabelResultListener(new LabelResultListener() {
             @Override
             public void labelResultCallback(int i, ImageData imageData, DLRResult[] dlrResults) {
@@ -129,5 +138,4 @@ public class MainActivity extends AppCompatActivity {
         }
         runOnUiThread(() -> tvRes.setText(resultBuilder.toString()));
     }
-
 }
