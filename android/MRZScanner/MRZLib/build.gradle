@@ -27,7 +27,7 @@ android {
     }
     repositories {
         flatDir {
-            dirs '../Libs'
+            dirs '../../../Libs'
         }
     }
 
@@ -39,6 +39,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     compileOnly (name:'DynamsoftCameraEnhancer',ext:'aar')
-    compileOnly (name:'DynamsoftLabelRecognizer-release',ext:'aar')
-    compileOnly(name: 'DynamsoftCore', ext: 'aar')
+    compileOnly (name:'DynamsoftLabelRecognizer',ext:'aar')
+    compileOnly (name: 'DynamsoftCore', ext: 'aar')
 }

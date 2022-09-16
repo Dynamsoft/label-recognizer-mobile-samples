@@ -2,8 +2,6 @@ package com.dynamsoft.dlrsample.mrzscanner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
@@ -11,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.OrientationEventListener;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.dynamsoft.core.CoreException;
 import com.dynamsoft.core.LicenseManager;
@@ -42,12 +41,20 @@ public class MainActivity extends AppCompatActivity {
         //Set default device rotation.
         mViewModel.deviceRotation.setValue(((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation());
 
-
         if (savedInstanceState == null) {
             LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, new LicenseVerificationListener() {
                 @Override
-                public void licenseVerificationCallback(boolean b, CoreException e) {
-                    //Write your codes.
+                public void licenseVerificationCallback(boolean isSuccess, CoreException error) {
+                    if (!isSuccess) {
+                        error.printStackTrace();
+                        MainActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast ts = Toast.makeText(getBaseContext(), "error:" + error.getErrorCode() + " " + error.getMessage(), Toast.LENGTH_LONG);
+                                ts.show();
+                            }
+                        });
+                    }
                 }
             });
 
