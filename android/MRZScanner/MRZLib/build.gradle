@@ -25,12 +25,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    repositories {
-        flatDir {
-            dirs '../../../Libs'
-        }
-    }
-
 }
 
 dependencies {
@@ -38,7 +32,5 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    compileOnly (name:'DynamsoftCameraEnhancer',ext:'aar')
-    compileOnly (name:'DynamsoftLabelRecognizer',ext:'aar')
-    compileOnly (name: 'DynamsoftCore', ext: 'aar')
+    compileOnly fileTree(includes: ['*.aar'], dir: '../../../Libs')
 }
