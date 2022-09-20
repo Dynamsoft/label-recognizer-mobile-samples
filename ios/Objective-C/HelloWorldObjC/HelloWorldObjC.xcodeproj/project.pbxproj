@@ -19,10 +19,6 @@
 		0ACCAA5028C9E42D003537E7 /* DynamsoftCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4B28C9E42D003537E7 /* DynamsoftCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ACCAA5128C9E42D003537E7 /* DynamsoftLabelRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */; };
 		0ACCAA5228C9E42D003537E7 /* DynamsoftLabelRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ACCAA5628CAC902003537E7 /* DLRResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA5528CAC901003537E7 /* DLRResultView.m */; };
-		0ACCAA5A28CADB50003537E7 /* DLRResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA5928CADB50003537E7 /* DLRResultTableViewCell.m */; };
-		0ACCAA5E28CADCB6003537E7 /* DynamsoftToolsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA5D28CADCB6003537E7 /* DynamsoftToolsManager.m */; };
-		0ACCAA6428CAE080003537E7 /* UIView+FrameAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA6228CAE080003537E7 /* UIView+FrameAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,15 +51,6 @@
 		0ACCAA4A28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCameraEnhancer.framework; path = ../../../Frameworks/DynamsoftCameraEnhancer.framework; sourceTree = "<group>"; };
 		0ACCAA4B28C9E42D003537E7 /* DynamsoftCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCore.framework; path = ../../../Frameworks/DynamsoftCore.framework; sourceTree = "<group>"; };
 		0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftLabelRecognizer.framework; path = ../../../Frameworks/DynamsoftLabelRecognizer.framework; sourceTree = "<group>"; };
-		0ACCAA5428CAC901003537E7 /* DLRResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLRResultView.h; sourceTree = "<group>"; };
-		0ACCAA5528CAC901003537E7 /* DLRResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DLRResultView.m; sourceTree = "<group>"; };
-		0ACCAA5828CADB50003537E7 /* DLRResultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLRResultTableViewCell.h; sourceTree = "<group>"; };
-		0ACCAA5928CADB50003537E7 /* DLRResultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DLRResultTableViewCell.m; sourceTree = "<group>"; };
-		0ACCAA5C28CADCB6003537E7 /* DynamsoftToolsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamsoftToolsManager.h; sourceTree = "<group>"; };
-		0ACCAA5D28CADCB6003537E7 /* DynamsoftToolsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamsoftToolsManager.m; sourceTree = "<group>"; };
-		0ACCAA6028CADD7D003537E7 /* Dynamsoft.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dynamsoft.pch; sourceTree = "<group>"; };
-		0ACCAA6228CAE080003537E7 /* UIView+FrameAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameAdditions.m"; sourceTree = "<group>"; };
-		0ACCAA6328CAE080003537E7 /* UIView+FrameAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FrameAdditions.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +87,6 @@
 		0ACCAA2F28C9E086003537E7 /* HelloWorldObjC */ = {
 			isa = PBXGroup;
 			children = (
-				0ACCAA5B28CADC64003537E7 /* Manager */,
-				0ACCAA5728CADB2A003537E7 /* Results */,
-				0ACCAA6128CAE062003537E7 /* Category */,
-				0ACCAA5F28CADD6D003537E7 /* PCH */,
 				0ACCAA3028C9E086003537E7 /* AppDelegate.h */,
 				0ACCAA3128C9E086003537E7 /* AppDelegate.m */,
 				0ACCAA3628C9E086003537E7 /* ViewController.h */,
@@ -125,43 +108,6 @@
 				0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		0ACCAA5728CADB2A003537E7 /* Results */ = {
-			isa = PBXGroup;
-			children = (
-				0ACCAA5428CAC901003537E7 /* DLRResultView.h */,
-				0ACCAA5528CAC901003537E7 /* DLRResultView.m */,
-				0ACCAA5828CADB50003537E7 /* DLRResultTableViewCell.h */,
-				0ACCAA5928CADB50003537E7 /* DLRResultTableViewCell.m */,
-			);
-			path = Results;
-			sourceTree = "<group>";
-		};
-		0ACCAA5B28CADC64003537E7 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				0ACCAA5C28CADCB6003537E7 /* DynamsoftToolsManager.h */,
-				0ACCAA5D28CADCB6003537E7 /* DynamsoftToolsManager.m */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		0ACCAA5F28CADD6D003537E7 /* PCH */ = {
-			isa = PBXGroup;
-			children = (
-				0ACCAA6028CADD7D003537E7 /* Dynamsoft.pch */,
-			);
-			path = PCH;
-			sourceTree = "<group>";
-		};
-		0ACCAA6128CAE062003537E7 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				0ACCAA6328CAE080003537E7 /* UIView+FrameAdditions.h */,
-				0ACCAA6228CAE080003537E7 /* UIView+FrameAdditions.m */,
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,13 +180,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ACCAA6428CAE080003537E7 /* UIView+FrameAdditions.m in Sources */,
-				0ACCAA5A28CADB50003537E7 /* DLRResultTableViewCell.m in Sources */,
 				0ACCAA3828C9E086003537E7 /* ViewController.m in Sources */,
 				0ACCAA3228C9E086003537E7 /* AppDelegate.m in Sources */,
-				0ACCAA5628CAC902003537E7 /* DLRResultView.m in Sources */,
 				0ACCAA4328C9E087003537E7 /* main.m in Sources */,
-				0ACCAA5E28CADCB6003537E7 /* DynamsoftToolsManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +327,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6PESGXW9M;
 				FRAMEWORK_SEARCH_PATHS = ../../../Frameworks;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/HelloWorldObjC/PCH/Dynamsoft.pch";
+				GCC_PREFIX_HEADER = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HelloWorldObjC/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Require authorization To scan.";
@@ -416,7 +358,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6PESGXW9M;
 				FRAMEWORK_SEARCH_PATHS = ../../../Frameworks;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/HelloWorldObjC/PCH/Dynamsoft.pch";
+				GCC_PREFIX_HEADER = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HelloWorldObjC/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Require authorization To scan.";
