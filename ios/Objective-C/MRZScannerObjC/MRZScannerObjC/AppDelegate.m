@@ -27,8 +27,7 @@
     BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = navi;
     
-    [DynamsoftLicenseManager initLicense:@"DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAwNDUyMjMwLTEwMDY5MDU1NiIsIm9yZ2FuaXphdGlvbklEIjoiMTAwNDUyMjMwIiwibWFpblNlcnZlclVSTCI6Imh0dHBzOi8vbXRwbC5keW5hbXNvZnQuY29tLyIsInN0YW5kYnlTZXJ2ZXJVUkwiOiJodHRwczovL210cGxyZXMuZHluYW1zb2Z0LmNvbS8iLCJjaGVja0NvZGUiOjE3MjU1ODUzMzZ9" verificationDelegate:self];
-//    [DynamsoftLicenseManager initLicense:@"DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" verificationDelegate:self];
+    [DynamsoftLicenseManager initLicense:@"DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" verificationDelegate:self];
     
     return YES;
 }

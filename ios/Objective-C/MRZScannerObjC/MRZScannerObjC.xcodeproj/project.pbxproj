@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AB5459228D9688D008CBE2D /* DynamsoftMRZRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB5459128D9688D008CBE2D /* DynamsoftMRZRecognizer.framework */; };
-		0AB5459328D9688D008CBE2D /* DynamsoftMRZRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB5459128D9688D008CBE2D /* DynamsoftMRZRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AB545CC28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */; };
+		0AB545CD28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AEA02D528D05C930076A1BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA02D428D05C930076A1BA /* AppDelegate.m */; };
 		0AEA02DB28D05C930076A1BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA02DA28D05C930076A1BA /* ViewController.m */; };
 		0AEA02DE28D05C930076A1BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA02DC28D05C930076A1BA /* Main.storyboard */; };
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0AB5459328D9688D008CBE2D /* DynamsoftMRZRecognizer.framework in Embed Frameworks */,
+				0AB545CD28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Embed Frameworks */,
 				0AEA030928D074B20076A1BA /* DynamsoftCameraEnhancer.framework in Embed Frameworks */,
 				0AEA030528D074B20076A1BA /* DynamsoftCore.framework in Embed Frameworks */,
 				0AEA030728D074B20076A1BA /* DynamsoftLabelRecognizer.framework in Embed Frameworks */,
@@ -59,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		0AB5458A28D9687B008CBE2D /* DynamsoftMRZRecognizerSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DynamsoftMRZRecognizerSDK.xcodeproj; path = ../DynamsoftMRZRecognizerSDK/DynamsoftMRZRecognizerSDK.xcodeproj; sourceTree = "<group>"; };
-		0AB5459128D9688D008CBE2D /* DynamsoftMRZRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftMRZRecognizer.framework; path = ../DynamsoftMRZRecognizerSDK/Products/DynamsoftMRZRecognizer.framework; sourceTree = "<group>"; };
+		0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftMRZRecognizer.framework; path = ../DynamsoftMRZRecognizerSDK/Products/DynamsoftMRZRecognizer.framework; sourceTree = "<group>"; };
 		0AEA02D028D05C930076A1BA /* MRZScannerObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRZScannerObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AEA02D328D05C930076A1BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0AEA02D428D05C930076A1BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AB5459228D9688D008CBE2D /* DynamsoftMRZRecognizer.framework in Frameworks */,
+				0AB545CC28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Frameworks */,
 				0AEA030828D074B20076A1BA /* DynamsoftCameraEnhancer.framework in Frameworks */,
 				0AEA030428D074B20076A1BA /* DynamsoftCore.framework in Frameworks */,
 				0AEA030628D074B20076A1BA /* DynamsoftLabelRecognizer.framework in Frameworks */,
@@ -187,7 +187,7 @@
 		0AEA02FF28D074B10076A1BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0AB5459128D9688D008CBE2D /* DynamsoftMRZRecognizer.framework */,
+				0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */,
 				0AEA030228D074B20076A1BA /* DynamsoftCameraEnhancer.framework */,
 				0AEA030028D074B20076A1BA /* DynamsoftCore.framework */,
 				0AEA030128D074B20076A1BA /* DynamsoftLabelRecognizer.framework */,

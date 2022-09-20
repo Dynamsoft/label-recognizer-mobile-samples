@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LicenseVerificationListen
         }
         
         DynamsoftLicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", verificationDelegate: self)
-        
         return true
     }
     

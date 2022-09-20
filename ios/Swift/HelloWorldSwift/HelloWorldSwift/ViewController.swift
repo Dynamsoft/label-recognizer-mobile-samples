@@ -13,11 +13,6 @@ class ViewController: BaseViewController, LabelResultListener {
     var cameraEnhancer: DynamsoftCameraEnhancer!
     var dceView: DCECameraView!
     
-    lazy var dlrResultView: DLRResultView = {
-        let dlrResultView = DLRResultView.init(frame: CGRect.init(x: 20, y: self.view.height * 0.55, width: self.view.width - 40, height: self.view.height * 0.45 - 34))
-        return dlrResultView
-    }()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = .white
@@ -33,7 +28,6 @@ class ViewController: BaseViewController, LabelResultListener {
         self.title = "DynamsoftLabelRecognizer"
         
         configureDLR()
-        setupUI()
     }
     
     func configureDLR() -> Void {
@@ -62,10 +56,6 @@ class ViewController: BaseViewController, LabelResultListener {
       
     }
     
-    func setupUI() -> Void {
-        self.view.addSubview(dlrResultView)
-    }
-    
     func handleTextArea() -> iQuadrilateral {
         let qua = iQuadrilateral.init()
         qua.points = [NSNumber(cgPoint: CGPoint(x: 0, y: 100)),
@@ -78,8 +68,30 @@ class ViewController: BaseViewController, LabelResultListener {
     // MARK: - LabelResultListener
     func labelResultCallback(_ frameId: Int, imageData: iImageData, results: [iDLRResult]?) {
         if let results = results {
-            dlrResultView.updateUI(withResult: results)
+            guard results.count > 0 else {
+                return
+            }
+            labelRecognizer.stopScanning()
+            
+            var msgString = ""
+            var index = 0
+            for dlrResult in results {
+                if let dlrLineResults = dlrResult.lineResults {
+                    for lineResult in dlrLineResults {
+                        index+=1
+                        msgString += String(format: "Result %d:%@\n", index, lineResult.text ?? "")
+  
+                    }
+                }
+            }
+            let alertVC = UIAlertController.init(title: "Results", message: msgString, preferredStyle: .alert)
+            let okAction = UIAlertAction.init(title: "OK", style: .default) { _ in
+                self.labelRecognizer.startScanning()
+            }
+            alertVC.addAction(okAction)
+            DispatchQueue.main.async {
+                self.present(alertVC, animated: true, completion: nil)
+            }
         }
     }
-
 }

@@ -65,7 +65,6 @@ class ViewController: BaseViewController, MRZResultListener {
         mrzRecognizer.setImageSource(cameraEnhancer)
         mrzRecognizer.setMRZResultListener(self)
         mrzRecognizer.startScanning()
-        mrzRecognizer.update25AlgorithmVerifyState(false)
         
         let region = iRegionDefinition.init()
         region.regionLeft = 5

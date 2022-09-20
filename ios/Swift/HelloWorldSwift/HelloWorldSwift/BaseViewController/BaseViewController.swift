@@ -18,6 +18,4 @@ class BaseViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {.lightContent}
     }
-
-
 }
