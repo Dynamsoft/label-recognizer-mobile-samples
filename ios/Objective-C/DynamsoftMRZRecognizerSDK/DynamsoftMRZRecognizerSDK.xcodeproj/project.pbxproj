@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		0A8295BD28BF43D200476AB1 /* Intergrate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 0A8295BE28BF43D200476AB1 /* Build configuration list for PBXAggregateTarget "Intergrate" */;
+			buildPhases = (
+				0A8295C128BF43F700476AB1 /* Framework */,
+				0AE641DF28D80604001167E7 /* xcframework */,
+			);
+			dependencies = (
+			);
+			name = Intergrate;
+			productName = Intergrate;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		0A8295AB28BF433000476AB1 /* DynamsoftMRZRecognizerSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8295AA28BF433000476AB1 /* DynamsoftMRZRecognizerSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A8295BB28BF436F00476AB1 /* DynamsoftMRZRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8295B928BF436E00476AB1 /* DynamsoftMRZRecognizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A8295BC28BF436F00476AB1 /* DynamsoftMRZRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8295BA28BF436F00476AB1 /* DynamsoftMRZRecognizer.m */; };
+		0A97F78D28C1A3C4003CE5FC /* MRZConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A97F78B28C1A3C4003CE5FC /* MRZConverter.h */; };
+		0A97F78E28C1A3C4003CE5FC /* MRZConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A97F78C28C1A3C4003CE5FC /* MRZConverter.m */; };
+		0ABB061128C6F0A500B6A11B /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0ABB061028C6F0A500B6A11B /* Resource.bundle */; };
+		0AD4CB8E28D839C9009BDC44 /* DynamsoftCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD4CB8C28D839C9009BDC44 /* DynamsoftCore.framework */; };
+		0AD4CB9028D839C9009BDC44 /* DynamsoftLabelRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD4CB8D28D839C9009BDC44 /* DynamsoftLabelRecognizer.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A8295A728BF433000476AB1 /* DynamsoftMRZRecognizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DynamsoftMRZRecognizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A8295AA28BF433000476AB1 /* DynamsoftMRZRecognizerSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamsoftMRZRecognizerSDK.h; sourceTree = "<group>"; };
+		0A8295B928BF436E00476AB1 /* DynamsoftMRZRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamsoftMRZRecognizer.h; sourceTree = "<group>"; };
+		0A8295BA28BF436F00476AB1 /* DynamsoftMRZRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamsoftMRZRecognizer.m; sourceTree = "<group>"; };
+		0A97F78B28C1A3C4003CE5FC /* MRZConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRZConverter.h; sourceTree = "<group>"; };
+		0A97F78C28C1A3C4003CE5FC /* MRZConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRZConverter.m; sourceTree = "<group>"; };
+		0ABB061028C6F0A500B6A11B /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
+		0AD4CB8C28D839C9009BDC44 /* DynamsoftCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCore.framework; path = ../DynamsoftCore.framework; sourceTree = "<group>"; };
+		0AD4CB8D28D839C9009BDC44 /* DynamsoftLabelRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftLabelRecognizer.framework; path = ../DynamsoftLabelRecognizer.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A8295A428BF433000476AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AD4CB8E28D839C9009BDC44 /* DynamsoftCore.framework in Frameworks */,
+				0AD4CB9028D839C9009BDC44 /* DynamsoftLabelRecognizer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A82959D28BF433000476AB1 = {
+			isa = PBXGroup;
+			children = (
+				0ABB061028C6F0A500B6A11B /* Resource.bundle */,
+				0A8295A928BF433000476AB1 /* DynamsoftMRZRecognizerSDK */,
+				0A8295A828BF433000476AB1 /* Products */,
+				0A8295B128BF435400476AB1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0A8295A828BF433000476AB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A8295A728BF433000476AB1 /* DynamsoftMRZRecognizer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8295A928BF433000476AB1 /* DynamsoftMRZRecognizerSDK */ = {
+			isa = PBXGroup;
+			children = (
+				0A8295AA28BF433000476AB1 /* DynamsoftMRZRecognizerSDK.h */,
+				0A8295B928BF436E00476AB1 /* DynamsoftMRZRecognizer.h */,
+				0A8295BA28BF436F00476AB1 /* DynamsoftMRZRecognizer.m */,
+				0A97F78B28C1A3C4003CE5FC /* MRZConverter.h */,
+				0A97F78C28C1A3C4003CE5FC /* MRZConverter.m */,
+			);
+			path = DynamsoftMRZRecognizerSDK;
+			sourceTree = "<group>";
+		};
+		0A8295B128BF435400476AB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0AD4CB8C28D839C9009BDC44 /* DynamsoftCore.framework */,
+				0AD4CB8D28D839C9009BDC44 /* DynamsoftLabelRecognizer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0A8295A228BF433000476AB1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A8295BB28BF436F00476AB1 /* DynamsoftMRZRecognizer.h in Headers */,
+				0A8295AB28BF433000476AB1 /* DynamsoftMRZRecognizerSDK.h in Headers */,
+				0A97F78D28C1A3C4003CE5FC /* MRZConverter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0A8295A628BF433000476AB1 /* DynamsoftMRZRecognizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A8295AE28BF433000476AB1 /* Build configuration list for PBXNativeTarget "DynamsoftMRZRecognizer" */;
+			buildPhases = (
+				0A8295A228BF433000476AB1 /* Headers */,
+				0A8295A328BF433000476AB1 /* Sources */,
+				0A8295A428BF433000476AB1 /* Frameworks */,
+				0A8295A528BF433000476AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DynamsoftMRZRecognizer;
+			productName = DynamsoftMRZRecognizerSDK;
+			productReference = 0A8295A728BF433000476AB1 /* DynamsoftMRZRecognizer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A82959E28BF433000476AB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					0A8295A628BF433000476AB1 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					0A8295BD28BF43D200476AB1 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 0A8295A128BF433000476AB1 /* Build configuration list for PBXProject "DynamsoftMRZRecognizerSDK" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0A82959D28BF433000476AB1;
+			productRefGroup = 0A8295A828BF433000476AB1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A8295A628BF433000476AB1 /* DynamsoftMRZRecognizer */,
+				0A8295BD28BF43D200476AB1 /* Intergrate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A8295A528BF433000476AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ABB061128C6F0A500B6A11B /* Resource.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A8295C128BF43F700476AB1 /* Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Framework;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Sets the target folders and the final framework product.\nFMK_NAME=\"DynamsoftMRZRecognizer\"\n\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n# -configuration ${CONFIGURATION}\n# Clean and Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos ONLY_ACTIVE_ARCH=NO -arch armv7 -arch armv7s -arch arm64 clean build\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator -arch x86_64 build\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\nmkdir -p \"${INSTALL_DIR}\"\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\ncp -R \"${DEVICE_DIR}.dSYM/\" \"${INSTALL_DIR}.dSYM/\"\n\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n\nlipo -create \"${DEVICE_DIR}.dSYM/Contents/Resources/DWARF/${FMK_NAME}\" \"${SIMULATOR_DIR}.dSYM/Contents/Resources/DWARF/${FMK_NAME}\" -output \"${INSTALL_DIR}.dSYM/Contents/Resources/DWARF/${FMK_NAME}\"\nrm -r \"${WRK_DIR}\"\n# open \"${INSTALL_DIR}\"\n\n\n";
+		};
+		0AE641DF28D80604001167E7 /* xcframework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = xcframework;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nSCHEME_NAME=\"DynamsoftMRZRecognizer\"\nFRAMEWORK_NAME=\"DynamsoftMRZRecognizer\"\nSIMULATOR_ARCHIVE_PATH=\"${BUILD_DIR}/${CONFIGURATION}/${FRAMEWORK_NAME}-iphonesimulator.xcarchive\"\nDEVICE_ARCHIVE_PATH=\"${BUILD_DIR}/${CONFIGURATION}/${FRAMEWORK_NAME}-iphoneos.xcarchive\"\nOUTPUT_DIC=\"./xcframework/\"\n# Simulator xcarchieve\nxcodebuild archive \\\n  -scheme ${SCHEME_NAME} \\\n  -archivePath ${SIMULATOR_ARCHIVE_PATH} \\\n  -sdk iphonesimulator \\\n  SKIP_INSTALL=NO\n# Device xcarchieve\nxcodebuild archive \\\n  -scheme ${SCHEME_NAME} \\\n  -archivePath ${DEVICE_ARCHIVE_PATH} \\\n  -sdk iphoneos \\\n  SKIP_INSTALL=NO\n# Clean up old output directory\nrm -rf \"${OUTPUT_DIC}\"\n# Create xcframwork combine of all frameworks\nxcodebuild -create-xcframework \\\n  -framework ${SIMULATOR_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_NAME}.framework \\\n  -framework ${DEVICE_ARCHIVE_PATH}/Products/Library/Frameworks/${FRAMEWORK_NAME}.framework \\\n  -output ${OUTPUT_DIC}/${FRAMEWORK_NAME}.xcframework\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A8295A328BF433000476AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A97F78E28C1A3C4003CE5FC /* MRZConverter.m in Sources */,
+				0A8295BC28BF436F00476AB1 /* DynamsoftMRZRecognizer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0A8295AC28BF433000476AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0A8295AD28BF433000476AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0A8295AF28BF433000476AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = W6PESGXW9M;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Products",
+					../../../Frameworks,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dynamsoft.DynamsoftMRZRecognizerSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+				VALID_ARCHS = "arm64 x86_64";
+			};
+			name = Debug;
+		};
+		0A8295B028BF433000476AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = W6PESGXW9M;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Products",
+					../../../Frameworks,
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dynamsoft.DynamsoftMRZRecognizerSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
+				VALID_ARCHS = "arm64 x86_64";
+			};
+			name = Release;
+		};
+		0A8295BF28BF43D200476AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W6PESGXW9M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0A8295C028BF43D200476AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W6PESGXW9M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A8295A128BF433000476AB1 /* Build configuration list for PBXProject "DynamsoftMRZRecognizerSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A8295AC28BF433000476AB1 /* Debug */,
+				0A8295AD28BF433000476AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A8295AE28BF433000476AB1 /* Build configuration list for PBXNativeTarget "DynamsoftMRZRecognizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A8295AF28BF433000476AB1 /* Debug */,
+				0A8295B028BF433000476AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A8295BE28BF43D200476AB1 /* Build configuration list for PBXAggregateTarget "Intergrate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A8295BF28BF43D200476AB1 /* Debug */,
+				0A8295C028BF43D200476AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0A82959E28BF433000476AB1 /* Project object */;
+}
