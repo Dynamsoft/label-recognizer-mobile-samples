@@ -15,7 +15,7 @@
 // Framework.
 #import <DynamsoftCore/DynamsoftCore.h>
 #import <DynamsoftCameraEnhancer/DynamsoftCameraEnhancer.h>
-#import <DynamsoftMRZRecognizer/DynamsoftMRZRecognizer.h>
+#import <MRZRecognizer/MRZRecognizer.h>
 
 // Category.
 #import "UIView+FrameAdditions.h"

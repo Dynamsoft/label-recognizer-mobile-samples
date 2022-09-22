@@ -4,6 +4,6 @@
 
 #import <DynamsoftCore/DynamsoftCore.h>
 #import <DynamsoftCameraEnhancer/DynamsoftCameraEnhancer.h>
-#import <DynamsoftMRZRecognizer/DynamsoftMRZRecognizer.h>
+#import <MRZRecognizer/MRZRecognizer.h>
 #import "UIDevice+Orientation.h"
 

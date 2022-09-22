@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AB545CC28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */; };
-		0AB545CD28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AA035D928DC388200D61698 /* MRZRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA035D828DC388200D61698 /* MRZRecognizer.framework */; };
+		0AA035DA28DC388200D61698 /* MRZRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA035D828DC388200D61698 /* MRZRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AEA02D528D05C930076A1BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA02D428D05C930076A1BA /* AppDelegate.m */; };
 		0AEA02DB28D05C930076A1BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA02DA28D05C930076A1BA /* ViewController.m */; };
 		0AEA02DE28D05C930076A1BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA02DC28D05C930076A1BA /* Main.storyboard */; };
@@ -31,12 +31,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0AB5458F28D9687B008CBE2D /* PBXContainerItemProxy */ = {
+		0A1F4BC628DC2AAB00D0FBCE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0AB5458A28D9687B008CBE2D /* DynamsoftMRZRecognizerSDK.xcodeproj */;
+			containerPortal = 0A1F4BC128DC2AAB00D0FBCE /* MRZRecognizer.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 0A8295A728BF433000476AB1;
-			remoteInfo = DynamsoftMRZRecognizer;
+			remoteGlobalIDString = 0AB5460728DAB90F008CBE2D;
+			remoteInfo = MRZRecognizer;
+		};
+		0A1F4BCB28DC2B2200D0FBCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A1F4BC128DC2AAB00D0FBCE /* MRZRecognizer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0ABDE59B28DC34DC00F67C11;
+			remoteInfo = Aggregate;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -47,7 +54,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0AB545CD28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Embed Frameworks */,
+				0AA035DA28DC388200D61698 /* MRZRecognizer.framework in Embed Frameworks */,
 				0AEA030928D074B20076A1BA /* DynamsoftCameraEnhancer.framework in Embed Frameworks */,
 				0AEA030528D074B20076A1BA /* DynamsoftCore.framework in Embed Frameworks */,
 				0AEA030728D074B20076A1BA /* DynamsoftLabelRecognizer.framework in Embed Frameworks */,
@@ -58,8 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0AB5458A28D9687B008CBE2D /* DynamsoftMRZRecognizerSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DynamsoftMRZRecognizerSDK.xcodeproj; path = ../DynamsoftMRZRecognizerSDK/DynamsoftMRZRecognizerSDK.xcodeproj; sourceTree = "<group>"; };
-		0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftMRZRecognizer.framework; path = ../DynamsoftMRZRecognizerSDK/Products/DynamsoftMRZRecognizer.framework; sourceTree = "<group>"; };
+		0A1F4BC128DC2AAB00D0FBCE /* MRZRecognizer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MRZRecognizer.xcodeproj; path = MRZRecognizer/MRZRecognizer.xcodeproj; sourceTree = "<group>"; };
+		0AA035D828DC388200D61698 /* MRZRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRZRecognizer.framework; path = MRZRecognizer/Products/MRZRecognizer.framework; sourceTree = "<group>"; };
 		0AEA02D028D05C930076A1BA /* MRZScannerObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRZScannerObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AEA02D328D05C930076A1BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0AEA02D428D05C930076A1BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AB545CC28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework in Frameworks */,
+				0AA035D928DC388200D61698 /* MRZRecognizer.framework in Frameworks */,
 				0AEA030828D074B20076A1BA /* DynamsoftCameraEnhancer.framework in Frameworks */,
 				0AEA030428D074B20076A1BA /* DynamsoftCore.framework in Frameworks */,
 				0AEA030628D074B20076A1BA /* DynamsoftLabelRecognizer.framework in Frameworks */,
@@ -105,10 +112,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0AB5458B28D9687B008CBE2D /* Products */ = {
+		0A1F4BC228DC2AAB00D0FBCE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0AB5459028D9687B008CBE2D /* DynamsoftMRZRecognizer.framework */,
+				0A1F4BC728DC2AAB00D0FBCE /* MRZRecognizer.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,7 +123,7 @@
 		0AEA02C728D05C930076A1BA = {
 			isa = PBXGroup;
 			children = (
-				0AB5458A28D9687B008CBE2D /* DynamsoftMRZRecognizerSDK.xcodeproj */,
+				0A1F4BC128DC2AAB00D0FBCE /* MRZRecognizer.xcodeproj */,
 				0AEA02D228D05C930076A1BA /* MRZScannerObjC */,
 				0AEA02D128D05C930076A1BA /* Products */,
 				0AEA02FF28D074B10076A1BA /* Frameworks */,
@@ -187,7 +194,7 @@
 		0AEA02FF28D074B10076A1BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0AB545CB28D9936E008CBE2D /* DynamsoftMRZRecognizer.framework */,
+				0AA035D828DC388200D61698 /* MRZRecognizer.framework */,
 				0AEA030228D074B20076A1BA /* DynamsoftCameraEnhancer.framework */,
 				0AEA030028D074B20076A1BA /* DynamsoftCore.framework */,
 				0AEA030128D074B20076A1BA /* DynamsoftLabelRecognizer.framework */,
@@ -228,6 +235,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0A1F4BCC28DC2B2200D0FBCE /* PBXTargetDependency */,
 			);
 			name = MRZScannerObjC;
 			productName = MRZScannerObjC;
@@ -260,8 +268,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 0AB5458B28D9687B008CBE2D /* Products */;
-					ProjectRef = 0AB5458A28D9687B008CBE2D /* DynamsoftMRZRecognizerSDK.xcodeproj */;
+					ProductGroup = 0A1F4BC228DC2AAB00D0FBCE /* Products */;
+					ProjectRef = 0A1F4BC128DC2AAB00D0FBCE /* MRZRecognizer.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -272,11 +280,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0AB5459028D9687B008CBE2D /* DynamsoftMRZRecognizer.framework */ = {
+		0A1F4BC728DC2AAB00D0FBCE /* MRZRecognizer.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = DynamsoftMRZRecognizer.framework;
-			remoteRef = 0AB5458F28D9687B008CBE2D /* PBXContainerItemProxy */;
+			path = MRZRecognizer.framework;
+			remoteRef = 0A1F4BC628DC2AAB00D0FBCE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -313,6 +321,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0A1F4BCC28DC2B2200D0FBCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Aggregate;
+			targetProxy = 0A1F4BCB28DC2B2200D0FBCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0AEA02DC28D05C930076A1BA /* Main.storyboard */ = {
@@ -452,7 +468,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6PESGXW9M;
-				FRAMEWORK_SEARCH_PATHS = ../../../Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					../../../Frameworks,
+					"$(PROJECT_DIR)/MRZRecognizer/Products",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MRZScannerObjC/PCH/Dynamsoft.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MRZScannerObjC/Info.plist;
@@ -485,7 +504,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6PESGXW9M;
-				FRAMEWORK_SEARCH_PATHS = ../../../Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					../../../Frameworks,
+					"$(PROJECT_DIR)/MRZRecognizer/Products",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MRZScannerObjC/PCH/Dynamsoft.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MRZScannerObjC/Info.plist;
