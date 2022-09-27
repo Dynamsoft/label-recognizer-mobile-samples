@@ -43,7 +43,6 @@
     self.labelRecognizer = [[DynamsoftLabelRecognizer alloc] init];
     
     iDLRRuntimeSettings *dlrRuntimeSettings = [self.labelRecognizer getRuntimeSettings:nil];
-    dlrRuntimeSettings.textArea = [self handleTextArea];
     NSError *updateError = nil;
     [self.labelRecognizer updateRuntimeSettings:dlrRuntimeSettings error:&updateError];
     
@@ -65,15 +64,6 @@
     [self.cameraEnhancer setScanRegion:region error:nil];
 }
 
-- (iQuadrilateral*)handleTextArea {
-    iQuadrilateral* qua = [[iQuadrilateral alloc] init];
-    qua.points = [NSArray arrayWithObjects:
-                  [NSNumber valueWithCGPoint:CGPointMake(0, 100)],
-                  [NSNumber valueWithCGPoint:CGPointMake(0, 0)],
-                  [NSNumber valueWithCGPoint:CGPointMake(100, 0)],
-                  [NSNumber valueWithCGPoint:CGPointMake(100, 100)], nil];
-    return qua;
-}
 
 // MARK: - LabelResultListener
 - (void)labelResultCallback:(NSInteger)frameId imageData:(iImageData *)imageData results:(NSArray<iDLRResult *> *)results {

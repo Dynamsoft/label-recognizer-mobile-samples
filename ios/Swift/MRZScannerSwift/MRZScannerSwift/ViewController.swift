@@ -16,6 +16,8 @@ class ViewController: BaseViewController, MRZResultListener {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 59.003 / 255.0, green: 61.9991 / 255.0, blue: 69.0028 / 255.0, alpha: 1)
         
         mrzRecognizer.startScanning()
         isOrientationUseful = true
@@ -31,7 +33,6 @@ class ViewController: BaseViewController, MRZResultListener {
         default:
             break
         }
-       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,7 +52,6 @@ class ViewController: BaseViewController, MRZResultListener {
         
         NotificationCenter.default.addObserver(self, selector: #selector(orientationChange), name: UIApplication.didChangeStatusBarOrientationNotification, object: nil)
         configureMRZ()
-        orientationChange()
     }
     
     func configureMRZ() -> Void {
@@ -97,34 +97,6 @@ class ViewController: BaseViewController, MRZResultListener {
         
         let orientation = UIApplication.shared.statusBarOrientation
         currentInterfaceOrientation = orientation
-        
-        let qua: iQuadrilateral = iQuadrilateral.init()
-    
-        switch orientation {
-       
-        case .portrait:
-            qua.points = [NSNumber.init(cgPoint: CGPoint.init(x: 0, y: 100)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 0, y: 0)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 100, y: 0)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 100, y: 100))
-            ]
-        case .landscapeRight:
-            qua.points = [NSNumber.init(cgPoint: CGPoint.init(x: 0, y: 0)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 100, y: 0)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 100, y: 100)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 0, y: 100))
-            ]
-        default:
-            qua.points = [NSNumber.init(cgPoint: CGPoint.init(x: 0, y: 100)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 0, y: 0)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 100, y: 0)),
-                          NSNumber.init(cgPoint: CGPoint.init(x: 100, y: 100))
-            ]
-        }
-          
-        let dlrRuntimeSetting = try! mrzRecognizer.getRuntimeSettings()
-        dlrRuntimeSetting.textArea = qua
-        try? mrzRecognizer.updateRuntimeSettings(dlrRuntimeSetting)
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

@@ -17,7 +17,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [UIDevice setOrientation:UIInterfaceOrientationPortrait];
-    NSLog(@"B page viewWillAppear");
 }
 
 - (void)viewDidLoad {

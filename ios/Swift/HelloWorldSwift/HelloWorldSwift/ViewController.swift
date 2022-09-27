@@ -34,7 +34,6 @@ class ViewController: BaseViewController, LabelResultListener {
         labelRecognizer = DynamsoftLabelRecognizer.init()
         
         let dlrRuntimeSettings: iDLRRuntimeSettings = try! self.labelRecognizer.getRuntimeSettings()
-        dlrRuntimeSettings.textArea = self.handleTextArea()
         try! self.labelRecognizer.updateRuntimeSettings(dlrRuntimeSettings)
         
         dceView = DCECameraView.init(frame: self.view.bounds)
@@ -54,15 +53,6 @@ class ViewController: BaseViewController, LabelResultListener {
         region.regionMeasuredByPercentage = 1
         try? cameraEnhancer.setScanRegion(region)
       
-    }
-    
-    func handleTextArea() -> iQuadrilateral {
-        let qua = iQuadrilateral.init()
-        qua.points = [NSNumber(cgPoint: CGPoint(x: 0, y: 100)),
-                      NSNumber(cgPoint: CGPoint(x: 0, y: 0)),
-                      NSNumber(cgPoint: CGPoint(x: 100, y: 0)),
-                      NSNumber(cgPoint: CGPoint(x: 100, y: 100))]
-        return qua
     }
     
     // MARK: - LabelResultListener

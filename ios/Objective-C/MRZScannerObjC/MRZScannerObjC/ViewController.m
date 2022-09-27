@@ -28,7 +28,6 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:59.003/255.0 green:61.9991/255.0 blue:69.0028/255.0 alpha:1]];
 
     self.isOrientationUseful = YES;
-    
     [self.mrzRecognizer startScanning];
    
     switch (self.currentInterfaceOrientation) {
@@ -65,7 +64,6 @@
     self.isOrientationUseful = YES;
     
     [self configureMRZ];
-    [self orientationChange];
 }
 
 - (void)configureMRZ {
@@ -110,40 +108,8 @@
         return;
     }
 
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    self.currentInterfaceOrientation = orientation;
-    
-    iQuadrilateral* qua = [[iQuadrilateral alloc] init];
-    
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait:
-            qua.points = [NSArray arrayWithObjects:
-                          [NSNumber valueWithCGPoint:CGPointMake(0, 100)],
-                          [NSNumber valueWithCGPoint:CGPointMake(0, 0)],
-                          [NSNumber valueWithCGPoint:CGPointMake(100, 0)],
-                          [NSNumber valueWithCGPoint:CGPointMake(100, 100)], nil];
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            qua.points = [NSArray arrayWithObjects:
-                          [NSNumber valueWithCGPoint:CGPointMake(0, 0)],
-                          [NSNumber valueWithCGPoint:CGPointMake(100, 0)],
-                          [NSNumber valueWithCGPoint:CGPointMake(100, 100)],
-                          [NSNumber valueWithCGPoint:CGPointMake(0, 100)], nil];
-            break;
-        default:
-            qua.points = [NSArray arrayWithObjects:
-                          [NSNumber valueWithCGPoint:CGPointMake(0, 100)],
-                          [NSNumber valueWithCGPoint:CGPointMake(0, 0)],
-                          [NSNumber valueWithCGPoint:CGPointMake(100, 0)],
-                          [NSNumber valueWithCGPoint:CGPointMake(100, 100)], nil];
-            break;
-    }
-    
-    iDLRRuntimeSettings *dlrRuntimeSettings = [self.mrzRecognizer getRuntimeSettings:nil];
-    dlrRuntimeSettings.textArea = qua;
-    [self.mrzRecognizer updateRuntimeSettings:dlrRuntimeSettings error:nil];
+    self.currentInterfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
 }
-
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeRight;
