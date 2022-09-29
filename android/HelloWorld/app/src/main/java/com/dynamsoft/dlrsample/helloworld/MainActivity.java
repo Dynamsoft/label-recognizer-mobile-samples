@@ -80,20 +80,6 @@ public class MainActivity extends AppCompatActivity {
         // Bind the Camera Enhancer instance to the Label Recognizer instance.
         mRecognizer.setImageSource(mCamera);
 
-        try {
-            // If the phone is shot vertically, the `textarea` needs to be rotated 90 degrees
-            DLRRuntimeSettings settings = mRecognizer.getRuntimeSettings();
-            Quadrilateral quad = new Quadrilateral();
-            quad.points[0] = new Point(0,100);
-            quad.points[1] = new Point(0,0);
-            quad.points[2] = new Point(100,0);
-            quad.points[3] = new Point(100,100);
-            settings.textArea = quad;
-            mRecognizer.updateRuntimeSettings(settings);
-        } catch (LabelRecognizerException e) {
-            e.printStackTrace();
-        }
-
         // Register the label result listener to get the recognized results from images.
         mRecognizer.setLabelResultListener(new LabelResultListener() {
             @Override
