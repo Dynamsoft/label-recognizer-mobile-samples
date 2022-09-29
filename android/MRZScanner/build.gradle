@@ -15,7 +15,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        maven { url "https://download2.dynamsoft.com/maven/aar" }
     }
 }
 

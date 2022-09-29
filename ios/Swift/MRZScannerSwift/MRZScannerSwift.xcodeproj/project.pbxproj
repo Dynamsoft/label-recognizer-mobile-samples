@@ -12,17 +12,11 @@
 		0A709A9228D1C8D3004BBB00 /* Dynamsoft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A709A8F28D1C8D3004BBB00 /* Dynamsoft.swift */; };
 		0A709A9A28D1C97B004BBB00 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A709A9828D1C97B004BBB00 /* BaseViewController.swift */; };
 		0A709A9B28D1C97B004BBB00 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A709A9928D1C97B004BBB00 /* BaseNavigationController.swift */; };
-		0A709AA328D1C9FB004BBB00 /* DynamsoftCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A709A9E28D1C9FB004BBB00 /* DynamsoftCore.framework */; };
-		0A709AA428D1C9FB004BBB00 /* DynamsoftCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A709A9E28D1C9FB004BBB00 /* DynamsoftCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A709AA528D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A709A9F28D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework */; };
-		0A709AA628D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A709A9F28D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AA035E428DC3BDE00D61698 /* MRZRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA035E328DC3BDE00D61698 /* MRZRecognizer.framework */; };
 		0AA035E528DC3BDE00D61698 /* MRZRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA035E328DC3BDE00D61698 /* MRZRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AA997C828D1D10600F7ADFF /* MRZResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA997C728D1D10600F7ADFF /* MRZResultViewController.swift */; };
 		0AA997CD28D1D6F700F7ADFF /* UIDevice+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA997CC28D1D6F700F7ADFF /* UIDevice+Orientation.m */; };
 		0AA997D028D2BB1000F7ADFF /* MRZResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA997CF28D2BB1000F7ADFF /* MRZResultTableViewCell.swift */; };
-		0AB5459628D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB5459528D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework */; };
-		0AB5459728D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB5459528D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AEA032E28D1C7B10076A1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA032D28D1C7B10076A1BA /* AppDelegate.swift */; };
 		0AEA033228D1C7B10076A1BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA033128D1C7B10076A1BA /* ViewController.swift */; };
 		0AEA033528D1C7B10076A1BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA033328D1C7B10076A1BA /* Main.storyboard */; };
@@ -55,9 +49,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0AA035E528DC3BDE00D61698 /* MRZRecognizer.framework in Embed Frameworks */,
-				0AB5459728D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework in Embed Frameworks */,
-				0A709AA628D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework in Embed Frameworks */,
-				0A709AA428D1C9FB004BBB00 /* DynamsoftCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,15 +62,12 @@
 		0A709A9328D1C906004BBB00 /* MRZScannerSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MRZScannerSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A709A9828D1C97B004BBB00 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0A709A9928D1C97B004BBB00 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
-		0A709A9E28D1C9FB004BBB00 /* DynamsoftCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCore.framework; path = ../../../Frameworks/DynamsoftCore.framework; sourceTree = "<group>"; };
-		0A709A9F28D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftLabelRecognizer.framework; path = ../../../Frameworks/DynamsoftLabelRecognizer.framework; sourceTree = "<group>"; };
 		0AA035DC28DC3B8500D61698 /* MRZRecognizer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MRZRecognizer.xcodeproj; path = "../../Objective-C/MRZScannerObjC/MRZRecognizer/MRZRecognizer.xcodeproj"; sourceTree = "<group>"; };
 		0AA035E328DC3BDE00D61698 /* MRZRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MRZRecognizer.framework; path = "../../Objective-C/MRZScannerObjC/MRZRecognizer/Products/MRZRecognizer.framework"; sourceTree = "<group>"; };
 		0AA997C728D1D10600F7ADFF /* MRZResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZResultViewController.swift; sourceTree = "<group>"; };
 		0AA997CB28D1D6F700F7ADFF /* UIDevice+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Orientation.h"; sourceTree = "<group>"; };
 		0AA997CC28D1D6F700F7ADFF /* UIDevice+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Orientation.m"; sourceTree = "<group>"; };
 		0AA997CF28D2BB1000F7ADFF /* MRZResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZResultTableViewCell.swift; sourceTree = "<group>"; };
-		0AB5459528D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCameraEnhancer.framework; path = ../../../Frameworks/DynamsoftCameraEnhancer.framework; sourceTree = "<group>"; };
 		0AEA032A28D1C7B10076A1BA /* MRZScannerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRZScannerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AEA032D28D1C7B10076A1BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AEA033128D1C7B10076A1BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,9 +83,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA035E428DC3BDE00D61698 /* MRZRecognizer.framework in Frameworks */,
-				0AB5459628D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework in Frameworks */,
-				0A709AA528D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework in Frameworks */,
-				0A709AA328D1C9FB004BBB00 /* DynamsoftCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,9 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				0AA035E328DC3BDE00D61698 /* MRZRecognizer.framework */,
-				0AB5459528D96A9C008CBE2D /* DynamsoftCameraEnhancer.framework */,
-				0A709A9E28D1C9FB004BBB00 /* DynamsoftCore.framework */,
-				0A709A9F28D1C9FB004BBB00 /* DynamsoftLabelRecognizer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

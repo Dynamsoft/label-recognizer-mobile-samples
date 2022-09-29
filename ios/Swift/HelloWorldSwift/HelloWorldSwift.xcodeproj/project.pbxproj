@@ -14,12 +14,6 @@
 		0ACCAA8828CAE9EE003537E7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA8628CAE9EE003537E7 /* BaseNavigationController.swift */; };
 		0ACCAA8928CAE9EE003537E7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA8728CAE9EE003537E7 /* BaseViewController.swift */; };
 		0ACCAA8B28CAEAAF003537E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA8A28CAEAAF003537E7 /* ViewController.swift */; };
-		0ACCAA9828CB0618003537E7 /* DynamsoftCameraEnhancer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA9528CB0618003537E7 /* DynamsoftCameraEnhancer.framework */; };
-		0ACCAA9928CB0619003537E7 /* DynamsoftCameraEnhancer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA9528CB0618003537E7 /* DynamsoftCameraEnhancer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ACCAA9A28CB0619003537E7 /* DynamsoftLabelRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA9628CB0618003537E7 /* DynamsoftLabelRecognizer.framework */; };
-		0ACCAA9B28CB0619003537E7 /* DynamsoftLabelRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA9628CB0618003537E7 /* DynamsoftLabelRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ACCAA9C28CB0619003537E7 /* DynamsoftCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA9728CB0618003537E7 /* DynamsoftCore.framework */; };
-		0ACCAA9D28CB0619003537E7 /* DynamsoftCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA9728CB0618003537E7 /* DynamsoftCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,11 +22,7 @@
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
-			files = (
-				0ACCAA9928CB0619003537E7 /* DynamsoftCameraEnhancer.framework in Embed Frameworks */,
-				0ACCAA9B28CB0619003537E7 /* DynamsoftLabelRecognizer.framework in Embed Frameworks */,
-				0ACCAA9D28CB0619003537E7 /* DynamsoftCore.framework in Embed Frameworks */,
-			);
+			files = ();
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,9 +38,6 @@
 		0ACCAA8628CAE9EE003537E7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		0ACCAA8728CAE9EE003537E7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0ACCAA8A28CAEAAF003537E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0ACCAA9528CB0618003537E7 /* DynamsoftCameraEnhancer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCameraEnhancer.framework; path = ../../../Frameworks/DynamsoftCameraEnhancer.framework; sourceTree = "<group>"; };
-		0ACCAA9628CB0618003537E7 /* DynamsoftLabelRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftLabelRecognizer.framework; path = ../../../Frameworks/DynamsoftLabelRecognizer.framework; sourceTree = "<group>"; };
-		0ACCAA9728CB0618003537E7 /* DynamsoftCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCore.framework; path = ../../../Frameworks/DynamsoftCore.framework; sourceTree = "<group>"; };
 		0ACCAA9F28CB067B003537E7 /* HelloWorldSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HelloWorldSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,11 +45,7 @@
 		0ACCAA6B28CAE7F3003537E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-				0ACCAA9828CB0618003537E7 /* DynamsoftCameraEnhancer.framework in Frameworks */,
-				0ACCAA9A28CB0619003537E7 /* DynamsoftLabelRecognizer.framework in Frameworks */,
-				0ACCAA9C28CB0619003537E7 /* DynamsoftCore.framework in Frameworks */,
-			);
+			files = ();
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -111,11 +94,7 @@
 		};
 		0ACCAA9428CB0618003537E7 /* Frameworks */ = {
 			isa = PBXGroup;
-			children = (
-				0ACCAA9528CB0618003537E7 /* DynamsoftCameraEnhancer.framework */,
-				0ACCAA9728CB0618003537E7 /* DynamsoftCore.framework */,
-				0ACCAA9628CB0618003537E7 /* DynamsoftLabelRecognizer.framework */,
-			);
+			children = ();
 			name = Frameworks;
 			sourceTree = "<group>";
 		};

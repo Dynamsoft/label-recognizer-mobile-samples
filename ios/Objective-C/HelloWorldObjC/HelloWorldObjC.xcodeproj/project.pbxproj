@@ -13,12 +13,6 @@
 		0ACCAA3D28C9E087003537E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACCAA3C28C9E087003537E7 /* Assets.xcassets */; };
 		0ACCAA4028C9E087003537E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACCAA3E28C9E087003537E7 /* LaunchScreen.storyboard */; };
 		0ACCAA4328C9E087003537E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACCAA4228C9E087003537E7 /* main.m */; };
-		0ACCAA4D28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4A28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework */; };
-		0ACCAA4E28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4A28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ACCAA4F28C9E42D003537E7 /* DynamsoftCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4B28C9E42D003537E7 /* DynamsoftCore.framework */; };
-		0ACCAA5028C9E42D003537E7 /* DynamsoftCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4B28C9E42D003537E7 /* DynamsoftCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0ACCAA5128C9E42D003537E7 /* DynamsoftLabelRecognizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */; };
-		0ACCAA5228C9E42D003537E7 /* DynamsoftLabelRecognizer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,11 +21,7 @@
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
-			files = (
-				0ACCAA5228C9E42D003537E7 /* DynamsoftLabelRecognizer.framework in Embed Frameworks */,
-				0ACCAA4E28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework in Embed Frameworks */,
-				0ACCAA5028C9E42D003537E7 /* DynamsoftCore.framework in Embed Frameworks */,
-			);
+			files = ();
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,20 +38,13 @@
 		0ACCAA3F28C9E087003537E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ACCAA4128C9E087003537E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ACCAA4228C9E087003537E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0ACCAA4A28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCameraEnhancer.framework; path = ../../../Frameworks/DynamsoftCameraEnhancer.framework; sourceTree = "<group>"; };
-		0ACCAA4B28C9E42D003537E7 /* DynamsoftCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftCore.framework; path = ../../../Frameworks/DynamsoftCore.framework; sourceTree = "<group>"; };
-		0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamsoftLabelRecognizer.framework; path = ../../../Frameworks/DynamsoftLabelRecognizer.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0ACCAA2A28C9E086003537E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-				0ACCAA5128C9E42D003537E7 /* DynamsoftLabelRecognizer.framework in Frameworks */,
-				0ACCAA4D28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework in Frameworks */,
-				0ACCAA4F28C9E42D003537E7 /* DynamsoftCore.framework in Frameworks */,
-			);
+			files = ();
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -102,11 +85,7 @@
 		};
 		0ACCAA4928C9E42D003537E7 /* Frameworks */ = {
 			isa = PBXGroup;
-			children = (
-				0ACCAA4A28C9E42D003537E7 /* DynamsoftCameraEnhancer.framework */,
-				0ACCAA4B28C9E42D003537E7 /* DynamsoftCore.framework */,
-				0ACCAA4C28C9E42D003537E7 /* DynamsoftLabelRecognizer.framework */,
-			);
+			children = ();
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
