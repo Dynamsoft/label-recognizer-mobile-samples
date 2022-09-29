@@ -1,8 +1,8 @@
 package com.dynamsoft.dlrsample.mrzscanner.ui.main;
 
+import android.content.res.Configuration;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.dynamsoft.dlr.MRZResult;
 
 public class MainViewModel extends ViewModel {
@@ -11,5 +11,5 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<Integer> currentFragmentFlag = new MutableLiveData<>(SCAN_FRAGMENT);
     public MRZResult mrzResult = null;
-    public MutableLiveData<Integer> deviceRotation = new MutableLiveData<>(0);
+    public MutableLiveData<Integer> deviceOrientation = new MutableLiveData<>(Configuration.ORIENTATION_PORTRAIT);
 }

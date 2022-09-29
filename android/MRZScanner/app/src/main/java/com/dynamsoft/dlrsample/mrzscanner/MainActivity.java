@@ -4,11 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.OrientationEventListener;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.dynamsoft.core.CoreException;
@@ -16,6 +15,7 @@ import com.dynamsoft.core.LicenseManager;
 import com.dynamsoft.core.LicenseVerificationListener;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.ScanFragment;
 import com.dynamsoft.dlrsample.mrzscanner.ui.main.MainViewModel;
+
 
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mViewModel;
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Set default device rotation.
-        mViewModel.deviceRotation.setValue(((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation());
+        //Set default device orientation.
+        mViewModel.deviceOrientation.setValue(Configuration.ORIENTATION_PORTRAIT);
 
         if (savedInstanceState == null) {
             LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, new LicenseVerificationListener() {
@@ -62,32 +62,22 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.container, ScanFragment.newInstance())
                     .commit();
         }
+    }
 
-        //Detecting device orientation and rotation in real time.
-        mOrientationListener = new OrientationEventListener(this) {
-            @Override
-            public void onOrientationChanged(int rotation) {
-                int deviceRotation = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
-                if (mViewModel != null && mViewModel.deviceRotation != null) {
-                    Integer value = mViewModel.deviceRotation.getValue();
-                    if (value != null && value != deviceRotation) {
-                        mViewModel.deviceRotation.setValue(deviceRotation);
-                    }
-                }
-            }
-        };
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mViewModel.deviceOrientation.setValue(newConfig.orientation);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mOrientationListener.enable();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mOrientationListener.disable();
     }
 
     @Override
