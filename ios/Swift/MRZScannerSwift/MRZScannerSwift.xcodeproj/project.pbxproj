@@ -461,7 +461,7 @@
 				DEVELOPMENT_TEAM = W6PESGXW9M;
 				FRAMEWORK_SEARCH_PATHS = (
 					../../../Frameworks,
-					"$(PROJECT_DIR)",
+					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MRZScannerSwift/Info.plist;
@@ -500,7 +500,7 @@
 				DEVELOPMENT_TEAM = W6PESGXW9M;
 				FRAMEWORK_SEARCH_PATHS = (
 					../../../Frameworks,
-					"$(PROJECT_DIR)",
+					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MRZScannerSwift/Info.plist;

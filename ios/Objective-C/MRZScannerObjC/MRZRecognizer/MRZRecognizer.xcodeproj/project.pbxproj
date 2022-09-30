@@ -358,6 +358,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					../../../../Frameworks,
 					"$(inherited)",
+					../Pods/DynamsoftCore,
 					../Pods/DynamsoftLabelRecognizer,
 				);
 				GENERATE_INFOPLIST_FILE = YES;
@@ -399,6 +400,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					../../../../Frameworks,
 					"$(inherited)",
+					../Pods/DynamsoftCore,
 					../Pods/DynamsoftLabelRecognizer,
 				);
 				GENERATE_INFOPLIST_FILE = YES;
