@@ -69,8 +69,6 @@
 - (void)configureMRZ {
     self.mrzRecognizer = [[DynamsoftMRZRecognizer alloc] init];
     
-    [self.mrzRecognizer recognizeMRZFromFile:@"" error:nil];
-    
     self.dceView = [[DCECameraView alloc] initWithFrame:self.view.bounds];
     self.cameraEnhancer = [[DynamsoftCameraEnhancer alloc] initWithView:self.dceView];
     [self.view addSubview:self.dceView];
