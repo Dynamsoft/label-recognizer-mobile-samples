@@ -32,5 +32,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    compileOnly fileTree(includes: ['*.aar'], dir: '../../../Libs')
+    //compileOnly fileTree(includes: ['*.aar'], dir: '../../../Libs')
+    implementation 'com.dynamsoft:dynamsoftlabelrecognizer:2.2.20'
+    implementation 'com.dynamsoft:dynamsoftcameraenhancer:3.0.1'
 }
