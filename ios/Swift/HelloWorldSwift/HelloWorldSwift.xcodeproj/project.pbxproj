@@ -22,7 +22,8 @@
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
-			files = ();
+			files = (
+			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +46,8 @@
 		0ACCAA6B28CAE7F3003537E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
-			files = ();
+			files = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -94,7 +96,8 @@
 		};
 		0ACCAA9428CB0618003537E7 /* Frameworks */ = {
 			isa = PBXGroup;
-			children = ();
+			children = (
+			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -322,7 +325,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6PESGXW9M;
-				FRAMEWORK_SEARCH_PATHS = ../../../Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					../../../Frameworks,
+					"$(inherited)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HelloWorldSwift/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Require authorization To scan.";
@@ -357,7 +363,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = W6PESGXW9M;
-				FRAMEWORK_SEARCH_PATHS = ../../../Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					../../../Frameworks,
+					"$(inherited)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HelloWorldSwift/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Require authorization To scan.";

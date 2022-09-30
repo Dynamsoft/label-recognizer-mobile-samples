@@ -359,6 +359,7 @@
 					../../../../Frameworks,
 					"$(inherited)",
 					../Pods/DynamsoftLabelRecognizer,
+					../Pods/DynamsoftCore,
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -400,6 +401,7 @@
 					../../../../Frameworks,
 					"$(inherited)",
 					../Pods/DynamsoftLabelRecognizer,
+					../Pods/DynamsoftCore,
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

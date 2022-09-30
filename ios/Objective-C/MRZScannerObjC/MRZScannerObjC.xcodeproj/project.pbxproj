@@ -453,6 +453,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					../../../Frameworks,
 					"$(PROJECT_DIR)/MRZRecognizer/Products",
+					"$(inherited)",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MRZScannerObjC/PCH/Dynamsoft.pch";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -489,6 +490,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					../../../Frameworks,
 					"$(PROJECT_DIR)/MRZRecognizer/Products",
+					"$(inherited)",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MRZScannerObjC/PCH/Dynamsoft.pch";
 				GENERATE_INFOPLIST_FILE = YES;
