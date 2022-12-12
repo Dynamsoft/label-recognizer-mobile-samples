@@ -4,22 +4,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class ParseUtil {
-    private static final String TD1_LINE1_REGEX = "[ACI][A-Z<]([A-Z]{3})([A-Z0-9<]{9})[0-9][A-Z0-9<]{15}";
-    private static final String TD1_LINE2_REGEX = "(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z]{3})[A-Z0-9<]{11}[0-9]";
-    private static final String TD1_LINE3_REGEX = "([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String ID_TD1_LINE1_REGEX = "[ACI][A-Z<]([A-Z<]{3})([A-Z0-9<]{9})[0-9][A-Z0-9<]{15}";
+    private static final String ID_TD1_LINE2_REGEX = "(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z<]{3})[A-Z0-9<]{11}[0-9]";
+    private static final String ID_TD1_LINE3_REGEX = "([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
 
-    private static final String TD2_LINE1_REGEX = "[ACI][A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
-    private static final String TD2_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{7}[0-9]";
+    private static final String ID_TD2_LINE1_REGEX = "[ACI][A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String ID_TD2_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{7}[0-9]";
 
-    private static final String TD3_LINE1_REGEX = "P[A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
-    private static final String TD3_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z0-9<]{14})[0-9]{2}";
+    private static final String PASSPORT_LINE1_REGEX = "P[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String PASSPORT_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z0-9<]{14})[0-9<][0-9]";
 
-    private static final String MRVB_LINE1_REGEX = "V[A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
-    private static final String MRVB_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{8}";
+    private static final String MRVB_LINE1_REGEX = "V[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String MRVB_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{8}";
 
-    private static final String MRVA_LINE1_REGEX = "V[A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
-    private static final String MRVA_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{16}";
-
+    private static final String MRVA_LINE1_REGEX = "V[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String MRVA_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{16}";
 
     public static MRZResult parseTD1(String[] lineTexts) {
         if (lineTexts == null || lineTexts.length != 3) {
@@ -27,8 +26,8 @@ class ParseUtil {
         }
 
         MRZResult mrzResult = new MRZResult();
-        if (!lineTexts[0].matches(TD1_LINE1_REGEX) || !lineTexts[1].matches(TD1_LINE2_REGEX) || !lineTexts[2].matches(TD1_LINE3_REGEX)) {
-            if (lineTexts[0].matches(TD1_LINE3_REGEX) && lineTexts[1].matches(TD1_LINE2_REGEX) && lineTexts[2].matches(TD1_LINE3_REGEX)) {
+        if (!lineTexts[0].matches(ID_TD1_LINE1_REGEX) || !lineTexts[1].matches(ID_TD1_LINE2_REGEX) || !lineTexts[2].matches(ID_TD1_LINE3_REGEX)) {
+            if (lineTexts[0].matches(ID_TD1_LINE3_REGEX) && lineTexts[1].matches(ID_TD1_LINE2_REGEX) && lineTexts[2].matches(ID_TD1_LINE3_REGEX)) {
                 lineTexts = new String[]{lineTexts[2], lineTexts[1], lineTexts[0]};
             } else {
                 mrzResult.isParsed = false;
@@ -44,7 +43,7 @@ class ParseUtil {
         mrzResult.docType = "identity";
 
         //line1
-        Pattern pattern = Pattern.compile(TD1_LINE1_REGEX);
+        Pattern pattern = Pattern.compile(ID_TD1_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
@@ -57,7 +56,7 @@ class ParseUtil {
         }
 
         //line2
-        pattern = Pattern.compile(TD1_LINE2_REGEX);
+        pattern = Pattern.compile(ID_TD1_LINE2_REGEX);
         matcher = pattern.matcher(lineTexts[1]);
         if (matcher.find()) {
             mrzResult.dateOfBirth = matcher.group(2) + "-" + matcher.group(3) + "-" + matcher.group(4);
@@ -85,7 +84,7 @@ class ParseUtil {
         }
 
         //line3
-        pattern = Pattern.compile(TD1_LINE3_REGEX);
+        pattern = Pattern.compile(ID_TD1_LINE3_REGEX);
         matcher = pattern.matcher(lineTexts[2]);
         if (matcher.find()) {
             mrzResult.surname = matcher.group(1).replace('<', ' ');
@@ -102,8 +101,8 @@ class ParseUtil {
         }
 
         MRZResult mrzResult = new MRZResult();
-        if (!lineTexts[0].matches(TD2_LINE1_REGEX) || !lineTexts[1].matches(TD2_LINE2_REGEX)) {
-            if (lineTexts[0].matches(TD2_LINE2_REGEX) && lineTexts[1].matches(TD2_LINE1_REGEX)) {
+        if (!lineTexts[0].matches(ID_TD2_LINE1_REGEX) || !lineTexts[1].matches(ID_TD2_LINE2_REGEX)) {
+            if (lineTexts[0].matches(ID_TD2_LINE2_REGEX) && lineTexts[1].matches(ID_TD2_LINE1_REGEX)) {
                 lineTexts = new String[]{lineTexts[1], lineTexts[0]};
             } else {
                 mrzResult.isParsed = false;
@@ -118,7 +117,7 @@ class ParseUtil {
         mrzResult.docType = "identity";
 
         //line1
-        Pattern pattern = Pattern.compile(TD2_LINE1_REGEX);
+        Pattern pattern = Pattern.compile(ID_TD2_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
@@ -129,7 +128,7 @@ class ParseUtil {
         }
 
         //line2
-        pattern = Pattern.compile(TD2_LINE2_REGEX);
+        pattern = Pattern.compile(ID_TD2_LINE2_REGEX);
         matcher = pattern.matcher(lineTexts[1]);
         if (matcher.find()) {
             mrzResult.docId = matcher.group(1).replace("<","");
@@ -169,8 +168,8 @@ class ParseUtil {
         }
 
         MRZResult mrzResult = new MRZResult();
-        if (!lineTexts[0].matches(TD3_LINE1_REGEX) || !lineTexts[1].matches(TD3_LINE2_REGEX)) {
-            if (lineTexts[0].matches(TD3_LINE2_REGEX) && lineTexts[1].matches(TD3_LINE1_REGEX)) {
+        if (!lineTexts[0].matches(PASSPORT_LINE1_REGEX) || !lineTexts[1].matches(PASSPORT_LINE2_REGEX)) {
+            if (lineTexts[0].matches(PASSPORT_LINE2_REGEX) && lineTexts[1].matches(PASSPORT_LINE1_REGEX)) {
                 lineTexts = new String[]{lineTexts[1], lineTexts[0]};
             } else {
                 mrzResult.isParsed = false;
@@ -186,7 +185,7 @@ class ParseUtil {
         mrzResult.docType = "passport";
 
         //line1
-        Pattern pattern = Pattern.compile(TD3_LINE1_REGEX);
+        Pattern pattern = Pattern.compile(PASSPORT_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
@@ -197,7 +196,7 @@ class ParseUtil {
         }
 
         //line2
-        pattern = Pattern.compile(TD3_LINE2_REGEX);
+        pattern = Pattern.compile(PASSPORT_LINE2_REGEX);
         matcher = pattern.matcher(lineTexts[1]);
         if (matcher.find()) {
             mrzResult.docId = matcher.group(1).replace("<","");

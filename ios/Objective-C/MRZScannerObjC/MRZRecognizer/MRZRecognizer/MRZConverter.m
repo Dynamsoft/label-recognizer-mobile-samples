@@ -5,29 +5,29 @@
 #import "MRZConverter.h"
 
 // TD1(Identity), length is 30.
-static NSString *const TD1_LINE1_REGEX = @"^[ACI][A-Z<]([A-Z]{3})([A-Z0-9<]{9})[0-9][A-Z0-9<]{15}$";
-static NSString *const TD1_LINE2_REGEX = @"^(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z]{3})[A-Z0-9<]{11}[0-9]$";
-static NSString *const TD1_LINE3_REGEX = @"^([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
+static NSString *const ID_TD1_LINE1_REGEX = @"^[ACI][A-Z<]([A-Z<]{3})([A-Z0-9<]{9})[0-9][A-Z0-9<]{15}$";
+static NSString *const ID_TD1_LINE2_REGEX = @"^(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z<]{3})[A-Z0-9<]{11}[0-9]$";
+static NSString *const ID_TD1_LINE3_REGEX = @"^([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
 
 // TD2(Identity | MRVB), length is 36.
 
 // Identity
-static NSString *const TD2_LINE1_REGEX = @"^[ACI][A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])[A-Z<]*$";
-static NSString *const TD2_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{7}[0-9]$";
+static NSString *const ID_TD2_LINE1_REGEX = @"^[ACI][A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
+static NSString *const ID_TD2_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{7}[0-9]$";
 
 // MRVB.
-static NSString *const MRVB_LINE1_REGEX = @"^V[A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
-static NSString *const MRVB_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{8}$";
+static NSString *const MRVB_LINE1_REGEX = @"^V[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
+static NSString *const MRVB_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{8}$";
 
 // TD3(Passport | MRVA), length is 44.
 
 // Passport.
-static NSString *const TD3_LINE1_REGEX = @"^P[A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
-static NSString *const TD3_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z0-9<]{14})[0-9]{2}$";
+static NSString *const PASSPORT_LINE1_REGEX = @"^P[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
+static NSString *const PASSPORT_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z0-9<]{14})[0-9<][0-9]$";
 
 // MRVA.
-static NSString *const MRVA_LINE1_REGEX = @"^V[A-Z<]([A-Z]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
-static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{16}$";
+static NSString *const MRVA_LINE1_REGEX = @"^V[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*$";
+static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{16}$";
 
 
 @implementation MRZConverter
@@ -129,9 +129,9 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9
     mrzResult.mrzText = mrzText;
     
     
-    NSArray *line1MatchedArray = [self matchString:dlrLineTextResultsArray[0] regexString:TD1_LINE1_REGEX];
-    NSArray *line2MatchedArray = [self matchString:dlrLineTextResultsArray[1] regexString:TD1_LINE2_REGEX];
-    NSArray *line3MatchedArray = [self matchString:dlrLineTextResultsArray[2] regexString:TD1_LINE3_REGEX];
+    NSArray *line1MatchedArray = [self matchString:dlrLineTextResultsArray[0] regexString:ID_TD1_LINE1_REGEX];
+    NSArray *line2MatchedArray = [self matchString:dlrLineTextResultsArray[1] regexString:ID_TD1_LINE2_REGEX];
+    NSArray *line3MatchedArray = [self matchString:dlrLineTextResultsArray[2] regexString:ID_TD1_LINE3_REGEX];
     if (line1MatchedArray.count == 0 || line2MatchedArray.count == 0 || line3MatchedArray == 0) {
         mrzResult.isParsed = NO;
         return mrzResult;
@@ -216,8 +216,8 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9
     [mrzText appendString:dlrLineTextResultsArray[1]];
     mrzResult.mrzText = mrzText;
     
-    NSArray *line1MatchedArray = [self matchString:dlrLineTextResultsArray[0] regexString:TD2_LINE1_REGEX];
-    NSArray *line2MatchedArray = [self matchString:dlrLineTextResultsArray[1] regexString:TD2_LINE2_REGEX];
+    NSArray *line1MatchedArray = [self matchString:dlrLineTextResultsArray[0] regexString:ID_TD2_LINE1_REGEX];
+    NSArray *line2MatchedArray = [self matchString:dlrLineTextResultsArray[1] regexString:ID_TD2_LINE2_REGEX];
     
     if (line1MatchedArray.count == 0 || line2MatchedArray.count == 0) {
         mrzResult.isParsed = NO;
@@ -302,8 +302,8 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z]{3})(([0-9
     mrzResult.mrzText = mrzText;
         
     
-    NSArray *line1MatchedArray = [self matchString:dlrLineTextResultsArray[0] regexString:TD3_LINE1_REGEX];
-    NSArray *line2MatchedArray = [self matchString:dlrLineTextResultsArray[1] regexString:TD3_LINE2_REGEX];
+    NSArray *line1MatchedArray = [self matchString:dlrLineTextResultsArray[0] regexString:PASSPORT_LINE1_REGEX];
+    NSArray *line2MatchedArray = [self matchString:dlrLineTextResultsArray[1] regexString:PASSPORT_LINE2_REGEX];
     if (line1MatchedArray.count == 0 || line2MatchedArray.count == 0) {
         mrzResult.isParsed = NO;
         return mrzResult;
