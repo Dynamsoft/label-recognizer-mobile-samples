@@ -6,20 +6,20 @@ import java.util.regex.Pattern;
 class ParseUtil {
     private static final String ID_TD1_LINE1_REGEX = "[ACI][A-Z<]([A-Z<]{3})([A-Z0-9<]{9})[0-9][A-Z0-9<]{15}";
     private static final String ID_TD1_LINE2_REGEX = "(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z<]{3})[A-Z0-9<]{11}[0-9]";
-    private static final String ID_TD1_LINE3_REGEX = "([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String ID_TD1_LINE3_REGEX = "([A-Z<]*)";
 
-    private static final String ID_TD2_LINE1_REGEX = "[ACI][A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String ID_TD2_LINE1_REGEX = "[ACI][A-Z<]([A-Z<]{3})([A-Z<]*)";
     private static final String ID_TD2_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{7}[0-9]";
 
-    private static final String PASSPORT_LINE1_REGEX = "P[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String PASSPORT_LINE1_REGEX = "P[A-Z<]([A-Z<]{3})([A-Z<]*)";
     private static final String PASSPORT_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([A-Z0-9<]{14})[0-9<][0-9]";
 
-    private static final String MRVB_LINE1_REGEX = "V[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String MRVB_LINE1_REGEX = "V[A-Z<]([A-Z<]{3})([A-Z<]*)";
     private static final String MRVB_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{8}";
 
-    private static final String MRVA_LINE1_REGEX = "V[A-Z<]([A-Z<]{3})([A-Z<]*[A-Z])<<([A-Z<]*[A-Z])<*";
+    private static final String MRVA_LINE1_REGEX = "V[A-Z<]([A-Z<]{3})([A-Z<]*)";
     private static final String MRVA_LINE2_REGEX = "([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9]([MF<])(([0-9]{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1]))[0-9][A-Z0-9<]{16}";
-
+    
     public static MRZResult parseTD1(String[] lineTexts) {
         if (lineTexts == null || lineTexts.length != 3) {
             return null;
@@ -87,8 +87,16 @@ class ParseUtil {
         pattern = Pattern.compile(ID_TD1_LINE3_REGEX);
         matcher = pattern.matcher(lineTexts[2]);
         if (matcher.find()) {
-            mrzResult.surname = matcher.group(1).replace('<', ' ');
-            mrzResult.givenName = matcher.group(2).replace('<', ' ');
+            String name = lineTexts[2];
+            int sep_pos = name.indexOf("<<");
+            if (sep_pos == -1) {
+                mrzResult.surname = "";
+                mrzResult.givenName = name.replace('<', ' ');
+            }
+            else {
+                mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
+                mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+            }
         } else {
             return null;
         }
@@ -121,8 +129,17 @@ class ParseUtil {
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
-            mrzResult.surname = matcher.group(2).replace('<', ' ');
-            mrzResult.givenName = matcher.group(3).replace('<', ' ');
+
+            String name = matcher.group(2);
+            int sep_pos = name.indexOf("<<");
+            if (sep_pos == -1) {
+                mrzResult.surname = "";
+                mrzResult.givenName = name.replace('<', ' ');
+            }
+            else {
+                mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
+                mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+            }
         } else {
             return null;
         }
@@ -189,8 +206,17 @@ class ParseUtil {
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
-            mrzResult.surname = matcher.group(2).replace('<', ' ');
-            mrzResult.givenName = matcher.group(3).replace('<', ' ');
+            
+            String name = matcher.group(2);
+            int sep_pos = name.indexOf("<<");
+            if (sep_pos == -1) {
+                mrzResult.surname = "";
+                mrzResult.givenName = name.replace('<', ' ');
+            }
+            else {
+                mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
+                mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+            }
         } else {
             return null;
         }
@@ -258,8 +284,18 @@ class ParseUtil {
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
-            mrzResult.surname = matcher.group(2).replace('<', ' ');
-            mrzResult.givenName = matcher.group(3).replace('<', ' ');
+
+            String name = matcher.group(2);
+            int sep_pos = name.indexOf("<<");
+            if (sep_pos == -1) {
+                mrzResult.surname = "";
+                mrzResult.givenName = name.replace('<', ' ');
+            }
+            else {
+                mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
+                mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+            }
+
         } else {
             return null;
         }
@@ -320,8 +356,17 @@ class ParseUtil {
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
             mrzResult.issuer = matcher.group(1);
-            mrzResult.surname = matcher.group(2).replace('<', ' ');
-            mrzResult.givenName = matcher.group(3).replace('<', ' ');
+
+            String name = matcher.group(2);
+            int sep_pos = name.indexOf("<<");
+            if (sep_pos == -1) {
+                mrzResult.surname = "";
+                mrzResult.givenName = name.replace('<', ' ');
+            }
+            else {
+                mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
+                mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+            }
         } else {
             return null;
         }
