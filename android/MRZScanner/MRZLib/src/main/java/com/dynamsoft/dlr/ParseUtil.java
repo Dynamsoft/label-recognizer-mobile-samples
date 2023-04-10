@@ -46,7 +46,7 @@ class ParseUtil {
         Pattern pattern = Pattern.compile(ID_TD1_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
-            mrzResult.issuer = matcher.group(1);
+            mrzResult.issuer = matcher.group(1).replace("<","");
             mrzResult.docId = matcher.group(2).replace("<","");
             if (!verifyString( matcher.group(2), lineTexts[0].charAt(14))) {
                 mrzResult.isVerified = false;
@@ -64,7 +64,7 @@ class ParseUtil {
                 //check digital of birth date
                 mrzResult.isVerified = false;
             }
-            mrzResult.gender = matcher.group(5);
+            mrzResult.gender = matcher.group(5).replace('<','U');
 
             mrzResult.dateOfExpiration = matcher.group(7) + "-" + matcher.group(8) + "-" + matcher.group(9);
             if (!verifyString(matcher.group(6), lineTexts[1].charAt(14))) {
@@ -92,10 +92,13 @@ class ParseUtil {
             if (sep_pos == -1) {
                 mrzResult.surname = "";
                 mrzResult.givenName = name.replace('<', ' ');
-            }
-            else {
+            } else {
                 mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
                 mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+                if(mrzResult.givenName.trim().isEmpty()) {
+                    mrzResult.givenName = mrzResult.surname;
+                    mrzResult.surname = "";
+                }
             }
         } else {
             return null;
@@ -128,7 +131,7 @@ class ParseUtil {
         Pattern pattern = Pattern.compile(ID_TD2_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
-            mrzResult.issuer = matcher.group(1);
+            mrzResult.issuer = matcher.group(1).replace("<","");
 
             String name = matcher.group(2);
             int sep_pos = name.indexOf("<<");
@@ -139,6 +142,10 @@ class ParseUtil {
             else {
                 mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
                 mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+                if(mrzResult.givenName.trim().isEmpty()) {
+                    mrzResult.givenName = mrzResult.surname;
+                    mrzResult.surname = "";
+                }
             }
         } else {
             return null;
@@ -160,7 +167,7 @@ class ParseUtil {
                 //check digital of birth date
                 mrzResult.isVerified = false;
             }
-            mrzResult.gender = matcher.group(7);
+            mrzResult.gender = matcher.group(7).replace('<','U');
 
             mrzResult.dateOfExpiration = matcher.group(9) + "-" + matcher.group(10) + "-" + matcher.group(11);
             if (!verifyString(matcher.group(8), lineTexts[1].charAt(27))) {
@@ -205,7 +212,7 @@ class ParseUtil {
         Pattern pattern = Pattern.compile(PASSPORT_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
-            mrzResult.issuer = matcher.group(1);
+            mrzResult.issuer = matcher.group(1).replace("<","");
             
             String name = matcher.group(2);
             int sep_pos = name.indexOf("<<");
@@ -216,6 +223,10 @@ class ParseUtil {
             else {
                 mrzResult.surname = name.substring(0, sep_pos).replace('<', ' ');
                 mrzResult.givenName = name.substring(sep_pos + 2).replace('<', ' ');
+                if(mrzResult.givenName.trim().isEmpty()) {
+                    mrzResult.givenName = mrzResult.surname;
+                    mrzResult.surname = "";
+                }
             }
         } else {
             return null;
@@ -230,14 +241,14 @@ class ParseUtil {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
-            mrzResult.nationality = matcher.group(2);
+            mrzResult.nationality = matcher.group(2).replace("<","");
 
             mrzResult.dateOfBirth = matcher.group(4) + "-" + matcher.group(5) + "-" + matcher.group(6);
             if (!verifyString(matcher.group(3), lineTexts[1].charAt(19))) {
                 //check digital of birth date
                 mrzResult.isVerified = false;
             }
-            mrzResult.gender = matcher.group(7);
+            mrzResult.gender = matcher.group(7).replace('<','U');
 
             mrzResult.dateOfExpiration = matcher.group(9) + "-" + matcher.group(10) + "-" + matcher.group(11);
             if (!verifyString(matcher.group(8), lineTexts[1].charAt(27))) {
@@ -283,7 +294,7 @@ class ParseUtil {
         Pattern pattern = Pattern.compile(MRVA_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
-            mrzResult.issuer = matcher.group(1);
+            mrzResult.issuer = matcher.group(1).replace("<","");
 
             String name = matcher.group(2);
             int sep_pos = name.indexOf("<<");
@@ -309,14 +320,14 @@ class ParseUtil {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
-            mrzResult.nationality = matcher.group(2);
+            mrzResult.nationality = matcher.group(2).replace("<","");
 
             mrzResult.dateOfBirth = matcher.group(4) + "-" + matcher.group(5) + "-" + matcher.group(6);
             if (!verifyString(matcher.group(3), lineTexts[1].charAt(19))) {
                 //check digital of birth date
                 mrzResult.isVerified = false;
             }
-            mrzResult.gender = matcher.group(7);
+            mrzResult.gender = matcher.group(7).replace('<','U');
 
             mrzResult.dateOfExpiration = matcher.group(9) + "-" + matcher.group(10) + "-" + matcher.group(11);
             if (!verifyString(matcher.group(8), lineTexts[1].charAt(27))) {
@@ -355,7 +366,7 @@ class ParseUtil {
         Pattern pattern = Pattern.compile(MRVB_LINE1_REGEX);
         Matcher matcher = pattern.matcher(lineTexts[0]);
         if (matcher.find()) {
-            mrzResult.issuer = matcher.group(1);
+            mrzResult.issuer = matcher.group(1).replace("<","");
 
             String name = matcher.group(2);
             int sep_pos = name.indexOf("<<");
@@ -380,14 +391,14 @@ class ParseUtil {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
-            mrzResult.nationality = matcher.group(2);
+            mrzResult.nationality = matcher.group(2).replace("<","");
 
             mrzResult.dateOfBirth = matcher.group(4) + "-" + matcher.group(5) + "-" + matcher.group(6);
             if (!verifyString(matcher.group(3), lineTexts[1].charAt(19))) {
                 //check digital of birth date
                 mrzResult.isVerified = false;
             }
-            mrzResult.gender = matcher.group(7);
+            mrzResult.gender = matcher.group(7).replace('<','U');
 
             mrzResult.dateOfExpiration = matcher.group(9) + "-" + matcher.group(10) + "-" + matcher.group(11);
             if (!verifyString(matcher.group(8), lineTexts[1].charAt(27))) {
