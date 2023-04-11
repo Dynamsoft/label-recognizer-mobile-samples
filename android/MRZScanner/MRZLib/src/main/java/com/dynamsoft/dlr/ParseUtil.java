@@ -72,7 +72,7 @@ class ParseUtil {
                 mrzResult.isVerified = false;
             }
 
-            mrzResult.nationality = matcher.group(10);
+            mrzResult.nationality = matcher.group(10).replace("<","");
 
             if (!verifyString(lineTexts[0].substring(5) + lineTexts[1].substring(0, 7) + lineTexts[1].substring(8, 15) + lineTexts[1].substring(18, 29), lineTexts[1].charAt(29))) {
                 //check digital of all
@@ -160,7 +160,7 @@ class ParseUtil {
                 //check digital of document number
                 mrzResult.isVerified = false;
             }
-            mrzResult.nationality = matcher.group(2);
+            mrzResult.nationality = matcher.group(2).replace("<","");
 
             mrzResult.dateOfBirth = matcher.group(4) + "-" + matcher.group(5) + "-" + matcher.group(6);
             if (!verifyString(matcher.group(3), lineTexts[1].charAt(19))) {
