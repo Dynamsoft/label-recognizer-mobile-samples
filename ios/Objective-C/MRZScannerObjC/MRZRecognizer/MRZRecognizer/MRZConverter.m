@@ -141,8 +141,8 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
    
     // Line1.
     if (line1MatchedArray.count != 0) {
-        mrzResult.issuer = line1MatchedArray[1];
-        mrzResult.docId = line1MatchedArray[2];
+        mrzResult.issuer = [line1MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
+        mrzResult.docId = [line1MatchedArray[2] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[0] characterAtIndex:14]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
@@ -165,7 +165,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         }
         
         // Gender.
-        mrzResult.gender = line2MatchedArray[5];
+        mrzResult.gender = [line2MatchedArray[5] stringByReplacingOccurrencesOfString:@"<" withString:@"U"];
         
         // Date of expiration.
         NSMutableString *dateOfExpiration = [NSMutableString string];
@@ -182,7 +182,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         }
         
         // Nationality.
-        mrzResult.nationality = line2MatchedArray[10];
+        mrzResult.nationality = [line2MatchedArray[10] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         
         // Check all.
         NSMutableString *checkAllStr = [NSMutableString string];
@@ -198,8 +198,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     
     // Line3.
     if (line3MatchedArray.count != 0) {
-        NSString* name = line3MatchedArray[1];
-
+        NSString* name = line3MatchedArray[2];
         NSRange range = [name rangeOfString:@"<<"];
         if (range.location == NSNotFound) {
             mrzResult.surname = @"";
@@ -207,6 +206,10 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         } else {
             mrzResult.surname = [[name substringToIndex:range.location] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
             mrzResult.givenName = [[name substringFromIndex:range.location + range.length] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
+            if ([mrzResult.givenName stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+                mrzResult.givenName = mrzResult.surname;
+                mrzResult.surname = @"";
+            }
         }
     }
 
@@ -237,10 +240,9 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     
     // Line1.
     if (line1MatchedArray.count != 0) {
-        mrzResult.issuer = line1MatchedArray[1];
+        mrzResult.issuer = [line1MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
 
-        NSString* name = line3MatchedArray[2];
-
+        NSString* name = line1MatchedArray[2];
         NSRange range = [name rangeOfString:@"<<"];
         if (range.location == NSNotFound) {
             mrzResult.surname = @"";
@@ -248,19 +250,23 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         } else {
             mrzResult.surname = [[name substringToIndex:range.location] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
             mrzResult.givenName = [[name substringFromIndex:range.location + range.length] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
+            if ([mrzResult.givenName stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+                mrzResult.givenName = mrzResult.surname;
+                mrzResult.surname = @"";
+            }
         }
     }
     
     // Line2.
     if (line2MatchedArray.count != 0) {
         // DocId.
-        mrzResult.docId = line2MatchedArray[1];
+        mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
         // Nationality.
-        mrzResult.nationality = line2MatchedArray[2];
+        mrzResult.nationality = [line2MatchedArray[2] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         
         // Birth date.
         NSMutableString *dateOfBirth = [NSMutableString string];
@@ -277,7 +283,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         }
         
         // Gender.
-        mrzResult.gender = line2MatchedArray[7];
+        mrzResult.gender = [line2MatchedArray[7] stringByReplacingOccurrencesOfString:@"<" withString:@"U"];
         
         // Date of expiration.
         NSMutableString *dateOfExpiration = [NSMutableString string];
@@ -331,10 +337,9 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     
     // Line1.
     if (line1MatchedArray.count != 0) {
-        mrzResult.issuer = line1MatchedArray[1];
+        mrzResult.issuer = [line1MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
 
-        NSString* name = line3MatchedArray[2];
-
+        NSString* name = line1MatchedArray[2];
         NSRange range = [name rangeOfString:@"<<"];
         if (range.location == NSNotFound) {
             mrzResult.surname = @"";
@@ -342,19 +347,23 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         } else {
             mrzResult.surname = [[name substringToIndex:range.location] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
             mrzResult.givenName = [[name substringFromIndex:range.location + range.length] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
+            if ([mrzResult.givenName stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+                mrzResult.givenName = mrzResult.surname;
+                mrzResult.surname = @"";
+            }
         }        
     }
     
     // Line2.
     if (line2MatchedArray.count != 0) {
         // DocId.
-        mrzResult.docId = line2MatchedArray[1];
+        mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
         // Nationality.
-        mrzResult.nationality = line2MatchedArray[2];
+        mrzResult.nationality = [line2MatchedArray[2] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         
         // Birth date.
         NSMutableString *dateOfBirth = [NSMutableString string];
@@ -371,7 +380,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         }
         
         // Gender.
-        mrzResult.gender = line2MatchedArray[7];
+        mrzResult.gender = [line2MatchedArray[7] stringByReplacingOccurrencesOfString:@"<" withString:@"U"];
         
         // Date of expiration.
         NSMutableString *dateOfExpiration = [NSMutableString string];
@@ -425,10 +434,9 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     
     // Line1.
     if (line1MatchedArray.count != 0) {
-        mrzResult.issuer = line1MatchedArray[1];
+        mrzResult.issuer = [line1MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
 
-        NSString* name = line3MatchedArray[2];
-
+        NSString* name = line1MatchedArray[2];
         NSRange range = [name rangeOfString:@"<<"];
         if (range.location == NSNotFound) {
             mrzResult.surname = @"";
@@ -436,19 +444,23 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         } else {
             mrzResult.surname = [[name substringToIndex:range.location] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
             mrzResult.givenName = [[name substringFromIndex:range.location + range.length] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
+            if ([mrzResult.givenName stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+                mrzResult.givenName = mrzResult.surname;
+                mrzResult.surname = @"";
+            }
         }           
     }
     
     // Line2.
     if (line2MatchedArray.count != 0) {
         // DocId.
-        mrzResult.docId = line2MatchedArray[1];
+        mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
         // Nationality.
-        mrzResult.nationality = line2MatchedArray[2];
+        mrzResult.nationality = [line2MatchedArray[2] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         
         // Birth date.
         NSMutableString *dateOfBirth = [NSMutableString string];
@@ -465,7 +477,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         }
         
         // Gender.
-        mrzResult.gender = line2MatchedArray[7];
+        mrzResult.gender = [line2MatchedArray[7] stringByReplacingOccurrencesOfString:@"<" withString:@"U"];
         
         // Date of expiration.
         NSMutableString *dateOfExpiration = [NSMutableString string];
@@ -509,10 +521,9 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     
     // Line1.
     if (line1MatchedArray.count != 0) {
-        mrzResult.issuer = line1MatchedArray[1];
-
-        NSString* name = line3MatchedArray[2];
-
+        mrzResult.issuer = [line1MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
+        
+        NSString* name = line1MatchedArray[2];
         NSRange range = [name rangeOfString:@"<<"];
         if (range.location == NSNotFound) {
             mrzResult.surname = @"";
@@ -520,19 +531,23 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         } else {
             mrzResult.surname = [[name substringToIndex:range.location] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
             mrzResult.givenName = [[name substringFromIndex:range.location + range.length] stringByReplacingOccurrencesOfString:@"<" withString:@" "];
+            if ([mrzResult.givenName stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+                mrzResult.givenName = mrzResult.surname;
+                mrzResult.surname = @"";
+            }
         }           
     }
     
     // Line2.
     if (line2MatchedArray.count != 0) {
         // DocId.
-        mrzResult.docId = line2MatchedArray[1];
+        mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
         // Nationality.
-        mrzResult.nationality = line2MatchedArray[2];
+        mrzResult.nationality = [line2MatchedArray[2] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         
         // Birth date.
         NSMutableString *dateOfBirth = [NSMutableString string];
@@ -549,7 +564,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
         }
         
         // Gender.
-        mrzResult.gender = line2MatchedArray[7];
+        mrzResult.gender = [line2MatchedArray[7] stringByReplacingOccurrencesOfString:@"<" withString:@"U"];
         
         // Date of expiration.
         NSMutableString *dateOfExpiration = [NSMutableString string];
