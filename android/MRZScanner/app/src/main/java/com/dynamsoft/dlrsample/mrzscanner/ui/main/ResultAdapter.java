@@ -29,6 +29,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder
         String[] texts = mrzResultStrings[position].split("__");
         if(texts.length == 2) {
             holder.setText(texts[0], texts[1]);
+        } else if(texts.length == 1) {
+            holder.setText(texts[0],"");
         }
     }
 
