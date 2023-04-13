@@ -143,7 +143,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     if (line1MatchedArray.count != 0) {
         mrzResult.issuer = [line1MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
         mrzResult.docId = [line1MatchedArray[2] stringByReplacingOccurrencesOfString:@"<" withString:@""];
-        if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[0] characterAtIndex:14]]) {// Check digital of document number
+        if (![self verifyString:line1MatchedArray[2] specifyChar:[dlrLineTextResultsArray[0] characterAtIndex:14]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
     }
@@ -198,7 +198,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     
     // Line3.
     if (line3MatchedArray.count != 0) {
-        NSString* name = line3MatchedArray[2];
+        NSString* name = dlrLineTextResultsArray[2];
         NSRange range = [name rangeOfString:@"<<"];
         if (range.location == NSNotFound) {
             mrzResult.surname = @"";
@@ -261,7 +261,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     if (line2MatchedArray.count != 0) {
         // DocId.
         mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
-        if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
+        if (![self verifyString:line2MatchedArray[1] specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
@@ -358,7 +358,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     if (line2MatchedArray.count != 0) {
         // DocId.
         mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
-        if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
+        if (![self verifyString:line2MatchedArray[1] specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
@@ -455,7 +455,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     if (line2MatchedArray.count != 0) {
         // DocId.
         mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
-        if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
+        if (![self verifyString:line2MatchedArray[1] specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
@@ -542,7 +542,7 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
     if (line2MatchedArray.count != 0) {
         // DocId.
         mrzResult.docId = [line2MatchedArray[1] stringByReplacingOccurrencesOfString:@"<" withString:@""];
-        if (![self verifyString:mrzResult.docId specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
+        if (![self verifyString:line2MatchedArray[1] specifyChar:[dlrLineTextResultsArray[1] characterAtIndex:9]]) {// Check digital of document number
             mrzResult.isVerified = NO;
         }
         
@@ -586,11 +586,16 @@ static NSString *const MRVA_LINE2_REGEX = @"^([A-Z0-9<]{9})[0-9]([A-Z<]{3})(([0-
 
 // MARK: - Vertify
 + (BOOL)verifyString:(NSString *)string specifyChar:(char)c {
-    if (c < '0' || c > '9') {
+    if (c == '<' || (c >= '0' && c <= '9')) {
+        if (c == '<') {
+            return [self weightCalculationOfString:string] == 0;
+        } else {
+            int cValue = c - '0';
+            return [self weightCalculationOfString:string] == cValue;
+        }
+    } else {
         return NO;
     }
-    int cValue = c - '0';
-    return [self weightCalculationOfString:string] == cValue;
 }
 
 + (int)weightCalculationOfString:(NSString *)source {
