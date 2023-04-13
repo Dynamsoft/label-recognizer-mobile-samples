@@ -47,7 +47,7 @@
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Given Name",
                                    @"Content":(self.mrzResult.givenName == nil || self.mrzResult.givenName.length == 0) ? @"nil":self.mrzResult.givenName
                                  }];
-    [self.mrzDataArray addObject:@{@"RowPrefix":@"Passport Number",
+    [self.mrzDataArray addObject:@{@"RowPrefix":@"ID",
                                    @"Content":(self.mrzResult.docId == nil || self.mrzResult.docId.length == 0)? @"nil":self.mrzResult.docId
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Nationality",

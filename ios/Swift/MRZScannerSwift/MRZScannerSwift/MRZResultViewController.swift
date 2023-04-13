@@ -49,7 +49,7 @@ class MRZResultViewController: BaseViewController, UITableViewDelegate, UITableV
         mrzDataArray.append(["RowPrefix":"Given Name",
                              "Content":mrzResult.givenName.count == 0 ? "nil" : mrzResult.givenName
                             ])
-        mrzDataArray.append(["RowPrefix":"Passport Number",
+        mrzDataArray.append(["RowPrefix":"ID",
                              "Content":mrzResult.docId.count == 0 ? "nil" : mrzResult.docId
                             ])
         mrzDataArray.append(["RowPrefix":"Nationality",
