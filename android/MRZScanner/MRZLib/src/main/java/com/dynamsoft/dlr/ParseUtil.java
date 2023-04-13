@@ -412,9 +412,15 @@ class ParseUtil {
     }
 
     private static boolean verifyString(String s, char c) {
-        if (c < '0' || c > '9') {
+        if (c=='<' || (c >= '0' && c <= '9')) {
+            if(c=='<') {
+                return compute(s) == 0;
+            } else {
+                return compute(s) == Integer.parseInt(String.valueOf(c));
+            }
+        } else {
             return false;
-        } else return compute(s) == Integer.parseInt(String.valueOf(c));
+        }
     }
 
     private static int compute(String source) {
