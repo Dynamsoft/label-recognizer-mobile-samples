@@ -38,25 +38,31 @@ class MRZResultViewController: BaseViewController, UITableViewDelegate, UITableV
     private func createData() -> Void {
         
         mrzDataArray.append(["RowPrefix":"Document Type",
-                               "Content":mrzResult.docType
+                             "Content":mrzResult.docType.count == 0 ? "nil" : mrzResult.docType
+                            ])
+        mrzDataArray.append(["RowPrefix":"Issuing State",
+                             "Content":mrzResult.issuer.count == 0 ? "nil" : mrzResult.issuer
                             ])
         mrzDataArray.append(["RowPrefix":"Surname",
-                               "Content":mrzResult.surname
+                             "Content":mrzResult.surname.count == 0 ? "nil" : mrzResult.surname
                             ])
         mrzDataArray.append(["RowPrefix":"Given Name",
-                               "Content":mrzResult.givenName
+                             "Content":mrzResult.givenName.count == 0 ? "nil" : mrzResult.givenName
+                            ])
+        mrzDataArray.append(["RowPrefix":"ID",
+                             "Content":mrzResult.docId.count == 0 ? "nil" : mrzResult.docId
                             ])
         mrzDataArray.append(["RowPrefix":"Nationality",
-                               "Content":mrzResult.nationality
+                             "Content":mrzResult.nationality.count == 0 ? "nil" : mrzResult.nationality
                             ])
         mrzDataArray.append(["RowPrefix":"Date of Birth(YYYY-MM-DD)",
-                               "Content":mrzResult.dateOfBirth
+                             "Content":mrzResult.dateOfBirth.count == 0 ? "nil" : mrzResult.dateOfBirth
                             ])
         mrzDataArray.append(["RowPrefix":"Gender",
-                               "Content":mrzResult.gender
+                             "Content":mrzResult.gender.count == 0 ? "nil" : mrzResult.gender
                             ])
         mrzDataArray.append(["RowPrefix":"Date of Expiry(YYYY-MM-DD)",
-                               "Content":mrzResult.dateOfExpiration
+                             "Content":mrzResult.dateOfExpiration.count == 0 ? "nil" : mrzResult.dateOfExpiration
                             ])
         mrzDataArray.append(["RowPrefix":"IsParsed",
                                "Content":mrzResult.isParsed ? "YES" : "NO"
@@ -65,7 +71,7 @@ class MRZResultViewController: BaseViewController, UITableViewDelegate, UITableV
                                "Content":mrzResult.isVerified ? "YES" : "NO"
                             ])
         mrzDataArray.append(["RowPrefix":"MRZ String",
-                               "Content":"\n" + mrzResult.mrzText
+                             "Content":"\n" + (mrzResult.mrzText.count == 0 ? "nil" : mrzResult.mrzText)
                             ])
     }
     
