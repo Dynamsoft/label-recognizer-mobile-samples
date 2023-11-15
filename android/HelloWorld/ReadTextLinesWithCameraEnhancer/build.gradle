@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.dynamsoft.readtextlineswithcameraenhancer"
@@ -29,8 +29,9 @@ android {
 
 dependencies {
 
-    implementation 'com.dynamsoft:dynamsoftlabelrecognizer:2.2.20'
-    implementation 'com.dynamsoft:dynamsoftcameraenhancer:3.0.1'
+    implementation "com.dynamsoft:dynamsoftcameraenhancer:4.0.1"
+    implementation "com.dynamsoft:dynamsoftcapturevisionrouter:2.0.20"
+    implementation "com.dynamsoft:${artifactId.dlr}:${versions.dlr}@aar"
 
     implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'

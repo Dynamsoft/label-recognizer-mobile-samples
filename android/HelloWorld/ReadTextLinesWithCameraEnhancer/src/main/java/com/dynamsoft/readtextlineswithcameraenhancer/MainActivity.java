@@ -1,124 +1,137 @@
 package com.dynamsoft.readtextlineswithcameraenhancer;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dynamsoft.core.CoreException;
-import com.dynamsoft.core.ImageData;
-import com.dynamsoft.core.LicenseManager;
-import com.dynamsoft.core.LicenseVerificationListener;
-import com.dynamsoft.core.RegionDefinition;
+import com.dynamsoft.core.basic_structures.CapturedResultReceiver;
+import com.dynamsoft.core.basic_structures.CompletionListener;
+import com.dynamsoft.core.basic_structures.DSRect;
+import com.dynamsoft.cvr.CaptureVisionRouter;
+import com.dynamsoft.cvr.CaptureVisionRouterException;
+import com.dynamsoft.cvr.EnumPresetTemplate;
 import com.dynamsoft.dce.CameraEnhancer;
 import com.dynamsoft.dce.CameraEnhancerException;
-import com.dynamsoft.dce.DCECameraView;
-import com.dynamsoft.dlr.DLRLineResult;
-import com.dynamsoft.dlr.DLRResult;
+import com.dynamsoft.dce.CameraView;
+import com.dynamsoft.dce.utils.PermissionUtil;
 import com.dynamsoft.dlr.LabelRecognizer;
-import com.dynamsoft.dlr.LabelRecognizerException;
-import com.dynamsoft.dlr.LabelResultListener;
+import com.dynamsoft.dlr.RecognizedTextLinesResult;
+import com.dynamsoft.dlr.TextLineResultItem;
+import com.dynamsoft.license.LicenseManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvRes;
-    private DCECameraView mCameraView;
-    private CameraEnhancer mCamera;
-    private LabelRecognizer mRecognizer;
+	private TextView tvRes;
+	private CameraEnhancer mCamera;
+	private CaptureVisionRouter mRouter;
+	private LabelRecognizer mRecognizer;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	private final MutableLiveData<Integer> deviceOrientation = new MutableLiveData<>(Configuration.ORIENTATION_PORTRAIT);
 
-        // Initialize license for Dynamsoft Label Recognizer SDK.
-        // The license string here is a time-limited trial license. Note that network connection is required for this license to work.
-        // You can also request an extension for your trial license in the customer portal: https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=installer&package=android
-        LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, new LicenseVerificationListener() {
-            @Override
-            public void licenseVerificationCallback(boolean isSuccess, CoreException error) {
-                if (!isSuccess) {
-                    error.printStackTrace();
-                    MainActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast ts = Toast.makeText(getBaseContext(), "error:" + error.getErrorCode() + " " + error.getMessage(), Toast.LENGTH_LONG);
-                            ts.show();
-                        }
-                    });
-                }
-            }
-        });
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		PermissionUtil.requestCameraPermission(this);
 
-        tvRes = findViewById(R.id.tv_res);
+		// Initialize license for Dynamsoft Label Recognizer SDK.
+		// The license string here is a time-limited trial license. Note that network connection is required for this license to work.
+		// You can also request an extension for your trial license in the customer portal: https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=installer&package=android
 
-        // Add camera view for previewing video.
-        mCameraView = findViewById(R.id.dce_camera_view);
+		LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, (isSuccess, error) -> {
+			if (!isSuccess) {
+				error.printStackTrace();
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						Toast ts = Toast.makeText(getBaseContext(), "error: " + error.getMessage(), Toast.LENGTH_LONG);
+						ts.show();
+					}
+				});
+			}
+		});
 
-        // Create an instance of Dynamsoft Camera Enhancer for video streaming.
-        mCamera = new CameraEnhancer(this);
-        mCamera.setCameraView(mCameraView);
+		deviceOrientation.observe(this, orientationValue -> {
+			if (orientationValue == Configuration.ORIENTATION_PORTRAIT) {
+				DSRect region = new DSRect(0.1f, 0.4f, 0.9f, 0.6f, true);
+				try {
+					mCamera.setScanRegion(region);
+				} catch (CameraEnhancerException e) {
+					e.printStackTrace();
+				}
+			} else if (orientationValue == Configuration.ORIENTATION_LANDSCAPE) {
+				DSRect region = new DSRect(20, 40, 80, 60, false);
+				try {
+					mCamera.setScanRegion(region);
+				} catch (CameraEnhancerException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
-        // Define a scan region for recognition
-        RegionDefinition region = new RegionDefinition(10, 40, 90, 60, 1);
-        try {
-            mCamera.setScanRegion(region);
-        } catch (CameraEnhancerException e) {
-            e.printStackTrace();
-        }
+		tvRes = findViewById(R.id.tv_res);
 
-        try {
-            // Create an instance of Dynamsoft Label Recognizer.
-            mRecognizer = new LabelRecognizer();
-        } catch (LabelRecognizerException e) {
-            e.printStackTrace();
-        }
+		// Add camera view for previewing video.
+		CameraView cameraView = findViewById(R.id.dce_camera_view);
+		cameraView.setScanRegionMaskVisible(true);
 
-        // Bind the Camera Enhancer instance to the Label Recognizer instance.
-        mRecognizer.setImageSource(mCamera);
+		// Create an instance of Dynamsoft Camera Enhancer for video streaming.
+		mCamera = new CameraEnhancer(cameraView, this);
+		mRouter = new CaptureVisionRouter(this);
+		try {
+			mRouter.setInput(mCamera);
+		} catch (CaptureVisionRouterException e) {
+			throw new RuntimeException(e);
+		}
 
-        // Register the label result listener to get the recognized results from images.
-        mRecognizer.setLabelResultListener(new LabelResultListener() {
-            @Override
-            public void labelResultCallback(int i, ImageData imageData, DLRResult[] dlrResults) {
-                if (dlrResults != null && dlrResults.length > 0) {
-                    showResults(dlrResults);
-                }
-            }
-        });
-    }
+		mRouter.addResultReceiver(new CapturedResultReceiver() {
+			@Override
+			public void onRecognizedTextLinesReceived(RecognizedTextLinesResult result) {
+				showResults(result.getItems());
+			}
+		});
+	}
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            mCamera.open();
-        } catch (CameraEnhancerException e) {
-            e.printStackTrace();
-        }
-        mRecognizer.startScanning();
-    }
+	@Override
+	protected void onResume() {
+		super.onResume();
+		try {
+			mCamera.open();
+		} catch (CameraEnhancerException e) {
+			e.printStackTrace();
+		}
+		mRouter.startCapturing(EnumPresetTemplate.PT_RECOGNIZE_TEXT_LINES, new CompletionListener() {
+			@Override
+			public void onSuccess() {
+			}
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        try {
-            mCamera.close();
-        } catch (CameraEnhancerException e) {
-            e.printStackTrace();
-        }
-        mRecognizer.stopScanning();
-    }
+			@Override
+			public void onFailure(int errorCode, String errorString) {
+				runOnUiThread(() -> Toast.makeText(MainActivity.this, errorString, Toast.LENGTH_SHORT).show());
+			}
+		});
+	}
 
-    private void showResults(DLRResult[] results) {
-        StringBuilder resultBuilder = new StringBuilder();
-        if (results != null) {
-            for (DLRResult result : results) {
-                for (DLRLineResult lineResult : result.lineResults) {
-                    resultBuilder.append(lineResult.text).append("\n\n");
-                }
-            }
-        }
-        runOnUiThread(() -> tvRes.setText(resultBuilder.toString()));
-    }
+	public void onPause() {
+		try {
+			mCamera.close();
+		} catch (CameraEnhancerException e) {
+			e.printStackTrace();
+		}
+		mRouter.stopCapturing();
+		super.onPause();
+	}
+
+	private void showResults(TextLineResultItem[] results) {
+		StringBuilder resultBuilder = new StringBuilder();
+		if (results != null) {
+			for (TextLineResultItem result : results) {
+				resultBuilder.append(result.getText()).append("\n\n");
+			}
+		}
+		runOnUiThread(() -> tvRes.setText(resultBuilder.toString()));
+	}
 }
