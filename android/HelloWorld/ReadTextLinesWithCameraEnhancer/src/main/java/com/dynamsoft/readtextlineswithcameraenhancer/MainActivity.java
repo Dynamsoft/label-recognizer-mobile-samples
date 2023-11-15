@@ -15,7 +15,6 @@ import com.dynamsoft.dce.CameraEnhancer;
 import com.dynamsoft.dce.CameraEnhancerException;
 import com.dynamsoft.dce.CameraView;
 import com.dynamsoft.dce.utils.PermissionUtil;
-import com.dynamsoft.dlr.LabelRecognizer;
 import com.dynamsoft.dlr.RecognizedTextLinesResult;
 import com.dynamsoft.dlr.TextLineResultItem;
 import com.dynamsoft.license.LicenseManager;
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 	private TextView tvRes;
 	private CameraEnhancer mCamera;
 	private CaptureVisionRouter mRouter;
-	private LabelRecognizer mRecognizer;
 
 	private final MutableLiveData<Integer> deviceOrientation = new MutableLiveData<>(Configuration.ORIENTATION_PORTRAIT);
 

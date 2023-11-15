@@ -16,7 +16,6 @@ import com.dynamsoft.dce.CameraEnhancer
 import com.dynamsoft.dce.CameraEnhancerException
 import com.dynamsoft.dce.CameraView
 import com.dynamsoft.dce.utils.PermissionUtil
-import com.dynamsoft.dlr.LabelRecognizer
 import com.dynamsoft.dlr.RecognizedTextLinesResult
 import com.dynamsoft.dlr.TextLineResultItem
 import com.dynamsoft.license.LicenseManager
