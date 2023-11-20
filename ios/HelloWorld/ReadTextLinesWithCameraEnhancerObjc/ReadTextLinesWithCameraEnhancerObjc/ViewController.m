@@ -21,6 +21,8 @@ typedef void (^ConfirmCompletion)(void);
 
 @property (nonatomic, strong) DSCameraView *dceView;
 
+@property (nonatomic, strong) UITextView *resultView;
+
 @end
 
 @implementation ViewController
@@ -41,6 +43,7 @@ typedef void (^ConfirmCompletion)(void);
     self.view.backgroundColor = [UIColor whiteColor];
     [self configureCVR];
     [self configureDCE];
+    [self setupUI];
 }
 
 - (void)configureCVR {
@@ -72,13 +75,13 @@ typedef void (^ConfirmCompletion)(void);
     [_cvr setInput:_dce error:nil];
 }
 
+- (void)setupUI {
+    [self.view addSubview:self.resultView];
+}
+
 // MARK: - CapturedResultReceiver
 - (void)onRecognizedTextLinesReceived:(DSRecognizedTextLinesResult *)result {
     if (result.items != nil) {
-        [self.cvr stopCapturing];
-        [DSFeedback vibrate];
-        [DSFeedback beep];
-        
         // Parse results.
         int index = 0;
         NSMutableString *resultText = [NSMutableString string];
@@ -87,23 +90,10 @@ typedef void (^ConfirmCompletion)(void);
             [resultText appendString:[NSString stringWithFormat:@"Result %d:%@\n", index, dlrLineResults.text != nil ? dlrLineResults.text : @""]];
         }
         
-        weakSelfs(self)
-        [self displaySingleResult:[NSString stringWithFormat:@"Results(%ld)", result.items.count] msg:resultText acTitle:@"OK" completion:^{
-            [weakSelf.cvr startCapturing:DSPresetTemplateRecognizeTextLines completionHandler:nil];
-        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.resultView.text = [NSString stringWithFormat:@"Results(%d)\n%@", (int)result.items.count, resultText];
+        });
     }
-}
-
-- (void)displaySingleResult:(NSString *)title msg:(NSString *)msg acTitle:(NSString *)acTitle
-                 completion:(nullable ConfirmCompletion)completion {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle: UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:acTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if (completion) completion();
-        }];
-        [alert addAction:action];
-        [self presentViewController:alert animated:YES completion:nil];
-    });
 }
 
 - (void)displayError:(NSString *)msg completion:(nullable ConfirmCompletion)completion {
@@ -115,6 +105,22 @@ typedef void (^ConfirmCompletion)(void);
         [alert addAction:action];
         [self presentViewController:alert animated:YES completion:nil];
     });
+}
+
+- (UITextView *)resultView {
+    if (!_resultView) {
+        CGFloat left = 0.0;
+        CGFloat width = self.view.bounds.size.width;
+        CGFloat height = self.view.bounds.size.height / 2.5;
+        CGFloat top = self.view.bounds.size.height - height;
+        _resultView = [[UITextView alloc] initWithFrame:CGRectMake(left, top, width, height)];
+        _resultView.layer.backgroundColor = [UIColor clearColor].CGColor;
+        _resultView.layoutManager.allowsNonContiguousLayout = NO;
+        _resultView.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium];
+        _resultView.textColor = [UIColor whiteColor];
+        _resultView.textAlignment = NSTextAlignmentCenter;
+    }
+    return _resultView;
 }
 
 @end
