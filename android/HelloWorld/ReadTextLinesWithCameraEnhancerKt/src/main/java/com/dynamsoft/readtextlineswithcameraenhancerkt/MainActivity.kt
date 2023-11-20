@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         LicenseManager.initLicense(
             "DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9",
             this
-        ) { isSuccess: Boolean, error: Exception ->
+        ) { isSuccess, error ->
             if (!isSuccess) {
                 error.printStackTrace()
                 runOnUiThread {
