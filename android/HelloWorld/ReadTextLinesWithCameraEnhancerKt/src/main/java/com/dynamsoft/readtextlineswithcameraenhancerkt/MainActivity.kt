@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvRes: TextView
     private lateinit var mCamera: CameraEnhancer
     private lateinit var mRouter: CaptureVisionRouter
-    private val deviceOrientation = MutableLiveData(Configuration.ORIENTATION_PORTRAIT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,25 +49,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        deviceOrientation.observe(
-            this
-        ) { orientationValue: Int ->
-            if (orientationValue == Configuration.ORIENTATION_PORTRAIT) {
-                val region = DSRect(0.1f, 0.4f, 0.9f, 0.6f, true)
-                try {
-                    mCamera.scanRegion = region
-                } catch (e: CameraEnhancerException) {
-                    e.printStackTrace()
-                }
-            } else if (orientationValue == Configuration.ORIENTATION_LANDSCAPE) {
-                val region = DSRect(20f, 40f, 80f, 60f, false)
-                try {
-                    mCamera.scanRegion = region
-                } catch (e: CameraEnhancerException) {
-                    e.printStackTrace()
-                }
-            }
-        }
+
         tvRes = findViewById(R.id.tv_res)
 
         // Add camera view for previewing video.
@@ -82,6 +63,12 @@ class MainActivity : AppCompatActivity() {
             mRouter.input = mCamera
         } catch (e: CaptureVisionRouterException) {
             throw RuntimeException(e)
+        }
+        val region = DSRect(0.1f, 0.4f, 0.9f, 0.6f, true)
+        try {
+            mCamera.scanRegion = region
+        } catch (e: CameraEnhancerException) {
+            e.printStackTrace()
         }
         mRouter.addResultReceiver(object : CapturedResultReceiver {
             override fun onRecognizedTextLinesReceived(result: RecognizedTextLinesResult) {

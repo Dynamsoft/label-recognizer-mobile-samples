@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
 	private CameraEnhancer mCamera;
 	private CaptureVisionRouter mRouter;
 
-	private final MutableLiveData<Integer> deviceOrientation = new MutableLiveData<>(Configuration.ORIENTATION_PORTRAIT);
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
