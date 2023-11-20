@@ -52,24 +52,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-		deviceOrientation.observe(this, orientationValue -> {
-			if (orientationValue == Configuration.ORIENTATION_PORTRAIT) {
-				DSRect region = new DSRect(0.1f, 0.4f, 0.9f, 0.6f, true);
-				try {
-					mCamera.setScanRegion(region);
-				} catch (CameraEnhancerException e) {
-					e.printStackTrace();
-				}
-			} else if (orientationValue == Configuration.ORIENTATION_LANDSCAPE) {
-				DSRect region = new DSRect(20, 40, 80, 60, false);
-				try {
-					mCamera.setScanRegion(region);
-				} catch (CameraEnhancerException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
 		tvRes = findViewById(R.id.tv_res);
 
 		// Add camera view for previewing video.
@@ -83,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
 			mRouter.setInput(mCamera);
 		} catch (CaptureVisionRouterException e) {
 			throw new RuntimeException(e);
+		}
+
+		DSRect region = new DSRect(0.1f, 0.4f, 0.9f, 0.6f, true);
+		try {
+			mCamera.setScanRegion(region);
+		} catch (CameraEnhancerException e) {
+			e.printStackTrace();
 		}
 
 		mRouter.addResultReceiver(new CapturedResultReceiver() {
