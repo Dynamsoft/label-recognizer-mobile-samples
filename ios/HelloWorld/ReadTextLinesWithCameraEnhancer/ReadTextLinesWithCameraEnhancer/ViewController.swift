@@ -17,6 +17,23 @@ class ViewController: UIViewController, CapturedResultReceiver {
     private var dce: CameraEnhancer!
     private var dceView: CameraView!
     
+    lazy var resultView: UITextView = {
+        let left = 0.0
+        let width = self.view.bounds.size.width
+        let height = self.view.bounds.size.height / 2.5
+        let top = self.view.bounds.size.height - height
+        
+        resultView = UITextView(frame: CGRect(x: left, y: top , width: width, height: height))
+        resultView.layer.backgroundColor = UIColor.clear.cgColor
+        resultView.layoutManager.allowsNonContiguousLayout = false
+        resultView.isEditable = false
+        resultView.isSelectable = false
+        resultView.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
+        resultView.textColor = UIColor.white
+        resultView.textAlignment = .center
+        return resultView
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -35,6 +52,7 @@ class ViewController: UIViewController, CapturedResultReceiver {
         
         configureCVR()
         configureDCE()
+        setupUI()
     }
     
     private func configureCVR() -> Void {
@@ -65,12 +83,13 @@ class ViewController: UIViewController, CapturedResultReceiver {
         try? cvr.setInput(dce)
     }
     
+    private func setupUI() -> Void {
+        self.view.addSubview(resultView)
+    }
+    
     // MARK: - CapturedResultReceiver
     func onRecognizedTextLinesReceived(_ result: RecognizedTextLinesResult) {
         guard let items = result.items else { return }
-        cvr.stopCapturing()
-        Feedback.vibrate()
-        Feedback.beep()
         
         // Parse Results.
         var resultText = ""
@@ -80,17 +99,8 @@ class ViewController: UIViewController, CapturedResultReceiver {
             resultText += String(format: "Result %d:%@\n", index, dlrLineResults.text ?? "")
         }
         
-        displaySingleResult(String(format: "Results(%d)", items.count), resultText, "OK") {
-            [unowned self] in
-            self.cvr.startCapturing(PresetTemplate.recognizeTextLines.rawValue)
-        }
-    }
-    
-    private func displaySingleResult(_ title: String, _ msg: String, _ acTitle: String, completion: ConfirmCompletion? = nil) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: acTitle, style: .default, handler: { _ in completion?() }))
-            self.present(alert, animated: true, completion: nil)
+            self.resultView.text = String(format: "Results(%d)\n", items.count) + resultText
         }
     }
     
