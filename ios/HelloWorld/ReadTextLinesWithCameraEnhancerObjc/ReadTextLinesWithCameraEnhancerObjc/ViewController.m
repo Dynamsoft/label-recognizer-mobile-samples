@@ -116,7 +116,7 @@ typedef void (^ConfirmCompletion)(void);
         _resultView = [[UITextView alloc] initWithFrame:CGRectMake(left, top, width, height)];
         _resultView.layer.backgroundColor = [UIColor clearColor].CGColor;
         _resultView.layoutManager.allowsNonContiguousLayout = NO;
-        _resultView.isUserInteractionEnabled = NO;
+        _resultView.userInteractionEnabled = NO;
         _resultView.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium];
         _resultView.textColor = [UIColor whiteColor];
         _resultView.textAlignment = NSTextAlignmentCenter;
