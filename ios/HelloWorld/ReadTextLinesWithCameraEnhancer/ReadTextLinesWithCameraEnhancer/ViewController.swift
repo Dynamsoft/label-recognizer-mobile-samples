@@ -26,8 +26,7 @@ class ViewController: UIViewController, CapturedResultReceiver {
         resultView = UITextView(frame: CGRect(x: left, y: top , width: width, height: height))
         resultView.layer.backgroundColor = UIColor.clear.cgColor
         resultView.layoutManager.allowsNonContiguousLayout = false
-        resultView.isEditable = false
-        resultView.isSelectable = false
+        resultView.isUserInteractionEnabled = false
         resultView.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
         resultView.textColor = UIColor.white
         resultView.textAlignment = .center
