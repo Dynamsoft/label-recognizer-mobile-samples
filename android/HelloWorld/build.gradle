@@ -12,14 +12,6 @@ allprojects {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url "https://download2.dynamsoft.com/maven/aar" }
-    }
-}
-
 def getBranch() {
     def branch = ""
     def proc = "git rev-parse --abbrev-ref HEAD".execute()

@@ -6,16 +6,13 @@ allprojects {
         artifactId = [
                 "dce" : 'dynamsoftcameraenhancer',
                 "cvr" : 'dynamsoftcapturevisionrouter',
-                "dbr" : 'dynamsoftbarcodereader',
-                "util": 'dynamsoftutility',
+                "dlr" : 'dynamsoftlabelrecognizer',
         ]
 
         versions = [
                 "dce" : "4.0.1",
-                "dbr" : "10.0.20",
-                "util": "1.0.20",
+                "dlr" : "3.0.20",
                 "cvr" : "2.0.20"
-
         ]
     }
     configurations.configureEach {
