@@ -27,7 +27,7 @@
 - (void)onLicenseVerified:(BOOL)isSuccess error:(NSError *)error {
     if (error != nil) {
         NSString *msg = error.localizedDescription;
-        NSLog(@"erver license verify failed, error:%@", msg);
+        NSLog(@"Server license verify failed, error:%@", msg);
     }
 }
 
