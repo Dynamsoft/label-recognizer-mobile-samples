@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AD487CC2B19D39500BA9CF1 /* DynamsoftUtility.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD487CB2B19D39500BA9CF1 /* DynamsoftUtility.xcframework */; };
+		0AD487CD2B19D39500BA9CF1 /* DynamsoftUtility.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD487CB2B19D39500BA9CF1 /* DynamsoftUtility.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AFE837C2AFA271E007F75B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE837B2AFA271E007F75B2 /* AppDelegate.swift */; };
 		0AFE83802AFA271E007F75B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE837F2AFA271E007F75B2 /* ViewController.swift */; };
 		0AFE83832AFA271E007F75B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AFE83812AFA271E007F75B2 /* Main.storyboard */; };
@@ -35,6 +37,7 @@
 			files = (
 				0AFE839C2AFA281E007F75B2 /* DynamsoftLabelRecognizer.xcframework in Embed Frameworks */,
 				0AFE83962AFA281B007F75B2 /* DynamsoftImageProcessing.xcframework in Embed Frameworks */,
+				0AD487CD2B19D39500BA9CF1 /* DynamsoftUtility.xcframework in Embed Frameworks */,
 				0AFE83A22AFA2902007F75B2 /* DynamsoftCore.xcframework in Embed Frameworks */,
 				0AFE839E2AFA281F007F75B2 /* DynamsoftCameraEnhancer.xcframework in Embed Frameworks */,
 				0AFE83982AFA281C007F75B2 /* DynamsoftCaptureVisionRouter.xcframework in Embed Frameworks */,
@@ -46,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0AD487CB2B19D39500BA9CF1 /* DynamsoftUtility.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DynamsoftUtility.xcframework; path = ../../../../../Frameworks/DynamsoftUtility.xcframework; sourceTree = "<group>"; };
 		0AFE83782AFA271E007F75B2 /* ReadTextLinesWithCameraEnhancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadTextLinesWithCameraEnhancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFE837B2AFA271E007F75B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AFE837F2AFA271E007F75B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			files = (
 				0AFE839B2AFA281D007F75B2 /* DynamsoftLabelRecognizer.xcframework in Frameworks */,
 				0AFE83952AFA281B007F75B2 /* DynamsoftImageProcessing.xcframework in Frameworks */,
+				0AD487CC2B19D39500BA9CF1 /* DynamsoftUtility.xcframework in Frameworks */,
 				0AFE83A12AFA2901007F75B2 /* DynamsoftCore.xcframework in Frameworks */,
 				0AFE839D2AFA281E007F75B2 /* DynamsoftCameraEnhancer.xcframework in Frameworks */,
 				0AFE83972AFA281C007F75B2 /* DynamsoftCaptureVisionRouter.xcframework in Frameworks */,
@@ -111,6 +116,7 @@
 		0AFE838F2AFA2819007F75B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AD487CB2B19D39500BA9CF1 /* DynamsoftUtility.xcframework */,
 				0AFE83A02AFA2900007F75B2 /* DynamsoftCore.xcframework */,
 				0AFE83942AFA281B007F75B2 /* DynamsoftCameraEnhancer.xcframework */,
 				0AFE83912AFA281A007F75B2 /* DynamsoftCaptureVisionRouter.xcframework */,
@@ -148,7 +154,6 @@
 		0AFE83702AFA271E007F75B2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {

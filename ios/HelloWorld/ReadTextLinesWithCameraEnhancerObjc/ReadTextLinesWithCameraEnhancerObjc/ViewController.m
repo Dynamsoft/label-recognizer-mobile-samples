@@ -8,6 +8,7 @@
 #import <DynamsoftCaptureVisionRouter/DynamsoftCaptureVisionRouter.h>
 #import <DynamsoftLabelRecognizer/DynamsoftLabelRecognizer.h>
 #import <DynamsoftCameraEnhancer/DynamsoftCameraEnhancer.h>
+#import <DynamsoftUtility/DynamsoftUtility.h>
 
 #define weakSelfs(self) __weak typeof(self) weakSelf = self;
 
@@ -20,6 +21,8 @@ typedef void (^ConfirmCompletion)(void);
 @property (nonatomic, strong) DSCameraEnhancer *dce;
 
 @property (nonatomic, strong) DSCameraView *dceView;
+
+@property (nonatomic, strong) DSMultiFrameResultCrossFilter *resultFilter;
 
 @property (nonatomic, strong) UITextView *resultView;
 
@@ -49,6 +52,11 @@ typedef void (^ConfirmCompletion)(void);
 - (void)configureCVR {
     _cvr = [[DSCaptureVisionRouter alloc] init];
     [_cvr addResultReceiver:self];
+    
+    // Add filter.
+    _resultFilter = [[DSMultiFrameResultCrossFilter alloc] init];
+    [_resultFilter enableResultCrossVerification:DSCapturedResultItemTypeTextLine isEnabled:YES];
+    [_cvr addResultFilter:_resultFilter];
 }
 
 - (void)configureDCE {

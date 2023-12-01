@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AD487CF2B19D43700BA9CF1 /* DynamsoftUtility.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD487CE2B19D43600BA9CF1 /* DynamsoftUtility.xcframework */; };
+		0AD487D02B19D43700BA9CF1 /* DynamsoftUtility.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD487CE2B19D43600BA9CF1 /* DynamsoftUtility.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AFE83B12AFA3AD7007F75B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE83B02AFA3AD7007F75B2 /* AppDelegate.m */; };
 		0AFE83B72AFA3AD7007F75B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE83B62AFA3AD7007F75B2 /* ViewController.m */; };
 		0AFE83BA2AFA3AD7007F75B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AFE83B82AFA3AD7007F75B2 /* Main.storyboard */; };
@@ -36,6 +38,7 @@
 			files = (
 				0AFE83D62AFA3BAE007F75B2 /* DynamsoftCameraEnhancer.xcframework in Embed Frameworks */,
 				0AFE83D02AFA3BAC007F75B2 /* DynamsoftImageProcessing.xcframework in Embed Frameworks */,
+				0AD487D02B19D43700BA9CF1 /* DynamsoftUtility.xcframework in Embed Frameworks */,
 				0AFE83D22AFA3BAC007F75B2 /* DynamsoftLicense.xcframework in Embed Frameworks */,
 				0AFE83D42AFA3BAD007F75B2 /* DynamsoftLabelRecognizer.xcframework in Embed Frameworks */,
 				0AFE83D82AFA3BAF007F75B2 /* DynamsoftCore.xcframework in Embed Frameworks */,
@@ -47,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0AD487CE2B19D43600BA9CF1 /* DynamsoftUtility.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = DynamsoftUtility.xcframework; path = ../../../../../Frameworks/DynamsoftUtility.xcframework; sourceTree = "<group>"; };
 		0AFE83AC2AFA3AD7007F75B2 /* ReadTextLinesWithCameraEnhancerObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadTextLinesWithCameraEnhancerObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFE83AF2AFA3AD7007F75B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0AFE83B02AFA3AD7007F75B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			files = (
 				0AFE83D52AFA3BAD007F75B2 /* DynamsoftCameraEnhancer.xcframework in Frameworks */,
 				0AFE83CF2AFA3BAC007F75B2 /* DynamsoftImageProcessing.xcframework in Frameworks */,
+				0AD487CF2B19D43700BA9CF1 /* DynamsoftUtility.xcframework in Frameworks */,
 				0AFE83D12AFA3BAC007F75B2 /* DynamsoftLicense.xcframework in Frameworks */,
 				0AFE83D32AFA3BAD007F75B2 /* DynamsoftLabelRecognizer.xcframework in Frameworks */,
 				0AFE83D72AFA3BAE007F75B2 /* DynamsoftCore.xcframework in Frameworks */,
@@ -118,6 +123,7 @@
 		0AFE83C82AFA3BA9007F75B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AD487CE2B19D43600BA9CF1 /* DynamsoftUtility.xcframework */,
 				0AFE83CC2AFA3BAB007F75B2 /* DynamsoftCameraEnhancer.xcframework */,
 				0AFE83CE2AFA3BAC007F75B2 /* DynamsoftCaptureVisionRouter.xcframework */,
 				0AFE83CD2AFA3BAB007F75B2 /* DynamsoftCore.xcframework */,
@@ -155,7 +161,6 @@
 		0AFE83A42AFA3AD7007F75B2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					0AFE83AB2AFA3AD7007F75B2 = {

@@ -8,6 +8,7 @@ import UIKit
 import DynamsoftCaptureVisionRouter
 import DynamsoftLabelRecognizer
 import DynamsoftCameraEnhancer
+import DynamsoftUtility
 
 typealias ConfirmCompletion = () -> Void
 
@@ -16,6 +17,7 @@ class ViewController: UIViewController, CapturedResultReceiver {
     private var cvr: CaptureVisionRouter!
     private var dce: CameraEnhancer!
     private var dceView: CameraView!
+    private var resultFilter: MultiFrameResultCrossFilter!
     
     lazy var resultView: UITextView = {
         let left = 0.0
@@ -57,6 +59,11 @@ class ViewController: UIViewController, CapturedResultReceiver {
     private func configureCVR() -> Void {
         cvr = CaptureVisionRouter()
         cvr.addResultReceiver(self)
+        
+        // Add filter.
+        resultFilter = MultiFrameResultCrossFilter()
+        resultFilter.enableResultCrossVerification(.textLine, isEnabled: true)
+        cvr.addResultFilter(resultFilter)
     }
     
     private func configureDCE() -> Void {
