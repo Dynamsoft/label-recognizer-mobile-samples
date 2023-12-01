@@ -1,6 +1,5 @@
 package com.dynamsoft.readtextlineswithcameraenhancer;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -8,6 +7,7 @@ import android.widget.Toast;
 import com.dynamsoft.core.basic_structures.CapturedResultReceiver;
 import com.dynamsoft.core.basic_structures.CompletionListener;
 import com.dynamsoft.core.basic_structures.DSRect;
+import com.dynamsoft.core.basic_structures.EnumCapturedResultItemType;
 import com.dynamsoft.cvr.CaptureVisionRouter;
 import com.dynamsoft.cvr.CaptureVisionRouterException;
 import com.dynamsoft.cvr.EnumPresetTemplate;
@@ -18,6 +18,7 @@ import com.dynamsoft.dce.utils.PermissionUtil;
 import com.dynamsoft.dlr.RecognizedTextLinesResult;
 import com.dynamsoft.dlr.TextLineResultItem;
 import com.dynamsoft.license.LicenseManager;
+import com.dynamsoft.utility.MultiFrameResultCrossFilter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
@@ -55,10 +56,15 @@ public class MainActivity extends AppCompatActivity {
 		// Add camera view for previewing video.
 		CameraView cameraView = findViewById(R.id.dce_camera_view);
 		cameraView.setScanRegionMaskVisible(true);
+		cameraView.setScanLaserVisible(true);
 
 		// Create an instance of Dynamsoft Camera Enhancer for video streaming.
 		mCamera = new CameraEnhancer(cameraView, this);
+
+		MultiFrameResultCrossFilter filter = new MultiFrameResultCrossFilter();
+		filter.enableResultCrossVerification(EnumCapturedResultItemType.CRIT_TEXT_LINE, true);
 		mRouter = new CaptureVisionRouter(this);
+		mRouter.addResultFilter(filter);
 		try {
 			mRouter.setInput(mCamera);
 		} catch (CaptureVisionRouterException e) {

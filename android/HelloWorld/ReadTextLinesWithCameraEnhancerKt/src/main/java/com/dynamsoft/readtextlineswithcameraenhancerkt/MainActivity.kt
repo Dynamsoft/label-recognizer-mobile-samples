@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.dynamsoft.core.basic_structures.CapturedResultReceiver
 import com.dynamsoft.core.basic_structures.CompletionListener
 import com.dynamsoft.core.basic_structures.DSRect
+import com.dynamsoft.core.basic_structures.EnumCapturedResultItemType
 import com.dynamsoft.cvr.CaptureVisionRouter
 import com.dynamsoft.cvr.CaptureVisionRouterException
 import com.dynamsoft.cvr.EnumPresetTemplate
@@ -19,6 +20,7 @@ import com.dynamsoft.dce.utils.PermissionUtil
 import com.dynamsoft.dlr.RecognizedTextLinesResult
 import com.dynamsoft.dlr.TextLineResultItem
 import com.dynamsoft.license.LicenseManager
+import com.dynamsoft.utility.MultiFrameResultCrossFilter
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,11 +56,17 @@ class MainActivity : AppCompatActivity() {
 
         // Add camera view for previewing video.
         val cameraView: CameraView = findViewById<CameraView>(R.id.dce_camera_view)
+        cameraView.isScanLaserVisible = true
         cameraView.isScanRegionMaskVisible = true
 
         // Create an instance of Dynamsoft Camera Enhancer for video streaming.
         mCamera = CameraEnhancer(cameraView, this)
+
+        val filter = MultiFrameResultCrossFilter()
+        filter.enableResultCrossVerification(EnumCapturedResultItemType.CRIT_TEXT_LINE, true);
         mRouter = CaptureVisionRouter(this)
+        mRouter.addResultFilter(filter)
+
         try {
             mRouter.input = mCamera
         } catch (e: CaptureVisionRouterException) {
