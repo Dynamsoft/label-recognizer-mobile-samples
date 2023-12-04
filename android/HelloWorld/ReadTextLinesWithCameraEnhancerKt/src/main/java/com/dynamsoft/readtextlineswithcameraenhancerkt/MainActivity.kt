@@ -68,17 +68,22 @@ class MainActivity : AppCompatActivity() {
         mRouter.addResultFilter(filter)
 
         try {
+			// Set camera enhance as the video input.
             mRouter.input = mCamera
         } catch (e: CaptureVisionRouterException) {
             throw RuntimeException(e)
         }
+		// Set a scan region for the text line recognition.
         val region = DSRect(0.1f, 0.4f, 0.9f, 0.6f, true)
         try {
             mCamera.scanRegion = region
         } catch (e: CameraEnhancerException) {
             e.printStackTrace()
         }
+        // The CapturedResultReceiver interface provides methods for monitoring the output of captured results. 
+		// The CapturedResultReceiver can add a receiver for any type of captured result or for a specific type of captured result, based on the method that is implemented.
         mRouter.addResultReceiver(object : CapturedResultReceiver {
+			// Implement this method to receive RecognizedTextLinesResult.
             override fun onRecognizedTextLinesReceived(result: RecognizedTextLinesResult) {
                 showResults(result.items)
             }
@@ -88,10 +93,14 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         try {
+			// Open the camera.
             mCamera.open()
         } catch (e: CameraEnhancerException) {
             e.printStackTrace()
         }
+		// Start capturing by specifying the preset template, PT_RECOGNIZE_TEXT_LINES.
+		// onSuccess: Callback when the capture start succeed.
+		// onFailure: Callback when the capture start failed.
         mRouter.startCapturing(
             EnumPresetTemplate.PT_RECOGNIZE_TEXT_LINES,
             object : CompletionListener {
@@ -110,14 +119,17 @@ class MainActivity : AppCompatActivity() {
 
     public override fun onPause() {
         try {
+			// Close the camera.
             mCamera.close()
         } catch (e: CameraEnhancerException) {
             e.printStackTrace()
         }
+		// Stop capturing.
         mRouter.stopCapturing()
         super.onPause()
     }
 
+	// Show the recognized text line results.
     private fun showResults(results: Array<TextLineResultItem>?) {
         val resultBuilder = StringBuilder()
         if (results != null) {

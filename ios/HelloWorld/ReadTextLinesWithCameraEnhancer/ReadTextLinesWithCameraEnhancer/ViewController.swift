@@ -57,7 +57,12 @@ class ViewController: UIViewController, CapturedResultReceiver {
     }
     
     private func configureCVR() -> Void {
+
+        // Create an instance of Dynamsoft Capture Vision Router (CVR).  The CVR instance will responsible for retrieving images and dispatch results.
         cvr = CaptureVisionRouter()
+
+        // The CapturedResultReceiver interface provides methods for monitoring the output of captured results. 
+        // The CapturedResultReceiver can add a receiver for any type of captured result or for a specific type of captured result, based on the method that is implemented.
         cvr.addResultReceiver(self)
         
         // Add filter.
@@ -67,16 +72,19 @@ class ViewController: UIViewController, CapturedResultReceiver {
     }
     
     private func configureDCE() -> Void {
+        // Add camera view for previewing video.
         dceView = CameraView(frame: self.view.bounds)
+        //Add a scan laser on the view.
         dceView.scanLaserVisible = true
         self.view.addSubview(dceView)
-
+        // Get the layer of DLR and set the visible property to true.
         let dlrDrawingLayer = dceView.getDrawingLayer(DrawingLayerId.DLR.rawValue)
         dlrDrawingLayer?.visible = true
 
+        // Create an instance of Dynamsoft Camera Enhancer for video streaming.
         dce = CameraEnhancer(view: dceView)
         dce.open()
-        // ScanRegion.
+        // Set a scan region for the text line recognition.
         let region = Rect()
         region.top = 0.4
         region.bottom = 0.6
@@ -85,7 +93,7 @@ class ViewController: UIViewController, CapturedResultReceiver {
         region.measuredInPercentage = true
         try? dce.setScanRegion(region)
 
-        //  CVR link DCE.
+        // Set camera enhance as the video input.
         try? cvr.setInput(dce)
     }
     

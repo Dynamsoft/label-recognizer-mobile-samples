@@ -33,6 +33,8 @@ typedef void (^ConfirmCompletion)(void);
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     weakSelfs(self)
+    // Start capturing by specifying the preset template, PT_RECOGNIZE_TEXT_LINES.
+    // There will be a callback when the capture start succeed or failed.
     [self.cvr startCapturing:DSPresetTemplateRecognizeTextLines completionHandler:^(BOOL isSuccess, NSError * _Nullable error) {
         if (error != nil) {
             [weakSelf displayError:error.localizedDescription completion:nil];
@@ -50,7 +52,10 @@ typedef void (^ConfirmCompletion)(void);
 }
 
 - (void)configureCVR {
+    // Create an instance of Dynamsoft Capture Vision Router (CVR).  The CVR instance will responsible for retrieving images and dispatch results.
     _cvr = [[DSCaptureVisionRouter alloc] init];
+    // The CapturedResultReceiver interface provides methods for monitoring the output of captured results. 
+    // The CapturedResultReceiver can add a receiver for any type of captured result or for a specific type of captured result, based on the method that is implemented.	
     [_cvr addResultReceiver:self];
     
     // Add filter.
@@ -60,17 +65,21 @@ typedef void (^ConfirmCompletion)(void);
 }
 
 - (void)configureDCE {
+    // Add camera view for previewing video.
     _dceView = [[DSCameraView alloc] initWithFrame:self.view.bounds];
+    //Add a scan laser on the view.
     _dceView.scanLaserVisible = YES;
     [self.view addSubview:_dceView];
     
+    // Get the layer of DLR and set the visible property to true.
     DSDrawingLayer *dlrDrawingLayer = [_dceView getDrawingLayer:DSDrawingLayerIdDLR];
     dlrDrawingLayer.visible = YES;
-    
+
+    // Create an instance of Dynamsoft Camera Enhancer for video streaming.
     _dce = [[DSCameraEnhancer alloc] initWithView:_dceView];
     [_dce open];
     
-    // ScanRegion.
+    // Set a scan region for the text line recognition.
     DSRect *region = [[DSRect alloc] init];
     region.top = 0.4;
     region.bottom = 0.6;
@@ -79,7 +88,7 @@ typedef void (^ConfirmCompletion)(void);
     region.measuredInPercentage = YES;
     [_dce setScanRegion:region error:nil];
     
-    // CVR link DCE.
+    // Set camera enhance as the video input.
     [_cvr setInput:_dce error:nil];
 }
 
@@ -87,10 +96,10 @@ typedef void (^ConfirmCompletion)(void);
     [self.view addSubview:self.resultView];
 }
 
-// MARK: - CapturedResultReceiver
+// Implement this method to receive RecognizedTextLinesResult.
 - (void)onRecognizedTextLinesReceived:(DSRecognizedTextLinesResult *)result {
     if (result.items != nil) {
-        // Parse results.
+        // Extract the content of the results.
         int index = 0;
         NSMutableString *resultText = [NSMutableString string];
         for (DSTextLineResultItem *dlrLineResults in result.items) {
@@ -114,7 +123,7 @@ typedef void (^ConfirmCompletion)(void);
         [self presentViewController:alert animated:YES completion:nil];
     });
 }
-
+// Show the recognized text line results.
 - (UITextView *)resultView {
     if (!_resultView) {
         CGFloat left = 0.0;

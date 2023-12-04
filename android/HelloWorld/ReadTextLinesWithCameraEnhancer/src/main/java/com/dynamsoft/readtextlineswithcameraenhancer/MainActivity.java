@@ -63,23 +63,28 @@ public class MainActivity extends AppCompatActivity {
 
 		MultiFrameResultCrossFilter filter = new MultiFrameResultCrossFilter();
 		filter.enableResultCrossVerification(EnumCapturedResultItemType.CRIT_TEXT_LINE, true);
+		
+		// Create an instance of Dynamsoft Capture Vision Router (CVR).  The CVR instance will responsible for retrieving images and dispatch results.
 		mRouter = new CaptureVisionRouter(this);
 		mRouter.addResultFilter(filter);
 		try {
+			// Set camera enhance as the video input.
 			mRouter.setInput(mCamera);
 		} catch (CaptureVisionRouterException e) {
 			throw new RuntimeException(e);
 		}
-
+		// Set a scan region for the text line recognition.
 		DSRect region = new DSRect(0.1f, 0.4f, 0.9f, 0.6f, true);
 		try {
 			mCamera.setScanRegion(region);
 		} catch (CameraEnhancerException e) {
 			e.printStackTrace();
 		}
-
+		// The CapturedResultReceiver interface provides methods for monitoring the output of captured results. 
+		// The CapturedResultReceiver can add a receiver for any type of captured result or for a specific type of captured result, based on the method that is implemented.
 		mRouter.addResultReceiver(new CapturedResultReceiver() {
 			@Override
+			// Implement this method to receive RecognizedTextLinesResult.
 			public void onRecognizedTextLinesReceived(RecognizedTextLinesResult result) {
 				showResults(result.getItems());
 			}
@@ -90,16 +95,20 @@ public class MainActivity extends AppCompatActivity {
 	protected void onResume() {
 		super.onResume();
 		try {
+			// Open the camera.
 			mCamera.open();
 		} catch (CameraEnhancerException e) {
 			e.printStackTrace();
 		}
+		// Start capturing by specifying the preset template, PT_RECOGNIZE_TEXT_LINES.
 		mRouter.startCapturing(EnumPresetTemplate.PT_RECOGNIZE_TEXT_LINES, new CompletionListener() {
 			@Override
+			// Callback when the capture start succeed.
 			public void onSuccess() {
 			}
 
 			@Override
+			// Callback when the capture start failed.
 			public void onFailure(int errorCode, String errorString) {
 				runOnUiThread(() -> Toast.makeText(MainActivity.this, errorString, Toast.LENGTH_SHORT).show());
 			}
@@ -108,14 +117,17 @@ public class MainActivity extends AppCompatActivity {
 
 	public void onPause() {
 		try {
+			// Close the camera.
 			mCamera.close();
 		} catch (CameraEnhancerException e) {
 			e.printStackTrace();
 		}
+		// Stop capturing.
 		mRouter.stopCapturing();
 		super.onPause();
 	}
 
+	// Show the recognized text line results.
 	private void showResults(TextLineResultItem[] results) {
 		StringBuilder resultBuilder = new StringBuilder();
 		if (results != null) {
