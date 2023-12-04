@@ -123,7 +123,7 @@ typedef void (^ConfirmCompletion)(void);
         [self presentViewController:alert animated:YES completion:nil];
     });
 }
-// Show the recognized text line results.
+// Configure the text view for displaying the text line recognition results.
 - (UITextView *)resultView {
     if (!_resultView) {
         CGFloat left = 0.0;

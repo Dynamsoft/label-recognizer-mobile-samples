@@ -19,6 +19,7 @@ class ViewController: UIViewController, CapturedResultReceiver {
     private var dceView: CameraView!
     private var resultFilter: MultiFrameResultCrossFilter!
     
+    // Configure the text view for displaying the text line recognition results.
     lazy var resultView: UITextView = {
         let left = 0.0
         let width = self.view.bounds.size.width
@@ -101,11 +102,11 @@ class ViewController: UIViewController, CapturedResultReceiver {
         self.view.addSubview(resultView)
     }
     
-    // MARK: - CapturedResultReceiver
+    // Implement this method to receive RecognizedTextLinesResult.
     func onRecognizedTextLinesReceived(_ result: RecognizedTextLinesResult) {
         guard let items = result.items else { return }
         
-        // Parse Results.
+        // Extract the content of the results.
         var resultText = ""
         var index = 0
         for dlrLineResults in items {
