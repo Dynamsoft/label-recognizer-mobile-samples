@@ -12,7 +12,7 @@ allprojects {
 
         versions = [
                 "dce" : "4.0.2",
-                "dlr" : "3.0.21",
+                "dlr" : "3.0.20",
                 "cvr" : "2.0.21",
                 "util" : "1.0.21"
         ]
