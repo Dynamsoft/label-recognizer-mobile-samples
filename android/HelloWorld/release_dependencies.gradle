@@ -8,13 +8,17 @@ allprojects {
                 "cvr" : 'dynamsoftcapturevisionrouter',
                 "dlr" : 'dynamsoftlabelrecognizer',
                 "util" : 'dynamsoftutility',
+                "core": 'DynamsoftCore',
+                "license": 'DynamsoftLicense',
         ]
 
         versions = [
                 "dce" : "4.0.2",
                 "dlr" : "3.0.20",
                 "cvr" : "2.0.21",
-                "util" : "1.0.21"
+                "util" : "1.0.21",
+                "core": "3.0.20",
+                "license": "3.0.30",
         ]
     }
     configurations.configureEach {
