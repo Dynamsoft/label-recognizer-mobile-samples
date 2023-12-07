@@ -12,16 +12,15 @@ This repository contains multiple samples that demonstrate how to use the [Dynam
 
 ### iOS
 
-- Supported OS: **iOS 9.0** or higher.
-- Supported ABI: **arm64** and **x86_64**.
-- Development Environment: Xcode 7.1 and above (Xcode 13.0+ recommended), CocoaPods 1.11.0+
+- Supported OS: iOS 11 or higher (iOS 13 and higher recommended).
+- Supported ABI: arm64 and x86_64.
+- Development Environment: Xcode 13 and above (Xcode 14.1+ recommended).
 
 ## Samples
 
 | Sample Name | Description | Programming Language(s) |
 | ----------- | ----------- | ----------------------- |
-|HelloWorld        | This is a Android sample that illustrates the simplest way to recognize text from an image file with Dynamsoft Label Recognizer SDK. | Java(Android)/Objective-C/Swift |
-|MRZScanner       | This sample detects the machine readable zone of a id card/visa/passport, recognize the text, and parse the data into surname, given name, nationality, passport number, issuing country or organization, date of birth, sex/gender, and passport expiration date.                 | Java(Android)/Objective-C/Swift |
+| ReadTextLinesWithCameraEnhancer | This sample shows the simplest way to recognize text lines from the video streaming with DynamsoftCameraEnhancer as the video input. | Java(Android)/Objective-C/Swift |
 
 ### How to build (For iOS Editions)
 

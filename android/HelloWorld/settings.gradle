@@ -1,2 +1,11 @@
-include ':app'
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = "HelloWorld"
+include ':ReadTextLinesWithCameraEnhancer'
+include ':ReadTextLinesWithCameraEnhancerKt'
