@@ -10,6 +10,7 @@ allprojects {
                 "util" : 'dynamsoftutility',
                 "core": 'dynamsoftcore',
                 "license": 'dynamsoftlicense',
+                "dip": 'dynamsoftimageprocessing',
         ]
 
         versions = [
@@ -19,6 +20,7 @@ allprojects {
                 "util" : "1.0.21",
                 "core": "3.0.20",
                 "license": "3.0.30",
+                "dip": "2.0.21",
         ]
     }
     configurations.configureEach {
