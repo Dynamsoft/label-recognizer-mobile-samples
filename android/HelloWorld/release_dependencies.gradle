@@ -8,8 +8,8 @@ allprojects {
                 "cvr" : 'dynamsoftcapturevisionrouter',
                 "dlr" : 'dynamsoftlabelrecognizer',
                 "util" : 'dynamsoftutility',
-                "core": 'DynamsoftCore',
-                "license": 'DynamsoftLicense',
+                "core": 'dynamsoftcore',
+                "license": 'dynamsoftlicense',
         ]
 
         versions = [
