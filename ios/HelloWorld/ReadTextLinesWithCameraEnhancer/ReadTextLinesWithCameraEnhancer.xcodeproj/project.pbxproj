@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A63DEA32BEDB14900923E43 /* DynamsoftResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A63DEA22BEDB14900923E43 /* DynamsoftResources.bundle */; };
 		0AFE837C2AFA271E007F75B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE837B2AFA271E007F75B2 /* AppDelegate.swift */; };
 		0AFE83802AFA271E007F75B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE837F2AFA271E007F75B2 /* ViewController.swift */; };
 		0AFE83832AFA271E007F75B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AFE83812AFA271E007F75B2 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A63DEA22BEDB14900923E43 /* DynamsoftResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DynamsoftResources.bundle; sourceTree = "<group>"; };
 		0AFE83782AFA271E007F75B2 /* ReadTextLinesWithCameraEnhancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadTextLinesWithCameraEnhancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFE837B2AFA271E007F75B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AFE837F2AFA271E007F75B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		0AFE836F2AFA271E007F75B2 = {
 			isa = PBXGroup;
 			children = (
+				0A63DEA22BEDB14900923E43 /* DynamsoftResources.bundle */,
 				0AFE837A2AFA271E007F75B2 /* ReadTextLinesWithCameraEnhancer */,
 				0AFE83792AFA271E007F75B2 /* Products */,
 				0AFE838F2AFA2819007F75B2 /* Frameworks */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AFE83882AFA2720007F75B2 /* LaunchScreen.storyboard in Resources */,
+				0A63DEA32BEDB14900923E43 /* DynamsoftResources.bundle in Resources */,
 				0AFE83852AFA2720007F75B2 /* Assets.xcassets in Resources */,
 				0AFE83832AFA271E007F75B2 /* Main.storyboard in Resources */,
 			);

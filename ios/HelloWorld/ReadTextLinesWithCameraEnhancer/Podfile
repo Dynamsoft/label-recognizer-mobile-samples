@@ -6,12 +6,6 @@ target 'ReadTextLinesWithCameraEnhancer' do
   use_frameworks!
 
   # Pods for ReadTextLinesWithCameraEnhancer
-  pod 'DynamsoftCore', '3.0.20'
-  pod 'DynamsoftLicense', '3.0.30'
-  pod 'DynamsoftUtility', '1.0.21'
-  pod 'DynamsoftCameraEnhancer', '4.0.2'
-  pod 'DynamsoftCaptureVisionRouter', '2.0.21'
-  pod 'DynamsoftImageProcessing', '2.0.21'
-  pod 'DynamsoftLabelRecognizer', '3.0.20'
+  pod 'DynamsoftLabelRecognizerBundle', '3.2.3000'
 
 end

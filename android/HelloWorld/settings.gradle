@@ -6,6 +6,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "HelloWorld"
+rootProject.name = "HelloWorld_DLR"
 include ':ReadTextLinesWithCameraEnhancer'
 include ':ReadTextLinesWithCameraEnhancerKt'

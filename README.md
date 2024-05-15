@@ -8,13 +8,13 @@ This repository contains multiple samples that demonstrate how to use the [Dynam
 
 - Supported OS: Android 5.0 (API Level 21) or higher.
 - Supported ABI: **armeabi-v7a**, **arm64-v8a**, **x86** and **x86_64**.
-- Development Environment: Android Studio 3.4+ (Android Studio 4.2+ recommended).
+- Development Environment: Android Studio 2022.2.1 or higher.
 
 ### iOS
 
 - Supported OS: iOS 11 or higher (iOS 13 and higher recommended).
 - Supported ABI: arm64 and x86_64.
-- Development Environment: Xcode 13 and above (Xcode 14.1+ recommended).
+- Development Environment: Xcode 13 and above (Xcode 14.1+ recommended), CocoaPods 1.11.0+.
 
 ## Samples
 

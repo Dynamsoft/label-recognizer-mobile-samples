@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A63DEA52BEDB1CA00923E43 /* DynamsoftResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A63DEA42BEDB1CA00923E43 /* DynamsoftResources.bundle */; };
 		0AFE83B12AFA3AD7007F75B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE83B02AFA3AD7007F75B2 /* AppDelegate.m */; };
 		0AFE83B72AFA3AD7007F75B2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE83B62AFA3AD7007F75B2 /* ViewController.m */; };
 		0AFE83BA2AFA3AD7007F75B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AFE83B82AFA3AD7007F75B2 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A63DEA42BEDB1CA00923E43 /* DynamsoftResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DynamsoftResources.bundle; sourceTree = "<group>"; };
 		0AFE83AC2AFA3AD7007F75B2 /* ReadTextLinesWithCameraEnhancerObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadTextLinesWithCameraEnhancerObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFE83AF2AFA3AD7007F75B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0AFE83B02AFA3AD7007F75B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 		0AFE83A32AFA3AD7007F75B2 = {
 			isa = PBXGroup;
 			children = (
+				0A63DEA42BEDB1CA00923E43 /* DynamsoftResources.bundle */,
 				0AFE83AE2AFA3AD7007F75B2 /* ReadTextLinesWithCameraEnhancerObjc */,
 				0AFE83AD2AFA3AD7007F75B2 /* Products */,
 				0AFE83C82AFA3BA9007F75B2 /* Frameworks */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AFE83BF2AFA3ADA007F75B2 /* LaunchScreen.storyboard in Resources */,
+				0A63DEA52BEDB1CA00923E43 /* DynamsoftResources.bundle in Resources */,
 				0AFE83BC2AFA3ADA007F75B2 /* Assets.xcassets in Resources */,
 				0AFE83BA2AFA3AD7007F75B2 /* Main.storyboard in Resources */,
 			);

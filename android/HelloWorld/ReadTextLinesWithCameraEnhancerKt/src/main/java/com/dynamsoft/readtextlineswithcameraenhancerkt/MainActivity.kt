@@ -1,17 +1,15 @@
 package com.dynamsoft.readtextlineswithcameraenhancerkt
 
-import android.content.res.Configuration
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
-import com.dynamsoft.core.basic_structures.CapturedResultReceiver
 import com.dynamsoft.core.basic_structures.CompletionListener
 import com.dynamsoft.core.basic_structures.DSRect
 import com.dynamsoft.core.basic_structures.EnumCapturedResultItemType
 import com.dynamsoft.cvr.CaptureVisionRouter
 import com.dynamsoft.cvr.CaptureVisionRouterException
+import com.dynamsoft.cvr.CapturedResultReceiver
 import com.dynamsoft.cvr.EnumPresetTemplate
 import com.dynamsoft.dce.CameraEnhancer
 import com.dynamsoft.dce.CameraEnhancerException
@@ -21,6 +19,7 @@ import com.dynamsoft.dlr.RecognizedTextLinesResult
 import com.dynamsoft.dlr.TextLineResultItem
 import com.dynamsoft.license.LicenseManager
 import com.dynamsoft.utility.MultiFrameResultCrossFilter
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,15 +39,7 @@ class MainActivity : AppCompatActivity() {
             this
         ) { isSuccess, error ->
             if (!isSuccess) {
-                error.printStackTrace()
-                runOnUiThread {
-                    val ts = Toast.makeText(
-                        baseContext,
-                        "error: " + error.message,
-                        Toast.LENGTH_LONG
-                    )
-                    ts.show()
-                }
+                error?.printStackTrace()
             }
         }
 
@@ -68,12 +59,12 @@ class MainActivity : AppCompatActivity() {
         mRouter.addResultFilter(filter)
 
         try {
-			// Set camera enhance as the video input.
+            // Set camera enhance as the video input.
             mRouter.input = mCamera
         } catch (e: CaptureVisionRouterException) {
             throw RuntimeException(e)
         }
-		// Set a scan region for the text line recognition.
+        // Set a scan region for the text line recognition.
         val region = DSRect(0.1f, 0.4f, 0.9f, 0.6f, true)
         try {
             mCamera.scanRegion = region
@@ -81,9 +72,9 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
         // The CapturedResultReceiver interface provides methods for monitoring the output of captured results. 
-		// The CapturedResultReceiver can add a receiver for any type of captured result or for a specific type of captured result, based on the method that is implemented.
+        // The CapturedResultReceiver can add a receiver for any type of captured result or for a specific type of captured result, based on the method that is implemented.
         mRouter.addResultReceiver(object : CapturedResultReceiver {
-			// Implement this method to receive RecognizedTextLinesResult.
+            // Implement this method to receive RecognizedTextLinesResult.
             override fun onRecognizedTextLinesReceived(result: RecognizedTextLinesResult) {
                 showResults(result.items)
             }
@@ -93,25 +84,26 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         try {
-			// Open the camera.
+            // Open the camera.
             mCamera.open()
         } catch (e: CameraEnhancerException) {
             e.printStackTrace()
         }
-		// Start capturing by specifying the preset template, PT_RECOGNIZE_TEXT_LINES.
-		// onSuccess: Callback when the capture start succeed.
-		// onFailure: Callback when the capture start failed.
+        // Start capturing by specifying the preset template, PT_RECOGNIZE_TEXT_LINES.
+        // onSuccess: Callback when the capture start succeed.
+        // onFailure: Callback when the capture start failed.
         mRouter.startCapturing(
             EnumPresetTemplate.PT_RECOGNIZE_TEXT_LINES,
             object : CompletionListener {
-                override fun onSuccess() {}
+                override fun onSuccess() = Unit
                 override fun onFailure(errorCode: Int, errorString: String) {
                     runOnUiThread {
-                        Toast.makeText(
-                            this@MainActivity,
-                            errorString,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        AlertDialog.Builder(this@MainActivity)
+                            .setTitle("Error:")
+                            .setMessage("ErrorCode: $errorCode \nErrorMessage: $errorString")
+                            .setCancelable(true)
+                            .setPositiveButton("OK", null)
+                            .show()
                     }
                 }
             })
@@ -119,17 +111,17 @@ class MainActivity : AppCompatActivity() {
 
     public override fun onPause() {
         try {
-			// Close the camera.
+            // Close the camera.
             mCamera.close()
         } catch (e: CameraEnhancerException) {
             e.printStackTrace()
         }
-		// Stop capturing.
+        // Stop capturing.
         mRouter.stopCapturing()
         super.onPause()
     }
 
-	// Show the recognized text line results.
+    // Show the recognized text line results.
     private fun showResults(results: Array<TextLineResultItem>?) {
         val resultBuilder = StringBuilder()
         if (results != null) {
