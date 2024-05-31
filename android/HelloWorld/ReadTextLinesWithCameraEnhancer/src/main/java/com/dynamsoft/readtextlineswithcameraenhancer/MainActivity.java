@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize license for Dynamsoft Label Recognizer SDK.
         // The license string here is a time-limited trial license. Note that network connection is required for this license to work.
-        // You can also request an extension for your trial license in the customer portal: https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=installer&package=android
+        // You can also request a 30-day trial license via the Request a Trial License link: https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=github&package=android
 
         LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", this, (isSuccess, error) -> {
             if (!isSuccess) {
