@@ -6,6 +6,6 @@ target 'ReadTextLinesWithCameraEnhancerObjc' do
   use_frameworks!
 
   # Pods for ReadTextLinesWithCameraEnhancerObjc
-  pod 'DynamsoftLabelRecognizerBundle', '3.2.3000'
+  pod 'DynamsoftLabelRecognizerBundle', '3.2.3001'
 
 end
