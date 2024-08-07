@@ -9,12 +9,13 @@
 #import <DynamsoftLabelRecognizer/DynamsoftLabelRecognizer.h>
 #import <DynamsoftCameraEnhancer/DynamsoftCameraEnhancer.h>
 #import <DynamsoftUtility/DynamsoftUtility.h>
+#import <DynamsoftLicense/DynamsoftLicense.h>
 
 #define weakSelfs(self) __weak typeof(self) weakSelf = self;
 
 typedef void (^ConfirmCompletion)(void);
 
-@interface ViewController ()<DSCapturedResultReceiver>
+@interface ViewController ()<DSCapturedResultReceiver, DSLicenseVerificationListener>
 
 @property (nonatomic, strong) DSCaptureVisionRouter *cvr;
 
@@ -46,9 +47,34 @@ typedef void (^ConfirmCompletion)(void);
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    [self setLicense];
     [self configureCVR];
     [self configureDCE];
     [self setupUI];
+}
+
+- (void)setLicense {
+    // Initialize the license.
+    // The license string here is a trial license. Note that network connection is required for this license to work.
+    // You can request an extension via the following link: https://www.dynamsoft.com/customer/license/trialLicense?product=dlr&utm_source=samples&package=ios
+    [DSLicenseManager initLicense:@"DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9" verificationDelegate:self];
+}
+
+- (void)displayLicenseMessage:(NSString *)message {
+    UILabel *label = [[UILabel alloc] init];
+    label.text = message;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = 0;
+    label.textColor = [UIColor redColor];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:label];
+    
+    [NSLayoutConstraint activateConstraints:@[
+        [label.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [label.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-20],
+        [label.leadingAnchor constraintGreaterThanOrEqualToAnchor:self.view.leadingAnchor constant:20],
+        [label.trailingAnchor constraintLessThanOrEqualToAnchor:self.view.trailingAnchor constant:-20]
+    ]];
 }
 
 - (void)configureCVR {
@@ -94,6 +120,16 @@ typedef void (^ConfirmCompletion)(void);
 
 - (void)setupUI {
     [self.view addSubview:self.resultView];
+}
+
+// MARK: LicenseVerificationListener
+- (void)onLicenseVerified:(BOOL)isSuccess error:(nullable NSError *)error {
+    if (!isSuccess && error != nil) {
+        NSLog(@"error: %@", error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self displayLicenseMessage:[NSString stringWithFormat:@"License initialization failed: %@", error.localizedDescription]];
+        });
+    }
 }
 
 // Implement this method to receive RecognizedTextLinesResult.
