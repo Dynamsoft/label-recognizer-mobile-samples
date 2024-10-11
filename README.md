@@ -1,5 +1,7 @@
 # Dynamsoft Label Recognizer samples for the Android and iOS editions
 
+⚠️ **Notice:** This repository has been **archived**. For the latest examples utilizing label recognition features, please visit the **[Dynamsoft Capture Vision Samples](https://github.com/Dynamsoft/capture-vision-mobile-samples)** repository. 🚀
+
 This repository contains multiple samples that demonstrate how to use the [Dynamsoft Label Recognizer](https://www.dynamsoft.com/label-recognition/overview/) Android and iOS Editions.
 
 ## Requirements
